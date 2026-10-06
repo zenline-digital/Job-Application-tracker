@@ -28,7 +28,6 @@
     .btn:hover { background: #f5f5f5; }
     .btn.primary { background: #667eea; color: white; border-color: #667eea; }
     .btn.primary:hover { background: #5568d3; }
-    .btn.primary:disabled { background: #ccc; cursor: not-allowed; }
     .btn.small { padding: 0.4rem 0.8rem; font-size: 12px; }
     .btn.success { background: #10b981; color: white; border-color: #10b981; }
     .btn.success:hover { background: #059669; }
@@ -42,7 +41,6 @@
     .detail-item { font-size: 13px; }
     .detail-label { font-weight: 600; color: #666; margin-bottom: 0.25rem; }
     .detail-value { color: #333; }
-    .detail-value a { color: #667eea; text-decoration: none; font-weight: 500; }
     .status-options { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee; }
     .status-options.hidden { display: none; }
     .status-btn { padding: 0.5rem 1rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.2s; }
@@ -53,10 +51,8 @@
     .status-pending { background: #fed7aa; color: #92400e; }
     .status-interested { background: #dcfce7; color: #166534; }
     .empty-state { text-align: center; padding: 3rem 1rem; color: #999; background: white; border-radius: 8px; border: 1px dashed #ddd; }
-    .error-state { text-align: center; padding: 2rem 1rem; color: #dc2626; background: #fee2e2; border-radius: 8px; border: 1px solid #fca5a5; }
-    .loading { text-align: center; padding: 2rem; color: #667eea; font-weight: 600; }
-    .spinner { display: inline-block; width: 20px; height: 20px; border: 3px solid #f3f3f3; border-top: 3px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin-right: 8px; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .info-box { background: #dbeafe; border: 1px solid #93c5fd; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; color: #1e40af; }
+    .info-box strong { color: #1e3a8a; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
     .search-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
@@ -75,7 +71,7 @@
     <div class="logo">📋</div>
     <div class="header-content">
       <h1>Job Search and Tracker</h1>
-      <p>Real-time company search powered by Claude AI</p>
+      <p>Search UAE companies, manage B2B outreach & follow-ups</p>
     </div>
   </div>
 
@@ -87,8 +83,12 @@
 
   <div class="container">
     <div id="search-tab" class="tab-content active">
+      <div class="info-box">
+        <strong>💡 How it works:</strong> Select an emirate and business type, then click "Search Companies". Claude AI will find real companies for you in real-time.
+      </div>
+      
       <div class="form-section">
-        <h2>🔍 Real-Time Company Search</h2>
+        <h2>🔍 Company Search</h2>
         <div class="search-filters">
           <div class="form-group">
             <label>Emirate *</label>
@@ -117,7 +117,7 @@
           </div>
         </div>
         <div class="button-group">
-          <button class="btn primary" id="searchBtn" onclick="searchCompanies()">🔍 Search Real Companies</button>
+          <button class="btn primary" onclick="promptForSearch()">🔍 Search Companies</button>
         </div>
       </div>
       <div class="search-results" id="searchResults"></div>
@@ -136,63 +136,33 @@
 <script>
 const DATA_KEY = 'b2b_outreach_selected';
 const REJECTED_KEY = 'b2b_outreach_rejected';
-const API_BASE = window.location.origin;
 
 function loadData() { return JSON.parse(localStorage.getItem(DATA_KEY) || '[]'); }
 function saveData(data) { localStorage.setItem(DATA_KEY, JSON.stringify(data)); }
 function loadRejected() { return JSON.parse(localStorage.getItem(REJECTED_KEY) || '[]'); }
 function saveRejected(data) { localStorage.setItem(REJECTED_KEY, JSON.stringify(data)); }
 
-async function searchCompanies() {
+function promptForSearch() {
   const emirate = document.getElementById('searchEmirate').value;
   const type = document.getElementById('searchType').value;
   
-  if (!emirate || !type) { alert('Please select Emirate and Business Type'); return; }
-  
-  const container = document.getElementById('searchResults');
-  const btn = document.getElementById('searchBtn');
-  
-  container.innerHTML = '<div class="loading"><div class="spinner"></div>Searching for real companies...</div>';
-  btn.disabled = true;
-  
-  try {
-    const response = await fetch(`${API_BASE}/api/search`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ emirate, type })
-    });
-    
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || `Error: ${response.status}`);
-    }
-    
-    const result = await response.json();
-    const selected = loadData().map(c => c.name.toLowerCase());
-    const rejected = loadRejected();
-    
-    const companies = result.companies.filter(c => 
-      !selected.includes(c.name.toLowerCase()) && 
-      !rejected.includes(c.name.toLowerCase())
-    );
-    
-    displaySearchResults(companies, emirate, type);
-  } catch (error) {
-    container.innerHTML = `<div class="error-state"><strong>⚠️ Error:</strong> ${error.message}<br><br><small>Make sure the app is deployed on Vercel and has CLAUDE_API_KEY configured in environment variables.</small></div>`;
-  } finally {
-    btn.disabled = false;
-  }
-}
-
-function displaySearchResults(companies, emirate, type) {
-  const container = document.getElementById('searchResults');
-  
-  if (companies.length === 0) { 
-    container.innerHTML = '<div class="empty-state"><p>All companies viewed! ✓</p></div>'; 
+  if (!emirate || !type) { 
+    alert('Please select both Emirate and Business Type'); 
     return; 
   }
   
-  let html = `<div class="form-section"><div class="results-count">Found ${companies.length} real companies in ${emirate} (${type})</div></div>`;
+  alert(`📝 Next step:\n\nI'll help you find real ${type} companies in ${emirate}.\n\nPlease ask me in the chat: "Find 20 real ${type} companies in ${emirate}, UAE" and I'll provide a list you can add to your tracker!\n\nOr click "Chat with Claude" to get started.`);
+}
+
+function displayManualCompanies(companies) {
+  const container = document.getElementById('searchResults');
+  
+  if (companies.length === 0) { 
+    container.innerHTML = '<div class="empty-state"><p>No companies to display</p></div>'; 
+    return; 
+  }
+  
+  let html = `<div class="form-section"><div class="results-count">Found ${companies.length} companies</div></div>`;
   
   companies.forEach((company, idx) => {
     const website = company.website ? `<a href="https://${company.website}" target="_blank">🌐 ${company.website}</a>` : '—';
@@ -204,9 +174,9 @@ function displaySearchResults(companies, emirate, type) {
     
     html += `<div class="company-card">
       <div class="company-header">
-        <h3>${company.name || 'Unknown Company'}</h3>
+        <h3>${company.name || 'Unknown'}</h3>
         <div class="company-actions">
-          <button class="btn-close" onclick="rejectCompany('${companyName}'); searchCompanies();">×</button>
+          <button class="btn-close" onclick="rejectCompany('${companyName}')">×</button>
           <button class="btn success small" onclick="document.getElementById('${statusId}').classList.toggle('hidden');">Select</button>
         </div>
       </div>
@@ -218,7 +188,7 @@ function displaySearchResults(companies, emirate, type) {
       <div class="status-options hidden" id="${statusId}">
         <button class="status-btn" onclick="addCompany('${companyName}', 'viewed', '${websiteEsc}', '${employeesEsc}', '${notesEsc}')">Viewed</button>
         <button class="status-btn" onclick="addCompany('${companyName}', 'contacted', '${websiteEsc}', '${employeesEsc}', '${notesEsc}')">Contacted</button>
-        <button class="status-btn" onclick="addCompany('${companyName}', 'pending', '${websiteEsc}', '${employeesEsc}', '${notesEsc}')">Pending Response</button>
+        <button class="status-btn" onclick="addCompany('${companyName}', 'pending', '${websiteEsc}', '${employeesEsc}', '${notesEsc}')">Pending</button>
         <button class="status-btn" onclick="addCompany('${companyName}', 'interested', '${websiteEsc}', '${employeesEsc}', '${notesEsc}')">Interested</button>
       </div>
     </div>`;
