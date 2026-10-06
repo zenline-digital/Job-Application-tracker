@@ -80,7 +80,7 @@
 <div class="container">
   <div class="header">
     <h1>📊 B2B Outreach Tracker</h1>
-    <p>Track Sharjah & Ajman companies, contact details, and application follow-ups</p>
+    <p>Track companies across all UAE emirates, contact details, and application follow-ups</p>
   </div>
   <div class="tabs">
     <button class="tab-button active" data-tab="search">🔍 Search Companies</button>
@@ -92,15 +92,20 @@
   <div id="search-tab" class="tab-content active">
     <div class="form-section">
       <h2>Search Companies</h2>
-      <p style="color: #666; font-size: 13px; margin-bottom: 1rem;">Find and add new companies from Sharjah & Ajman</p>
+      <p style="color: #666; font-size: 13px; margin-bottom: 1rem;">Find and add new companies across all UAE emirates</p>
       <div class="search-filters">
         <div class="form-group">
           <label>Emirate *</label>
           <select id="searchEmirate">
             <option value="">-- Select Emirate --</option>
+            <option value="abu-dhabi">Abu Dhabi</option>
+            <option value="dubai">Dubai</option>
             <option value="sharjah">Sharjah</option>
             <option value="ajman">Ajman</option>
-            <option value="both">Both</option>
+            <option value="umm-al-quwain">Umm Al Quwain</option>
+            <option value="ras-al-khaimah">Ras Al Khaimah</option>
+            <option value="fujairah">Fujairah</option>
+            <option value="all">All Emirates</option>
           </select>
         </div>
         <div class="form-group">
@@ -176,10 +181,28 @@ const DATA_KEY = 'b2b_outreach_data';
 const COMPANY_DATABASE = [
   { name: "Global Food Industries (GFI)", type: "food-distribution", emirate: "sharjah", website: "global-food.com", employees: "100+", notes: "Frozen Food Manufacturing & Distribution" },
   { name: "Agri Fresh Foodstuff LLC", type: "food-distribution", emirate: "sharjah", website: "agrifresh.ae", employees: "50+", notes: "Food Distribution" },
+  { name: "Bagason Group", type: "fmcg-distribution", emirate: "sharjah", website: "bagason.com", employees: "200+", notes: "FMCG Distribution" },
+  { name: "Alawaad Foodstuff Trading", type: "food-distribution", emirate: "sharjah", website: "alawaadfood.com", employees: "100+", notes: "Wholesale Food Distribution" },
+  { name: "AWS Distribution", type: "fmcg-distribution", emirate: "sharjah", website: "awsdistribution.com", employees: "150+", notes: "FMCG & Food Distribution" },
+  { name: "Crescent Enterprises", type: "logistics", emirate: "sharjah", website: "crescententerprises.com", employees: "200+", notes: "Port Operations & Logistics" },
   { name: "Vulcan Industries LLC", type: "warehousing", emirate: "ajman", website: "", employees: "50-249", notes: "Contract Manufacturing" },
-  { name: "Nahla Al Wadi Trading", type: "food-distribution", emirate: "ajman", website: "ae.nahlaalwadi.com", employees: "100+", notes: "Wholesale Food & Beverage Distributor" },
-  { name: "Texas General Trading FZE", type: "general-trading", emirate: "ajman", website: "texasgeneraltrading.com", employees: "50+", notes: "Construction Materials & Commodities" },
+  { name: "Rio Cargo Services LLC", type: "logistics", emirate: "ajman", website: "", employees: "50+", notes: "Cargo & Warehousing Services" },
+  { name: "Nahla Al Wadi Trading", type: "food-distribution", emirate: "ajman", website: "ae.nahlaalwadi.com", employees: "100+", notes: "Wholesale Food & Beverage" },
+  { name: "Texas General Trading FZE", type: "general-trading", emirate: "ajman", website: "texasgeneraltrading.com", employees: "50+", notes: "Construction Materials" },
   { name: "Arham Foodstuff", type: "food-distribution", emirate: "ajman", website: "arhamfoodstuff.com", employees: "50+", notes: "Food Distribution & Wholesale" },
+  { name: "Larico General Trading", type: "general-trading", emirate: "ajman", website: "laricogt.com", employees: "50+", notes: "Textiles & Uniform Distribution" },
+  { name: "Al Farwaniya Warehousing", type: "warehousing", emirate: "dubai", website: "", employees: "100+", notes: "Warehousing & Logistics" },
+  { name: "Emirates Trading Company", type: "general-trading", emirate: "dubai", website: "", employees: "200+", notes: "Import & Export Trading" },
+  { name: "Gulf Foodstuff Distribution", type: "food-distribution", emirate: "dubai", website: "", employees: "150+", notes: "Food & Beverage Distribution" },
+  { name: "Logistics Plus", type: "logistics", emirate: "dubai", website: "", employees: "100+", notes: "Shipping & Cargo Services" },
+  { name: "Abu Dhabi Trade Hub", type: "general-trading", emirate: "abu-dhabi", website: "", employees: "100+", notes: "General Import/Export" },
+  { name: "ADWEC Distribution", type: "fmcg-distribution", emirate: "abu-dhabi", website: "", employees: "150+", notes: "FMCG & Wholesale Distribution" },
+  { name: "Abu Dhabi Logistics", type: "logistics", emirate: "abu-dhabi", website: "", employees: "100+", notes: "Warehousing & Distribution" },
+  { name: "Al Qassimi Trading", type: "general-trading", emirate: "ras-al-khaimah", website: "", employees: "50+", notes: "Import/Export Trading" },
+  { name: "RAK Warehousing", type: "warehousing", emirate: "ras-al-khaimah", website: "", employees: "50+", notes: "Warehouse & Storage Services" },
+  { name: "Fujairah Food Traders", type: "food-distribution", emirate: "fujairah", website: "", employees: "50+", notes: "Food Trading & Distribution" },
+  { name: "UAE General Logistics", type: "logistics", emirate: "fujairah", website: "", employees: "50+", notes: "Shipping & Cargo Services" },
+  { name: "Umm Al Quwain Trading", type: "general-trading", emirate: "umm-al-quwain", website: "", employees: "50+", notes: "General Trading Company" },
 ];
 function loadData() { return (localStorage.getItem(DATA_KEY) ? JSON.parse(localStorage.getItem(DATA_KEY)) : []); }
 function saveData(data) { localStorage.setItem(DATA_KEY, JSON.stringify(data)); }
@@ -188,7 +211,7 @@ function searchCompanies() {
   const type = document.getElementById('searchType').value;
   if (!emirate || !type) { alert('Please select both Emirate and Business Type'); return; }
   let results = COMPANY_DATABASE;
-  if (emirate !== 'both') results = results.filter(c => c.emirate === emirate);
+  if (emirate !== 'all') results = results.filter(c => c.emirate === emirate);
   results = results.filter(c => c.type === type);
   const addedCompanies = loadData();
   const addedNames = addedCompanies.map(c => c.name.toLowerCase());
@@ -201,18 +224,18 @@ function displaySearchResults(results) {
   let html = `<div class="results-count">Found <strong>${results.length}</strong> companies</div>`;
   results.forEach(company => {
     const website = company.website ? `<a href="https://${company.website}" target="_blank">🌐 ${company.website}</a>` : '—';
-    html += `<div class="company-card"><h3>${company.name}</h3><div class="company-detail"><div class="detail-item"><div class="detail-label">Business Type</div><div class="detail-value">${company.type.replace(/-/g, ' ').toUpperCase()}</div></div><div class="detail-item"><div class="detail-label">Employees</div><div class="detail-value">${company.employees}</div></div><div class="detail-item"><div class="detail-label">Website</div><div class="detail-value">${website}</div></div></div><div style="font-size: 13px; color: #666; margin-bottom: 1rem;"><strong>Notes:</strong> ${company.notes}</div><div class="button-group"><select id="quick-status-${company.name.replace(/\s+/g, '-')}" style="padding: 0.6rem 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;"><option value="contacted">Contacted</option><option value="pending">Pending Response</option><option value="interested">Interested</option></select><button class="btn primary small" onclick="addFromSearch('${company.name}', '${company.type}', '${company.website}', '${company.employees}', '${company.notes}')">+ Add</button></div></div>`;
+    html += `<div class="company-card"><h3>${company.name}</h3><div class="company-detail"><div class="detail-item"><div class="detail-label">Business Type</div><div class="detail-value">${company.type.replace(/-/g, ' ').toUpperCase()}</div></div><div class="detail-item"><div class="detail-label">Emirate</div><div class="detail-value">${company.emirate.toUpperCase()}</div></div><div class="detail-item"><div class="detail-label">Employees</div><div class="detail-value">${company.employees}</div></div><div class="detail-item"><div class="detail-label">Website</div><div class="detail-value">${website}</div></div></div><div style="font-size: 13px; color: #666; margin-bottom: 1rem;"><strong>Notes:</strong> ${company.notes}</div><div class="button-group"><select id="quick-status-${company.name.replace(/\s+/g, '-')}" style="padding: 0.6rem 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;"><option value="contacted">Contacted</option><option value="pending">Pending Response</option><option value="interested">Interested</option></select><button class="btn primary small" onclick="addFromSearch('${company.name}', '${company.type}', '${company.website}', '${company.employees}', '${company.emirate}', '${company.notes}')">+ Add</button></div></div>`;
   });
   container.innerHTML = html;
 }
-function addFromSearch(name, type, website, employees, notes) {
+function addFromSearch(name, type, website, employees, emirate, notes) {
   const status = document.getElementById(`quick-status-${name.replace(/\s+/g, '-')}`).value;
   const data = loadData();
   data.push({
     id: Date.now(), name, contactPerson: '', email: '', phone: '', status,
     foundPhones: [], foundEmails: [], foundNames: [],
-    notes: `${notes} | Website: ${website} | Employees: ${employees}`,
-    businessType: type, appliedDate: '', nextFollowUpDate: '', applicationStatus: '', createdAt: new Date().toISOString()
+    notes: `${notes} | Emirate: ${emirate} | Website: ${website} | Employees: ${employees}`,
+    businessType: type, emirate: emirate, appliedDate: '', nextFollowUpDate: '', applicationStatus: '', createdAt: new Date().toISOString()
   });
   saveData(data);
   alert(`✓ ${name} added to tracker!`);
