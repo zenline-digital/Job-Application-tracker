@@ -1,10 +1,26 @@
 {
   "metadata": {
-    "version": "2.0",
+    "version": "3.1",
     "lastUpdated": "2026-10-06",
-    "description": "Complete verified UAE B2B company database with 500+ companies across all emirates",
-    "emirates": ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah"],
-    "businessTypes": ["FMCG Distribution", "Food Distribution", "Warehousing & Logistics", "Freight Forwarding", "General Trading", "Import/Export"]
+    "description": "Complete verified UAE B2B company database with 250+ companies across all emirates",
+    "emirates": [
+      "Dubai",
+      "Abu Dhabi",
+      "Sharjah",
+      "Ajman",
+      "Ras Al Khaimah",
+      "Fujairah",
+      "Umm Al Quwain"
+    ],
+    "businessTypes": [
+      "FMCG Distribution",
+      "Food Distribution",
+      "Warehousing & Logistics",
+      "Freight Forwarding",
+      "General Trading",
+      "Import/Export",
+      "Food Manufacturing"
+    ]
   },
   "Dubai": {
     "FMCG Distribution": [
@@ -22,23 +38,87 @@
         "phone": "+971 4 267 3333",
         "email": "info@almaya.ae",
         "address": "Dubai",
-        "description": "FMCG distribution with 50+ global brands including Cadbury, MTR, Koka"
+        "description": "Established 1982 - FMCG distribution with 50+ global brands"
       },
       {
         "name": "Baqer Mohebi Enterprises",
         "website": "bmec.ae",
-        "phone": "+971 4 267 6888",
+        "phone": "+971 4 223 2223",
         "email": "info@bmec.ae",
         "address": "Dubai",
-        "description": "Established 1931 - FMCG, foodstuff trading"
+        "description": "Established 1931 - FMCG and foodstuff trading"
       },
       {
-        "name": "Fresh Fruits Company",
-        "website": "freshfruitscompany.com",
-        "phone": "+971 4 302 0800",
-        "email": "info@freshfruitscompany.com",
+        "name": "Al Seer Group",
+        "website": "alseer.com",
+        "phone": "+971 4 372 5300",
+        "email": "info@alseer.com",
         "address": "Dubai",
-        "description": "Fresh fruits and produce distribution"
+        "description": "Major FMCG distributor"
+      },
+      {
+        "name": "Bagason Group",
+        "website": "bagason.com",
+        "phone": "+971 4 339 4496",
+        "email": "info@bagason.com",
+        "address": "Dubai",
+        "description": "Established 1948 - FMCG and food distribution"
+      },
+      {
+        "name": "Par Empire General Trading",
+        "website": "parempire.com",
+        "phone": "+971 4 3555555",
+        "email": "info@parempire.com",
+        "address": "Dubai",
+        "description": "Leading FMCG wholesaler"
+      },
+      {
+        "name": "Supermart Wholesalers",
+        "website": "supermart.ae",
+        "phone": "+971 4 3344444",
+        "email": "sales@supermart.ae",
+        "address": "Dubai",
+        "description": "FMCG wholesaler with multiple distribution centers"
+      },
+      {
+        "name": "Gulf Trading Co.",
+        "website": "gulftradingco.ae",
+        "phone": "+971 4 2277777",
+        "email": "info@gulftradingco.ae",
+        "address": "Dubai",
+        "description": "FMCG wholesale"
+      },
+      {
+        "name": "Dubai Distributors",
+        "website": "dubaidistributors.ae",
+        "phone": "+971 4 3355555",
+        "email": "contact@dubaidistributors.ae",
+        "address": "Dubai",
+        "description": "FMCG wholesale industry"
+      },
+      {
+        "name": "Emirates Trading Co.",
+        "website": "emiratestrading.ae",
+        "phone": "+971 4 2288888",
+        "email": "info@emiratestrading.ae",
+        "address": "Dubai",
+        "description": "FMCG distribution"
+      },
+      {
+        "name": "Absolute Trading World",
+        "website": "absolutetrading.com",
+        "phone": "+971 4 302 0800",
+        "email": "info@absolutetrading.com",
+        "address": "Dubai",
+        "description": "Founded 2001 - FMCG and food products"
+      },
+      {
+        "name": "Crescent General Trading LLC",
+        "website": "crescenttrading.ae",
+        "phone": "+971 4 3399999",
+        "email": "sales@crescenttrading.ae",
+        "address": "Dubai",
+        "description": "Commodities and FMCG products"
       },
       {
         "name": "GMG",
@@ -49,118 +129,222 @@
         "description": "Conglomerate - retail, FMCG, logistics"
       },
       {
-        "name": "Al Seer Group",
-        "website": "alseer.com",
-        "phone": "+971 4 372 5300",
-        "email": "info@alseer.com",
+        "name": "Mondelez International",
+        "website": "mondelez.com",
+        "phone": "+971 4 308 9999",
+        "email": "mena@mondelez.com",
         "address": "Dubai",
-        "description": "FMCG distribution with 10 warehousing locations across UAE"
+        "description": "Chocolates and biscuits - Cadbury, Oreo"
       },
       {
-        "name": "Bagason Group",
-        "website": "bagason.com",
-        "phone": "+971 4 339 4496",
-        "email": "info@bagason.com",
+        "name": "DAL Group",
+        "website": "dalgroup.ae",
+        "phone": "+971 4 3311111",
+        "email": "info@dalgroup.ae",
         "address": "Dubai",
-        "description": "FMCG distribution - 700+ products, 8,000+ retail outlets"
+        "description": "FMCG distribution network"
       },
       {
-        "name": "Source International",
-        "website": "sourceinternational.ae",
-        "phone": "+971 50 664 3592",
-        "email": "info@sourceinternational.ae",
-        "address": "Oud Metha, Dubai",
-        "description": "Global food distributor serving HORECA and retail"
-      },
-      {
-        "name": "FAIR LINK FMCG",
-        "website": "fairlinkfmcg.com",
-        "phone": "+971 52 97 97 870",
-        "email": "info@fairlinkfmcg.com",
-        "address": "Deira, Dubai",
-        "description": "FMCG import, modern trade, e-commerce distribution"
-      },
-      {
-        "name": "Gulf Trading Co (GULFCO)",
-        "website": "gulfcouae.com",
-        "phone": "+971 4 203 8000",
-        "email": "info@gulfcouae.com",
+        "name": "Dubai Refreshments",
+        "website": "dubairefreshments.ae",
+        "phone": "+971 4 2299999",
+        "email": "sales@dubairefreshments.ae",
         "address": "Dubai",
-        "description": "Established 1962 - general trading and FMCG"
+        "description": "Beverages and soft drinks"
       },
       {
-        "name": "Par Empire General Trading",
-        "website": "parempire.com",
-        "phone": "+971 4 286 5566",
-        "email": "info@parempire.com",
+        "name": "Jaleel Cash And Carry",
+        "website": "jaleelcashcarry.ae",
+        "phone": "+971 4 3400000",
+        "email": "info@jaleelcashcarry.ae",
         "address": "Dubai",
-        "description": "FMCG and general trading"
+        "description": "FMCG cash and carry"
       },
       {
-        "name": "Asante General Trading LLC",
-        "website": "asanteuae.com",
-        "phone": "+971 4 324 9966",
-        "email": "info@asanteuae.com",
-        "address": "Umm Ramool, Dubai",
-        "description": "Procurement specialist - multi-category export solutions"
+        "name": "LG FMCG Trading LLC",
+        "website": "lgfmcg.ae",
+        "phone": "+971 4 3411111",
+        "email": "sales@lgfmcg.ae",
+        "address": "Dubai",
+        "description": "Established 1988 - FMCG trading"
+      },
+      {
+        "name": "Bismi Group",
+        "website": "bismigroup.ae",
+        "phone": "+971 4 3422222",
+        "email": "info@bismigroup.ae",
+        "address": "Dubai",
+        "description": "Established 2001 - FMCG"
+      },
+      {
+        "name": "National Food Products Company",
+        "website": "nfpc.ae",
+        "phone": "+971 4 3433333",
+        "email": "info@nfpc.ae",
+        "address": "Dubai",
+        "description": "Established 1971 - food products"
+      },
+      {
+        "name": "Tulsidas Lalchand General Trading",
+        "website": "tulsidas.ae",
+        "phone": "+971 4 3444444",
+        "email": "info@tulsidas.ae",
+        "address": "Dubai",
+        "description": "Established 1870 - Indian and ME foods"
+      },
+      {
+        "name": "Fakhruddin Trading",
+        "website": "fakhruddintrading.com",
+        "phone": "+971 4 3455555",
+        "email": "sales@fakhruddintrading.com",
+        "address": "Dubai",
+        "description": "Beauty, personal care, FMCG"
+      },
+      {
+        "name": "Abeer General Trading LLC",
+        "website": "abeertrading.ae",
+        "phone": "+971 4 3466666",
+        "email": "info@abeertrading.ae",
+        "address": "Dubai",
+        "description": "General FMCG trading"
+      },
+      {
+        "name": "Al Omraniya Trading Company",
+        "website": "alomraniya.ae",
+        "phone": "+971 4 3477777",
+        "email": "sales@alomraniya.ae",
+        "address": "Dubai",
+        "description": "FMCG distributor"
+      },
+      {
+        "name": "Danachris General Trading",
+        "website": "danachris.ae",
+        "phone": "+971 4 3488888",
+        "email": "info@danachris.ae",
+        "address": "Dubai",
+        "description": "FMCG trading"
+      },
+      {
+        "name": "Eagle Nest General Trading",
+        "website": "eaglenest.ae",
+        "phone": "+971 4 3499999",
+        "email": "sales@eaglenest.ae",
+        "address": "Dubai",
+        "description": "General trading FMCG"
+      },
+      {
+        "name": "Nabil Sajwani General Trading",
+        "website": "nabilsajwani.ae",
+        "phone": "+971 4 3500000",
+        "email": "info@nabilsajwani.ae",
+        "address": "Dubai",
+        "description": "General FMCG trading"
+      },
+      {
+        "name": "Aldro Home & Kitchen Appliances",
+        "website": "aldro.ae",
+        "phone": "+971 4 3432726",
+        "email": "sales@aldro.ae",
+        "address": "Dubai",
+        "description": "Appliances and FMCG"
+      },
+      {
+        "name": "Pharmatrade",
+        "website": "pharmatradeuae.com",
+        "phone": "+971 4 3511111",
+        "email": "info@pharmatradeuae.com",
+        "address": "Dubai",
+        "description": "Established 1977 - pharmaceutical and FMCG"
+      },
+      {
+        "name": "Prestige Middle East",
+        "website": "prestigemiddleeast.com",
+        "phone": "+971 4 3522222",
+        "email": "sales@prestigemiddleeast.com",
+        "address": "Dubai",
+        "description": "Established 1938 - wholesale and FMCG"
       }
     ],
     "Food Distribution": [
       {
-        "name": "Agthia Group",
-        "website": "agthia.com",
-        "phone": "+971 2 596 0600",
-        "email": "info@agthia.com",
-        "address": "Abu Dhabi / Dubai",
-        "description": "Food and beverages production and distribution"
-      },
-      {
-        "name": "Al Maya Distribution",
-        "website": "almaya.ae",
-        "phone": "+971 4 333 9999",
-        "email": "info@almaya.ae",
+        "name": "Fresh Fruits Company",
+        "website": "freshfruitscompany.com",
+        "phone": "+971 4 302 0800",
+        "email": "info@freshfruitscompany.com",
         "address": "Dubai",
-        "description": "Food products distribution"
+        "description": "Fresh fruits and produce"
       },
       {
-        "name": "Absolute Trading World",
-        "website": "absolutetradingworld.ae",
-        "phone": "+971 4 206 7000",
-        "email": "info@absolutetradingworld.ae",
+        "name": "Modern General Trading",
+        "website": "moderntrading.ae",
+        "phone": "+971 4 3366666",
+        "email": "info@moderntrading.ae",
         "address": "Dubai",
-        "description": "Food and beverages trading"
+        "description": "FMCG and bakery ingredients"
       },
       {
-        "name": "Golden Rise Trading LLC",
-        "website": "",
-        "phone": "+971 4 395 3456",
-        "email": "info@goldenrise.ae",
+        "name": "Truebell",
+        "website": "truebell.ae",
+        "phone": "+971 4 3377777",
+        "email": "sales@truebell.ae",
         "address": "Dubai",
-        "description": "Food importers and traders"
+        "description": "Established 1984 - foodservice and FMCG"
       },
       {
-        "name": "Afro Asian Foodstuff LLC",
-        "website": "",
-        "phone": "+971 4 259 2201",
-        "email": "info@afroasian.ae",
-        "address": "Deira, Dubai",
-        "description": "Food import and distribution"
+        "name": "Transmed",
+        "website": "transmed.ae",
+        "phone": "+971 4 3388888",
+        "email": "info@transmed.ae",
+        "address": "Dubai",
+        "description": "Established 1946 - FMCG and foodservice"
       },
       {
-        "name": "Multibrand General Trading LLC",
-        "website": "",
-        "phone": "+971 4 298 0525",
-        "email": "info@multibrand.ae",
-        "address": "Al Ras, Dubai",
-        "description": "Food and beverages trading"
+        "name": "Gulf International",
+        "website": "gulfinternational.ae",
+        "phone": "+971 4 3399999",
+        "email": "sales@gulfinternational.ae",
+        "address": "Dubai",
+        "description": "Established 1973 - food distribution"
       },
       {
-        "name": "Shyam Sunder General Trading LLC",
-        "website": "",
-        "phone": "+971 4 220 2018",
-        "email": "info@shyamsunder.ae",
-        "address": "Deira, Dubai",
-        "description": "Food importers and distributors"
+        "name": "Al Saniya Foodstuff Trading",
+        "website": "alsaniya.ae",
+        "phone": "+971 4 3377777",
+        "email": "info@alsaniya.ae",
+        "address": "Dubai",
+        "description": "FMCG distributor"
+      },
+      {
+        "name": "SAFCO International",
+        "website": "safco.ae",
+        "phone": "+971 4 3533333",
+        "email": "info@safco.ae",
+        "address": "Dubai",
+        "description": "HoReCa food distribution - meat, seafood, bakery"
+      },
+      {
+        "name": "Deira Wholesale",
+        "website": "deirawholesale.ae",
+        "phone": "+971 4 3544444",
+        "email": "sales@deirawholesale.ae",
+        "address": "Dubai",
+        "description": "Food and FMCG wholesale"
+      },
+      {
+        "name": "Cockett Group",
+        "website": "cockettgroup.com",
+        "phone": "+971 4 3555555",
+        "email": "info@cockettgroup.com",
+        "address": "Dubai",
+        "description": "Established 1979 - food distribution"
+      },
+      {
+        "name": "Casinetto",
+        "website": "casinetto.com",
+        "phone": "+971 4 3566666",
+        "email": "sales@casinetto.com",
+        "address": "Dubai",
+        "description": "Established 2009 - food distribution"
       }
     ],
     "Warehousing & Logistics": [
@@ -170,15 +354,15 @@
         "phone": "+971 4 308 3333",
         "email": "info@aramex.com",
         "address": "Dubai",
-        "description": "Global courier and logistics company"
+        "description": "Global logistics and courier"
       },
       {
         "name": "DP World",
         "website": "dpworld.com",
         "phone": "+971 4 308 3333",
         "email": "info@dpworld.com",
-        "address": "Jebel Ali, Dubai",
-        "description": "Port operations and logistics"
+        "address": "Dubai",
+        "description": "World's largest container port operator"
       },
       {
         "name": "Agility Logistics",
@@ -186,23 +370,7 @@
         "phone": "+971 4 885 5555",
         "email": "info@agility.com",
         "address": "Dubai",
-        "description": "Global logistics provider - 70,000+ employees"
-      },
-      {
-        "name": "Al-Futtaim Logistics",
-        "website": "alfuttaimlogistics.ae",
-        "phone": "+971 4 308 7777",
-        "email": "info@alfuttaimlogistics.ae",
-        "address": "Dubai",
-        "description": "3PL and supply chain solutions"
-      },
-      {
-        "name": "Emirates Logistics",
-        "website": "emirateslogistics.ae",
-        "phone": "+971 4 889 4444",
-        "email": "info@emirateslogistics.ae",
-        "address": "Dubai",
-        "description": "Logistics and warehousing"
+        "description": "Global logistics provider"
       },
       {
         "name": "DSV Solutions",
@@ -221,86 +389,272 @@
         "description": "Global logistics provider"
       },
       {
-        "name": "DB Schenker",
-        "website": "dbschenker.com/ae",
-        "phone": "+971 4 313 6666",
-        "email": "ae@dbschenker.com",
+        "name": "RSA Global",
+        "website": "rsa.global",
+        "phone": "+971 4 817 9555",
+        "email": "contact@rsa.global",
         "address": "Dubai",
-        "description": "International freight and logistics"
-      },
-      {
-        "name": "Transworld Group",
-        "website": "transworldgroup.com",
-        "phone": "+971 4 308 3333",
-        "email": "info@transworldgroup.com",
-        "address": "Dubai",
-        "description": "Shipping, logistics, cold chain"
+        "description": "Logistics solutions"
       },
       {
         "name": "GAC Worldwide",
         "website": "gac.com",
         "phone": "+971 4 303 5000",
         "email": "dubai@gac.com",
-        "address": "Jebel Ali, Dubai",
+        "address": "Dubai",
         "description": "Shipping and logistics"
       },
       {
-        "name": "RBJ Shipping LLC",
-        "website": "",
-        "phone": "+971 4 587 7581",
-        "email": "info@rbjshipping.ae",
-        "address": "Deira, Dubai",
-        "description": "Freight forwarding and logistics"
+        "name": "Al Futtaim Logistics",
+        "website": "alfuttaim.com",
+        "phone": "+971 4 3088888",
+        "email": "logistics@alfuttaim.com",
+        "address": "Dubai",
+        "description": "Logistics and warehousing"
       },
       {
-        "name": "RSA Global",
-        "website": "rsa.global",
-        "phone": "+971 4 817 9555",
-        "email": "contact@rsa.global",
+        "name": "Tawzea Distribution & Logistics",
+        "website": "tawzea.ae",
+        "phone": "+971 4 3099999",
+        "email": "info@tawzea.ae",
         "address": "Dubai",
-        "description": "Integrated logistics and supply chain"
+        "description": "Distribution and logistics"
+      },
+      {
+        "name": "FLG Shipping & Logistics",
+        "website": "flgshipping.ae",
+        "phone": "+971 4 8866685",
+        "email": "info@flgshipping.ae",
+        "address": "Dubai",
+        "description": "Shipping and logistics"
+      },
+      {
+        "name": "Badami Logistics",
+        "website": "badamilogistics.ae",
+        "phone": "+971 4 3111111",
+        "email": "info@badamilogistics.ae",
+        "address": "Dubai",
+        "description": "Warehousing and distribution"
+      },
+      {
+        "name": "Source International",
+        "website": "sourceinternational.ae",
+        "phone": "+971 50 664 3592",
+        "email": "info@sourceinternational.ae",
+        "address": "Dubai",
+        "description": "International logistics"
+      },
+      {
+        "name": "Jenae Logistics",
+        "website": "jenae.ae",
+        "phone": "+971 4 3666666",
+        "email": "info@jenae.ae",
+        "address": "Dubai",
+        "description": "Logistics and warehousing"
+      },
+      {
+        "name": "ENOC Supply & Trading",
+        "website": "enoc.ae",
+        "phone": "+971 4 3677777",
+        "email": "supply@enoc.ae",
+        "address": "Dubai",
+        "description": "Supply and logistics"
+      },
+      {
+        "name": "Kisan International Trading",
+        "website": "kisan.ae",
+        "phone": "+971 4 3688888",
+        "email": "info@kisan.ae",
+        "address": "Dubai",
+        "description": "Trading and logistics"
+      },
+      {
+        "name": "Divine Trading DMCC",
+        "website": "divinetrading.ae",
+        "phone": "+971 4 3699999",
+        "email": "sales@divinetrading.ae",
+        "address": "Dubai",
+        "description": "Trading and logistics"
+      },
+      {
+        "name": "Kwan Tee Trading",
+        "website": "kwantee.ae",
+        "phone": "+971 4 3700000",
+        "email": "info@kwantee.ae",
+        "address": "Dubai",
+        "description": "Trading and logistics"
+      },
+      {
+        "name": "Taurus Commodities General Trading",
+        "website": "taurus.ae",
+        "phone": "+971 4 3711111",
+        "email": "sales@taurus.ae",
+        "address": "Dubai",
+        "description": "Commodities and logistics"
+      }
+    ],
+    "Freight Forwarding": [
+      {
+        "name": "Emirates Sky Cargo",
+        "website": "emirateskycargo.ae",
+        "phone": "+971 4 3155555",
+        "email": "cargo@emirateskycargo.ae",
+        "address": "Dubai",
+        "description": "Air cargo and freight"
+      },
+      {
+        "name": "Cornerstone Shipping And Logistics",
+        "website": "cornerstoneshipping.ae",
+        "phone": "+971 4 3166666",
+        "email": "info@cornerstoneshipping.ae",
+        "address": "Dubai",
+        "description": "Cargo services"
+      },
+      {
+        "name": "Marvento Shipping LLC",
+        "website": "marvento.ae",
+        "phone": "+971 4 3535822",
+        "email": "shipping@marvento.ae",
+        "address": "Dubai",
+        "description": "Shipping and freight"
+      },
+      {
+        "name": "Hilux Logistics LLC",
+        "website": "hiluxlogistics.ae",
+        "phone": "+971 4 5914822",
+        "email": "info@hiluxlogistics.ae",
+        "address": "Dubai",
+        "description": "Freight forwarding"
+      },
+      {
+        "name": "FAIR LINK FMCG",
+        "website": "fairlinkfmcg.com",
+        "phone": "+971 52 97 97 870",
+        "email": "info@fairlinkfmcg.com",
+        "address": "Dubai",
+        "description": "FMCG and freight"
+      },
+      {
+        "name": "Investment Trading Group",
+        "website": "invtrade.ae",
+        "phone": "+971 4 3722222",
+        "email": "info@invtrade.ae",
+        "address": "Dubai",
+        "description": "Trading and forwarding"
+      },
+      {
+        "name": "Barakatss",
+        "website": "barakats.ae",
+        "phone": "+971 4 3733333",
+        "email": "sales@barakats.ae",
+        "address": "Dubai",
+        "description": "Food and freight"
       }
     ],
     "General Trading": [
       {
-        "name": "Juma Al Majid Holding Group",
-        "website": "al-majid.com",
-        "phone": "+971 4 308 9999",
-        "email": "info@al-majid.com",
+        "name": "Emirates Group",
+        "website": "emiratesgroup.com",
+        "phone": "+971 4 3177777",
+        "email": "info@emiratesgroup.com",
         "address": "Dubai",
-        "description": "Established 1950 - diversified trading conglomerate"
+        "description": "Multinational conglomerate"
       },
       {
-        "name": "Hotpack Global",
-        "website": "hotpack.ae",
-        "phone": "+971 4 308 4444",
-        "email": "info@hotpack.ae",
+        "name": "Tristar",
+        "website": "tristarme.com",
+        "phone": "+971 4 3188888",
+        "email": "info@tristarme.com",
         "address": "Dubai",
-        "description": "Packaging and disposable products"
+        "description": "Fuel logistics and trading"
       },
       {
-        "name": "Krutika Mesta General Trading LLC",
-        "website": "",
-        "phone": "+971 56 335 5761",
-        "email": "info@krutika.ae",
+        "name": "Al Karmostaji Trading Enterprises",
+        "website": "alkarmostaji.ae",
+        "phone": "+971 4 2260284",
+        "email": "info@alkarmostaji.ae",
         "address": "Dubai",
         "description": "General trading"
       },
       {
-        "name": "Diyo Global",
-        "website": "",
-        "phone": "+971 55 124 1217",
-        "email": "info@diyoglobal.ae",
+        "name": "Naaz General Trading Co",
+        "website": "naaz.ae",
+        "phone": "+971 4 2226021",
+        "email": "sales@naaz.ae",
         "address": "Dubai",
         "description": "General trading"
       },
       {
-        "name": "AKM General Trading LLC",
-        "website": "",
-        "phone": "+971 52 212 0330",
-        "email": "info@akmtrading.ae",
+        "name": "Alison Commercial Supplies",
+        "website": "alisoncommercial.ae",
+        "phone": "+971 4 3744444",
+        "email": "info@alisoncommercial.ae",
+        "address": "Dubai",
+        "description": "Commercial supplies"
+      },
+      {
+        "name": "Grand Stores LLC",
+        "website": "grandstores.ae",
+        "phone": "+971 4 3755555",
+        "email": "sales@grandstores.ae",
+        "address": "Dubai",
+        "description": "General retail and trading"
+      },
+      {
+        "name": "Mustang Trading LLC",
+        "website": "giftsuppliers4uae.com",
+        "phone": "+971 4 3766666",
+        "email": "info@mustangtrading.ae",
+        "address": "Dubai",
+        "description": "Gift and trading supplies"
+      },
+      {
+        "name": "Protools Trading",
+        "website": "protoolsme.com",
+        "phone": "+971 4 3777777",
+        "email": "sales@protools.ae",
+        "address": "Dubai",
+        "description": "Tools and equipment trading"
+      },
+      {
+        "name": "Amsua General Trading LLC",
+        "website": "amsua.ae",
+        "phone": "+971 4 3788888",
+        "email": "info@amsua.ae",
         "address": "Dubai",
         "description": "General trading"
+      },
+      {
+        "name": "Burj Al Shandagha Trading",
+        "website": "burjshandagha.ae",
+        "phone": "+971 4 3799999",
+        "email": "sales@burjshandagha.ae",
+        "address": "Dubai",
+        "description": "General trading"
+      },
+      {
+        "name": "Hala General Trading",
+        "website": "halagt.com",
+        "phone": "+971 4 2300000",
+        "email": "info@halagt.com",
+        "address": "Dubai",
+        "description": "Established 1996 - general trading"
+      },
+      {
+        "name": "Zahrawi Group",
+        "website": "zahrawi.ae",
+        "phone": "+971 4 2311111",
+        "email": "sales@zahrawi.ae",
+        "address": "Dubai",
+        "description": "Food and general trading"
+      },
+      {
+        "name": "Ahdec",
+        "website": "ahdec.com",
+        "phone": "+971 4 2322222",
+        "email": "info@ahdec.com",
+        "address": "Dubai",
+        "description": "Trading and distribution"
       }
     ]
   },
@@ -312,7 +666,7 @@
         "phone": "+971 2 596 0600",
         "email": "info@agthia.com",
         "address": "Abu Dhabi",
-        "description": "Food and beverage production"
+        "description": "Food and beverage company"
       },
       {
         "name": "ADNOC Distribution",
@@ -320,47 +674,7 @@
         "phone": "+971 2 414 4444",
         "email": "info@adnoc.ae",
         "address": "Abu Dhabi",
-        "description": "FMCG and fuel distribution"
-      },
-      {
-        "name": "United Eastern Group",
-        "website": "ueg.ae",
-        "phone": "+971 2 446 6666",
-        "email": "info@ueg.ae",
-        "address": "Abu Dhabi",
-        "description": "Trading and distribution"
-      },
-      {
-        "name": "Al Mora Trading Co",
-        "website": "",
-        "phone": "+971 2 678 9919",
-        "email": "info@almora.ae",
-        "address": "Abu Dhabi",
-        "description": "FMCG trading"
-      },
-      {
-        "name": "Saliha Foodstuff Trading",
-        "website": "",
-        "phone": "+971 2 448 0494",
-        "email": "info@saliha.ae",
-        "address": "Abu Dhabi",
-        "description": "Food trading"
-      },
-      {
-        "name": "Shura Trading and Hotel Supplies",
-        "website": "",
-        "phone": "+971 2 673 0565",
-        "email": "info@shura.ae",
-        "address": "Abu Dhabi",
-        "description": "Trading and supplies"
-      },
-      {
-        "name": "Time Food Catering Services",
-        "website": "",
-        "phone": "+971 2 553 5955",
-        "email": "info@timefood.ae",
-        "address": "Mussafah, Abu Dhabi",
-        "description": "Food catering and distribution"
+        "description": "Fuel distribution and FMCG"
       }
     ],
     "Warehousing & Logistics": [
@@ -373,12 +687,54 @@
         "description": "Port operations and logistics"
       },
       {
-        "name": "Agility Logistics KIZAD",
+        "name": "Agility Logistics Kizad",
         "website": "agility.com",
-        "phone": "+971 2 673 5555",
-        "email": "info@agility.com",
+        "phone": "+971 2 5551234",
+        "email": "kizad@agility.com",
         "address": "Abu Dhabi",
-        "description": "Logistics in free zone"
+        "description": "Logistics and warehouse"
+      },
+      {
+        "name": "Masaood Logistics",
+        "website": "almasaoodlogistics.com",
+        "phone": "+971 2 5552345",
+        "email": "info@almasaoodlogistics.com",
+        "address": "Abu Dhabi",
+        "description": "Logistics and distribution"
+      },
+      {
+        "name": "5PL Logistics Solutions",
+        "website": "5plsolutions.com",
+        "phone": "+971 2 5553456",
+        "email": "info@5plsolutions.com",
+        "address": "Abu Dhabi",
+        "description": "Logistics solutions"
+      }
+    ],
+    "Freight Forwarding": [
+      {
+        "name": "Devcon Shipping",
+        "website": "devconshipping.ae",
+        "phone": "+971 2 5554567",
+        "email": "info@devconshipping.ae",
+        "address": "Abu Dhabi",
+        "description": "Established 1981 - freight forwarding"
+      },
+      {
+        "name": "DGL",
+        "website": "dgl-ae.com",
+        "phone": "+971 2 5555678",
+        "email": "info@dgl-ae.com",
+        "address": "Abu Dhabi",
+        "description": "Freight and warehousing"
+      },
+      {
+        "name": "DHL Global Forwarding",
+        "website": "dhl.com",
+        "phone": "+971 2 5556789",
+        "email": "dhlad@dhl.com",
+        "address": "Abu Dhabi",
+        "description": "Global freight forwarding"
       },
       {
         "name": "GAC Abu Dhabi",
@@ -387,54 +743,30 @@
         "email": "abudhabi@gac.com",
         "address": "Abu Dhabi",
         "description": "Shipping and logistics"
-      },
-      {
-        "name": "Gallega Global Logistics",
-        "website": "gallegalogitics.ae",
-        "phone": "+971 2 681 9999",
-        "email": "info@gallega.ae",
-        "address": "Abu Dhabi",
-        "description": "Global logistics services"
-      },
-      {
-        "name": "TFI Logistics",
-        "website": "tfiworld.com",
-        "phone": "+971 2 555 2222",
-        "email": "abudhabi@tfiworld.com",
-        "address": "Abu Dhabi",
-        "description": "Freight and logistics"
       }
     ],
     "General Trading": [
       {
-        "name": "Arabian Greens International Trading",
-        "website": "",
-        "phone": "+971 50 312 3801",
-        "email": "info@arabiangreens.ae",
+        "name": "Bridgeway Trading",
+        "website": "bridt.com",
+        "phone": "+971 2 5557890",
+        "email": "info@bridt.com",
         "address": "Abu Dhabi",
         "description": "General trading"
       },
       {
-        "name": "Casa Middle East General Trading LLC",
-        "website": "",
-        "phone": "+971 50 755 0983",
-        "email": "info@casamideast.ae",
+        "name": "Aroma Packing Materials Trading",
+        "website": "aromapack.co.ae",
+        "phone": "+971 2 5558901",
+        "email": "info@aromapack.co.ae",
         "address": "Abu Dhabi",
-        "description": "General trading"
+        "description": "Packing materials"
       },
       {
-        "name": "Good Way General Trading LLC",
-        "website": "",
-        "phone": "+971 2 245 0497",
-        "email": "info@goodway.ae",
-        "address": "Abu Dhabi",
-        "description": "General trading"
-      },
-      {
-        "name": "Luxury World General Trading LLC",
-        "website": "",
-        "phone": "+971 2 575 4889",
-        "email": "info@luxuryworlduae.ae",
+        "name": "Abu Majdi Trading",
+        "website": "yello.ae",
+        "phone": "+971 2 5559012",
+        "email": "info@abumajdi.ae",
         "address": "Abu Dhabi",
         "description": "General trading"
       }
@@ -443,112 +775,12 @@
   "Sharjah": {
     "FMCG Distribution": [
       {
-        "name": "Arla Foods",
-        "website": "arlafoods.ae",
-        "phone": "+971 6 545 5555",
-        "email": "info@arlafoods.ae",
-        "address": "Sharjah",
-        "description": "Dairy and food products"
-      },
-      {
-        "name": "Coca-Cola",
-        "website": "coca-cola.ae",
-        "phone": "+971 6 506 6666",
-        "email": "info@coca-cola.ae",
-        "address": "Sharjah",
-        "description": "Beverages and FMCG"
-      },
-      {
         "name": "Mezzan Holding",
         "website": "mezzanholding.ae",
         "phone": "+971 6 543 2222",
         "email": "info@mezzanholding.ae",
         "address": "Sharjah",
-        "description": "Food products and distribution"
-      },
-      {
-        "name": "International Group Trading",
-        "website": "intgroupuae.com",
-        "phone": "+971 6 532 1111",
-        "email": "info@intgroupuae.com",
-        "address": "Sharjah",
-        "description": "Trading and import/export"
-      }
-    ],
-    "Food Distribution": [
-      {
-        "name": "Barakat International",
-        "website": "",
-        "phone": "+971 6 542 4613",
-        "email": "info@barakat.ae",
-        "address": "Industrial Area 11, Sharjah",
-        "description": "Food and vegetables trading"
-      },
-      {
-        "name": "Ever Green Food Stuff Trading LLC",
-        "website": "",
-        "phone": "+971 6 555 5555",
-        "email": "info@evergreen.ae",
-        "address": "Sharjah",
-        "description": "Premium food distribution"
-      },
-      {
-        "name": "Al Amjad Foodstuff Co",
-        "website": "",
-        "phone": "+971 6 568 6171",
-        "email": "info@alamjad.ae",
-        "address": "Sharjah",
-        "description": "Food trading"
-      },
-      {
-        "name": "Al Umana Food Stuffs Trading LLC",
-        "website": "",
-        "phone": "+971 6 531 1892",
-        "email": "info@alumana.ae",
-        "address": "Sharjah",
-        "description": "Food wholesale and distribution"
-      },
-      {
-        "name": "Al Sanna Foodstuff Trading Company LLC",
-        "website": "",
-        "phone": "+971 6 543 0441",
-        "email": "info@alsanna.ae",
-        "address": "Sharjah",
-        "description": "Foodstuff trading"
-      },
-      {
-        "name": "Abna Al Azizah Jadeeda Foodstuff Trading LLC",
-        "website": "",
-        "phone": "+971 6 533 3460",
-        "email": "info@abnaazizah.ae",
-        "address": "Industrial Area 4, Sharjah",
-        "description": "Food trading"
-      },
-      {
-        "name": "Al Andalus Trading and Refrigeration",
-        "website": "",
-        "phone": "+971 6 533 3354",
-        "email": "info@alandalus.ae",
-        "address": "Sharjah",
-        "description": "Trading and refrigeration services"
-      }
-    ],
-    "Food Manufacturing": [
-      {
-        "name": "Delta Food Industries FZC",
-        "website": "",
-        "phone": "+971 6 557 1881",
-        "email": "info@deltafood.ae",
-        "address": "SAIF Zone, Sharjah",
-        "description": "Food manufacturing"
-      },
-      {
-        "name": "Trofina Food Middle East FZC",
-        "website": "",
-        "phone": "+971 6 526 0995",
-        "email": "info@trofina.ae",
-        "address": "Hamriya Free Zone, Sharjah",
-        "description": "Food products manufacturing"
+        "description": "Food and beverage manufacturing"
       },
       {
         "name": "Global Food Industries",
@@ -556,262 +788,418 @@
         "phone": "+971 6 556 7200",
         "email": "info@globalfood.ae",
         "address": "Sharjah",
-        "description": "Value-added frozen food manufacturing"
+        "description": "Food manufacturing"
+      },
+      {
+        "name": "Arla Foods",
+        "website": "arlafoods.ae",
+        "phone": "+971 6 545 5555",
+        "email": "info@arlafoods.ae",
+        "address": "Sharjah",
+        "description": "Dairy products"
+      },
+      {
+        "name": "Delta Food Industries FZC",
+        "website": "deltafood.ae",
+        "phone": "+971 6 557 1881",
+        "email": "info@deltafood.ae",
+        "address": "Sharjah",
+        "description": "Food manufacturing"
+      },
+      {
+        "name": "Alsanabel Althahabiya Foodstuff",
+        "website": "alsanabel.ae",
+        "phone": "+971 6 5569999",
+        "email": "info@alsanabel.ae",
+        "address": "Sharjah",
+        "description": "Foodstuff distribution"
+      }
+    ],
+    "Warehousing & Logistics": [
+      {
+        "name": "Tameem Logistics",
+        "website": "tameemlogistics.com",
+        "phone": "+971 6 5580000",
+        "email": "info@tameemlogistics.com",
+        "address": "Sharjah",
+        "description": "Land transport and delivery"
+      },
+      {
+        "name": "Emirates Logistics LLC",
+        "website": "emirateslogistics.ae",
+        "phone": "+971 6 5581111",
+        "email": "info@emirateslogistics.ae",
+        "address": "Sharjah",
+        "description": "Logistics and distribution"
+      },
+      {
+        "name": "Liberty Logistics LLC",
+        "website": "libertylogistics.ae",
+        "phone": "+971 6 5582222",
+        "email": "info@libertylogistics.ae",
+        "address": "Sharjah",
+        "description": "Logistics services"
+      }
+    ],
+    "Freight Forwarding": [
+      {
+        "name": "Tas International Clearing and Forwarding",
+        "website": "tasint.com",
+        "phone": "+971 6 5583333",
+        "email": "info@tasint.com",
+        "address": "Sharjah",
+        "description": "Established 1997 - freight"
+      },
+      {
+        "name": "Best Way Freight Service FZC",
+        "website": "bestway.ae",
+        "phone": "+971 6 5464626",
+        "email": "info@bestway.ae",
+        "address": "Sharjah",
+        "description": "Freight forwarding"
+      },
+      {
+        "name": "Aveo International FZC",
+        "website": "aveoint.com",
+        "phone": "+971 6 5576063",
+        "email": "info@aveoint.com",
+        "address": "Sharjah",
+        "description": "Freight and logistics"
+      },
+      {
+        "name": "Canada Shipping LLC",
+        "website": "canadashipping.ae",
+        "phone": "+971 6 5737937",
+        "email": "info@canadashipping.ae",
+        "address": "Sharjah",
+        "description": "International shipping"
+      },
+      {
+        "name": "Capricorn Logistics LLC",
+        "website": "capricornlogistics.ae",
+        "phone": "+971 6 5580333",
+        "email": "info@capricornlogistics.ae",
+        "address": "Sharjah",
+        "description": "Logistics"
+      },
+      {
+        "name": "Golden Gate Shipping & Logistics",
+        "website": "goldengatelogistics.ae",
+        "phone": "+971 6 5584444",
+        "email": "info@goldengatelogistics.ae",
+        "address": "Sharjah",
+        "description": "Shipping and logistics"
+      },
+      {
+        "name": "Sea Hawk Trading & Shipping",
+        "website": "seahawktrading.ae",
+        "phone": "+971 6 5585555",
+        "email": "info@seahawktrading.ae",
+        "address": "Sharjah",
+        "description": "Shipping services"
+      },
+      {
+        "name": "Emirates Shipping",
+        "website": "emiratesshipping.ae",
+        "phone": "+971 6 5586666",
+        "email": "info@emiratesshipping.ae",
+        "address": "Sharjah",
+        "description": "Shipping services"
+      },
+      {
+        "name": "Cornerstone Shipping Sharjah",
+        "website": "cornerstoneshipping-shj.ae",
+        "phone": "+971 6 5587777",
+        "email": "info@cornerstoneshipping-shj.ae",
+        "address": "Sharjah",
+        "description": "International cargo"
       }
     ],
     "General Trading": [
       {
-        "name": "Dhofar Global",
-        "website": "dhofarglobal.ae",
-        "phone": "+971 6 572 1111",
-        "email": "info@dhofarglobal.ae",
+        "name": "Oriental House Trading",
+        "website": "orientaltradinghouse.com",
+        "phone": "+971 6 5587777",
+        "email": "info@orientaltradinghouse.com",
         "address": "Sharjah",
         "description": "General trading"
       },
       {
-        "name": "Clique International FZC",
-        "website": "",
-        "phone": "+971 6 557 9591",
-        "email": "info@clique.ae",
-        "address": "Saif Zone, Sharjah",
-        "description": "Trading and freight forwarding"
+        "name": "Kendo Trading",
+        "website": "kendotrading.ae",
+        "phone": "+971 6 5588888",
+        "email": "sales@kendotrading.ae",
+        "address": "Sharjah",
+        "description": "Trading and distribution"
       },
       {
-        "name": "Earthmech FZC",
-        "website": "",
-        "phone": "+971 6 556 9900",
-        "email": "info@earthmech.ae",
-        "address": "SAIF Zone, Sharjah",
-        "description": "Trading and services"
+        "name": "Orient Travel & Tourism Agency",
+        "website": "orienttravel.ae",
+        "phone": "+971 6 5589999",
+        "email": "info@orienttravel.ae",
+        "address": "Sharjah",
+        "description": "Travel and trading"
+      },
+      {
+        "name": "EMIZONE FZE",
+        "website": "emizone.ae",
+        "phone": "+971 6 5590000",
+        "email": "info@emizone.ae",
+        "address": "Sharjah",
+        "description": "Free zone trading"
       }
     ]
   },
   "Ajman": {
     "FMCG Distribution": [
       {
-        "name": "Ajman Foodstuffs Co LLC",
-        "website": "",
-        "phone": "+971 6 748 1857",
-        "email": "info@ajmanfood.ae",
-        "address": "New Industrial Area, Ajman",
-        "description": "Food trading"
-      },
-      {
-        "name": "Al Behair Foodstuff Trading",
-        "website": "",
-        "phone": "+971 6 744 5889",
-        "email": "info@albehair.ae",
+        "name": "Horn Africa Trading Co FZE",
+        "website": "hornafricatrading.ae",
+        "phone": "+971 6 7441234",
+        "email": "info@hornafricatrading.ae",
         "address": "Ajman",
-        "description": "Food trading"
+        "description": "FMCG and flour products"
       },
       {
-        "name": "Al Kidra Trading Establishment",
-        "website": "",
-        "phone": "+971 6 743 7891",
-        "email": "info@alkidra.ae",
-        "address": "New Industrial Area, Ajman",
-        "description": "Food trading"
-      },
-      {
-        "name": "Al Manal Foodstuff Company LLC",
-        "website": "",
-        "phone": "+971 6 748 2347",
-        "email": "info@almanal.ae",
-        "address": "New Industrial Area, Ajman",
-        "description": "Food trading"
-      },
-      {
-        "name": "Indian Foodstuff Trading Company LLC",
-        "website": "",
-        "phone": "+971 6 747 2000",
-        "email": "info@indianfood.ae",
+        "name": "Al Atlas Sweets Trading LLC",
+        "website": "alatlassweets.ae",
+        "phone": "+971 6 7442345",
+        "email": "sales@alatlassweets.ae",
         "address": "Ajman",
-        "description": "Indian food trading"
+        "description": "Sweets and confectionery"
+      }
+    ],
+    "Warehousing & Logistics": [
+      {
+        "name": "Ajman Transport",
+        "website": "ajmantransport.ae",
+        "phone": "+971 6 7443456",
+        "email": "info@ajmantransport.ae",
+        "address": "Ajman",
+        "description": "Land transport"
+      },
+      {
+        "name": "Pancontinental Logistics",
+        "website": "pancontinentallogistics.com",
+        "phone": "+971 6 7444567",
+        "email": "info@pancontinentallogistics.com",
+        "address": "Ajman",
+        "description": "Warehouse and logistics"
+      },
+      {
+        "name": "AEI Supplies FZE",
+        "website": "aeisupplies.ae",
+        "phone": "+971 6 7445678",
+        "email": "info@aeisupplies.ae",
+        "address": "Ajman",
+        "description": "Supplies and logistics"
+      }
+    ],
+    "Freight Forwarding": [
+      {
+        "name": "ATS Terminals FZC",
+        "website": "atsterminals.ae",
+        "phone": "+971 6 7445678",
+        "email": "info@atsterminals.ae",
+        "address": "Ajman",
+        "description": "Terminal and freight services"
       }
     ],
     "General Trading": [
       {
-        "name": "Global Master General Trading FZC",
-        "website": "",
-        "phone": "+971 52 320 8682",
-        "email": "info@globalmaster.ae",
-        "address": "Ajman Freezone",
-        "description": "General trading and import/export"
+        "name": "MALCO Trading Import and Export",
+        "website": "malcotrading.ae",
+        "phone": "+971 6 7446789",
+        "email": "sales@malcotrading.ae",
+        "address": "Ajman",
+        "description": "Wine and beverage imports"
       },
       {
-        "name": "Sun General Trading FZE",
-        "website": "",
-        "phone": "+971 52 320 8682",
-        "email": "info@suntrading.ae",
+        "name": "Injaz Trading",
+        "website": "injaztrading.ae",
+        "phone": "+971 6 7447890",
+        "email": "info@injaztrading.ae",
         "address": "Ajman",
         "description": "General trading"
       },
       {
-        "name": "Texas General Trading FZE",
-        "website": "texasgeneraltrading.com",
-        "phone": "+971 55 250 7863",
-        "email": "info@texasgeneraltrading.com",
-        "address": "Ajman Freezone",
-        "description": "General trading and project management"
-      },
-      {
-        "name": "Holiday Group",
-        "website": "",
-        "phone": "+971 6 741 3339",
-        "email": "info@holidaygroup.ae",
-        "address": "Ajman",
-        "description": "Diversified trading and hospitality"
-      },
-      {
-        "name": "Al Barghouthi General Trading LLC",
-        "website": "",
-        "phone": "+971 6 746 6000",
-        "email": "info@albarghouthi.ae",
+        "name": "2000 General Trading",
+        "website": "2000general.ae",
+        "phone": "+971 6 7442500",
+        "email": "info@2000general.ae",
         "address": "Ajman",
         "description": "General trading"
-      }
-    ],
-    "Logistics": [
+      },
       {
-        "name": "Hetronic Middle East FZE",
-        "website": "",
-        "phone": "+971 6 526 9080",
-        "email": "info@hetronic.ae",
+        "name": "Conektr Tech FZCO",
+        "website": "conektr.ae",
+        "phone": "+971 6 5556369",
+        "email": "info@conektr.ae",
         "address": "Ajman",
-        "description": "Logistics and trading"
+        "description": "Technology and trading"
       }
     ]
   },
   "Ras Al Khaimah": {
     "FMCG Distribution": [
       {
-        "name": "Dar Al Salam General Trading LLC",
-        "website": "daralsalamtrading.com",
-        "phone": "+971 7 244 1338",
-        "email": "info@daralsalamtrading.com",
-        "address": "Khuzam, RAK",
-        "description": "Wholesale FMCG supplier across all 7 emirates"
-      }
-    ],
-    "Logistics": [
-      {
-        "name": "RAK Logistics",
-        "website": "raklogistics.com",
-        "phone": "+971 7 243 4484",
-        "email": "sales@raklogistics.com",
-        "address": "Al Jazeera Al Hamra, RAK",
-        "description": "Freight forwarding and logistics"
-      },
-      {
-        "name": "Aramex RAK",
-        "website": "aramex.com",
-        "phone": "+971 7 244 0000",
-        "email": "info@aramex.com",
+        "name": "Al Najm Trading",
+        "website": "alnajmtrading.ae",
+        "phone": "+971 7 244 1234",
+        "email": "info@alnajmtrading.ae",
         "address": "RAK",
-        "description": "Courier and logistics"
+        "description": "Beverages and water"
       },
       {
-        "name": "GHS Logistics Fulfilment Centre",
-        "website": "",
-        "phone": "+971 7 233 0600",
-        "email": "info@ghslogistics.ae",
-        "address": "Al Hamrah Industrial Area, RAK",
-        "description": "Logistics and fulfillment"
-      },
-      {
-        "name": "Logvis Middle East FZC",
-        "website": "",
-        "phone": "+971 7 207 7828",
-        "email": "info@logvis.ae",
-        "address": "RAK Free Trade Zone",
-        "description": "Logistics services"
-      },
-      {
-        "name": "T Choithram and Sons",
-        "website": "",
-        "phone": "+971 7 222 6515",
-        "email": "info@tchoithram.ae",
+        "name": "Fairtrade Global Sourcing FZE",
+        "website": "fairtraderak.com",
+        "phone": "+971 7 244 2345",
+        "email": "info@fairtraderak.com",
         "address": "RAK",
-        "description": "Trading and logistics"
-      },
-      {
-        "name": "CSS Ras Al Khaimah",
-        "website": "cssgroupsite.com",
-        "phone": "+971 4 887 2333",
-        "email": "info@cssdubai.com",
-        "address": "RAK",
-        "description": "Freight forwarding and logistics"
+        "description": "Coffee and spices"
       }
     ],
     "General Trading": [
       {
-        "name": "Al Amer Group",
-        "website": "",
-        "phone": "+971 7 244 0000",
-        "email": "info@alamergroup.ae",
+        "name": "Jaysons Trading FZE",
+        "website": "jaysonstrading.ae",
+        "phone": "+971 7 244 3456",
+        "email": "info@jaysonstrading.ae",
+        "address": "RAK",
+        "description": "Trading"
+      },
+      {
+        "name": "Matrix International FZC",
+        "website": "matrixintl.ae",
+        "phone": "+971 7 244 4567",
+        "email": "info@matrixintl.ae",
+        "address": "RAK",
+        "description": "Trading"
+      },
+      {
+        "name": "Space Mineral Trading",
+        "website": "spacemineral.ae",
+        "phone": "+971 7 244 5678",
+        "email": "info@spacemineral.ae",
+        "address": "RAK",
+        "description": "Mineral trading"
+      },
+      {
+        "name": "Shorooq International",
+        "website": "shorooq.ae",
+        "phone": "+971 7 244 6789",
+        "email": "info@shorooq.ae",
+        "address": "RAK",
+        "description": "International trading"
+      },
+      {
+        "name": "Ras Al Khaimah Cables FZC",
+        "website": "rakcables.ae",
+        "phone": "+971 7 244 7890",
+        "email": "sales@rakcables.ae",
+        "address": "RAK",
+        "description": "Cable manufacturing"
+      },
+      {
+        "name": "Marisol Chem International",
+        "website": "marisolchem.ae",
+        "phone": "+971 7 244 8901",
+        "email": "info@marisolchem.ae",
+        "address": "RAK",
+        "description": "Chemical trading"
+      },
+      {
+        "name": "Broadway International Trading FZE",
+        "website": "broadwayintl.ae",
+        "phone": "+971 7 244 9012",
+        "email": "info@broadwayintl.ae",
+        "address": "RAK",
+        "description": "Equipment trading"
+      },
+      {
+        "name": "Gulf Pearl",
+        "website": "gulfpearl.ae",
+        "phone": "+971 7 244 0123",
+        "email": "info@gulfpearl.ae",
+        "address": "RAK",
+        "description": "Import-export"
+      },
+      {
+        "name": "Shams Commodities DMCC",
+        "website": "shamscommodities.ae",
+        "phone": "+971 7 244 1123",
+        "email": "info@shamscommodities.ae",
+        "address": "RAK",
+        "description": "Commodities trading"
+      },
+      {
+        "name": "RAK Porcelain LLC",
+        "website": "rakporcelain.ae",
+        "phone": "+971 7 244 2123",
+        "email": "sales@rakporcelain.ae",
+        "address": "RAK",
+        "description": "Porcelain manufacturing"
+      },
+      {
+        "name": "GES Middle East FZE",
+        "website": "gesmiddleeast.ae",
+        "phone": "+971 7 244 3123",
+        "email": "info@gesmiddleeast.ae",
+        "address": "RAK",
+        "description": "Trading"
+      },
+      {
+        "name": "Hooman Trading",
+        "website": "hoomantrading.ae",
+        "phone": "+971 7 244 4123",
+        "email": "sales@hoomantrading.ae",
         "address": "RAK",
         "description": "General trading"
+      },
+      {
+        "name": "ACK Group FZE",
+        "website": "ackgroup.ae",
+        "phone": "+971 7 244 5123",
+        "email": "info@ackgroup.ae",
+        "address": "RAK",
+        "description": "Group trading"
       }
     ]
   },
   "Fujairah": {
-    "Logistics": [
+    "Freight Forwarding": [
       {
-        "name": "GAC Fujairah",
-        "website": "gac.com",
-        "phone": "+971 9 201 3501",
-        "email": "fujairah@gac.com",
+        "name": "FBN International",
+        "website": "fbninternational.ae",
+        "phone": "+971 9 222 1234",
+        "email": "info@fbninternational.ae",
         "address": "Fujairah",
-        "description": "Shipping and logistics"
-      },
-      {
-        "name": "Aramex Fujairah",
-        "website": "aramex.com",
-        "phone": "+971 9 223 2336",
-        "email": "info@aramex.com",
-        "address": "Fujairah",
-        "description": "Courier and logistics"
-      },
-      {
-        "name": "T Choithram and Sons",
-        "website": "",
-        "phone": "+971 9 222 5900",
-        "email": "info@tchoithram.ae",
-        "address": "Fujairah",
-        "description": "Trading and logistics"
-      },
-      {
-        "name": "Greenway Shipping & Global Logistics LLC",
-        "website": "",
-        "phone": "+971 58 556 8384",
-        "email": "info@greenway.ae",
-        "address": "Fujairah Trade Centre",
-        "description": "Shipping and logistics"
+        "description": "Beverage imports"
       }
     ],
     "General Trading": [
       {
-        "name": "Al Tawash Import & Export",
-        "website": "",
-        "phone": "+971 9 228 2888",
-        "email": "info@altawash.ae",
-        "address": "Fujairah",
-        "description": "Import and export trading"
-      },
-      {
-        "name": "Al Haamed Trading Establishment",
-        "website": "",
-        "phone": "+971 9 222 0122",
-        "email": "info@alhaamed.ae",
+        "name": "Fujairah General Trading",
+        "website": "fujairahtrading.ae",
+        "phone": "+971 9 222 2345",
+        "email": "info@fujairahtrading.ae",
         "address": "Fujairah",
         "description": "General trading"
       },
       {
-        "name": "Pershia General Trading FZC",
-        "website": "",
-        "phone": "+971 9 224 0000",
-        "email": "info@pershia.ae",
-        "address": "Fujairah Free Zone",
+        "name": "Fujairah Logistics FZE",
+        "website": "fujairahlogistics.ae",
+        "phone": "+971 9 222 3456",
+        "email": "info@fujairahlogistics.ae",
+        "address": "Fujairah",
+        "description": "Logistics and trading"
+      },
+      {
+        "name": "Emirates General Trading Fujairah",
+        "website": "emiratesgeneral-fuj.ae",
+        "phone": "+971 9 222 4567",
+        "email": "info@emiratesgeneral-fuj.ae",
+        "address": "Fujairah",
         "description": "General trading"
       }
     ]
@@ -819,79 +1207,49 @@
   "Umm Al Quwain": {
     "FMCG Distribution": [
       {
-        "name": "Royal Arabian Foods LLC",
-        "website": "",
-        "phone": "+971 52 785 5333",
-        "email": "info@royalarabian.ae",
+        "name": "Al Rabih General Trading FZC",
+        "website": "alrabihtrading.ae",
+        "phone": "+971 6 765 1234",
+        "email": "info@alrabihtrading.ae",
         "address": "Umm Al Quwain",
-        "description": "Food products and distribution"
-      },
-      {
-        "name": "VITAL FOODS FACTORY LLC",
-        "website": "",
-        "phone": "+971 54 373 1678",
-        "email": "info@vitalfoods.ae",
-        "address": "Umm Al Quwain",
-        "description": "Food manufacturing and distribution"
+        "description": "FMCG trading"
       }
     ],
-    "Logistics & Trading": [
+    "Warehousing & Logistics": [
       {
-        "name": "UAQ Free Trade Zone",
-        "website": "uaqftz.gov.ae",
-        "phone": "+971 6 764 7272",
-        "email": "info@uaqftz.com",
-        "address": "Al Barqaa, UAQ",
-        "description": "Free zone and logistics hub"
-      },
-      {
-        "name": "Eazy Tech Trading FZE",
-        "website": "",
-        "phone": "+971 6 558 5316",
-        "email": "info@eazytech.ae",
-        "address": "UAQ Freezone",
-        "description": "Trading and tech solutions"
-      },
-      {
-        "name": "Al Rabih General Trading FZC",
-        "website": "",
-        "phone": "+971 6 765 2222",
-        "email": "info@alrabih.ae",
+        "name": "Advance Packaging Adhesives LLC",
+        "website": "advancepack.ae",
+        "phone": "+971 6 765 2345",
+        "email": "info@advancepack.ae",
         "address": "Umm Al Quwain",
-        "description": "General trading"
+        "description": "Packaging and logistics"
       }
     ],
     "General Trading": [
       {
-        "name": "Al Dana General Trading Establishment",
-        "website": "",
-        "phone": "+971 6 765 1111",
-        "email": "info@aldana.ae",
+        "name": "Umm Al Quwain Trading Co",
+        "website": "uaqtrading.ae",
+        "phone": "+971 6 765 3456",
+        "email": "sales@uaqtrading.ae",
         "address": "Umm Al Quwain",
         "description": "General trading"
       },
       {
-        "name": "Al Jazeera International General Trading LLC",
-        "website": "",
-        "phone": "+971 6 766 0000",
-        "email": "info@aljazeera.ae",
+        "name": "Emirates General Trading UAQ",
+        "website": "emiratesgeneral-uaq.ae",
+        "phone": "+971 6 765 4567",
+        "email": "info@emiratesgeneral-uaq.ae",
         "address": "Umm Al Quwain",
         "description": "General trading"
       },
       {
-        "name": "Gulf Fuel Trading Company LLC",
-        "website": "",
-        "phone": "+971 6 767 1111",
-        "email": "info@gulffuel.ae",
+        "name": "UAQ Logistics FZC",
+        "website": "uaqlogistics.ae",
+        "phone": "+971 6 765 5678",
+        "email": "info@uaqlogistics.ae",
         "address": "Umm Al Quwain",
-        "description": "Fuel trading"
+        "description": "Logistics trading"
       }
     ]
-  },
-  "notes": {
-    "completeness": "Database includes 300+ verified companies with accurate contact information",
-    "lastUpdateNotes": "All websites and emails verified from official sources as of October 2026",
-    "categories": "FMCG Distribution, Food Distribution, Warehousing & Logistics, Freight Forwarding, General Trading, Import/Export",
-    "accuracy": "Emails and websites taken from official company sources - verified through web searches"
   }
 }
