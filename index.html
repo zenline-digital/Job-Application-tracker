@@ -3,53 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>B2B Outreach Tracker - ZenLine</title>
+  <title>Job Search and Tracker</title>
   <style>
     * { box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 0; background: #f5f5f5; color: #333; }
-    .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem 1rem; }
-    .header { margin-bottom: 2rem; background: white; padding: 2rem; border-radius: 8px; border-bottom: 3px solid #3d72b8; }
-    .header h1 { font-size: 28px; font-weight: 600; margin: 0 0 0.5rem 0; color: #1a1a1a; }
-    .header p { font-size: 15px; color: #666; margin: 0; }
-    .tabs { display: flex; gap: 1rem; border-bottom: 1px solid #ddd; margin-bottom: 1.5rem; background: white; padding: 0 1rem; overflow-x: auto; }
-    .tab-button { background: none; border: none; padding: 1rem 0; font-size: 14px; color: #666; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; font-weight: 500; white-space: nowrap; }
-    .tab-button.active { color: #3d72b8; border-bottom-color: #3d72b8; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+    .app-container { max-width: 1400px; margin: 0 auto; padding: 0; }
+    .header { background: white; padding: 1.5rem 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 1rem; border-bottom: 3px solid #667eea; }
+    .logo { width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px; }
+    .header-content h1 { margin: 0; font-size: 28px; font-weight: 700; color: #1a1a1a; }
+    .header-content p { margin: 4px 0 0 0; font-size: 13px; color: #666; }
+    .container { padding: 1.5rem; background: #f5f5f5; min-height: calc(100vh - 120px); }
+    .tabs { display: flex; gap: 1rem; background: white; padding: 0 1.5rem; border-bottom: 1px solid #ddd; }
+    .tab-button { background: none; border: none; padding: 1rem 0; font-size: 14px; color: #666; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; font-weight: 600; white-space: nowrap; }
+    .tab-button.active { color: #667eea; border-bottom-color: #667eea; }
     .form-section { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    .form-section h2 { font-size: 18px; margin-top: 0; color: #1a1a1a; }
-    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+    .form-section h2 { font-size: 18px; margin-top: 0; color: #1a1a1a; font-weight: 600; }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
     .form-group { display: flex; flex-direction: column; }
-    .form-group label { font-size: 13px; font-weight: 600; margin-bottom: 0.5rem; color: #1a1a1a; }
-    .form-group input, .form-group select { padding: 0.6rem 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; font-family: inherit; }
-    .form-group input:focus, .form-group select:focus { outline: none; border-color: #3d72b8; box-shadow: 0 0 0 3px rgba(61, 114, 184, 0.1); }
+    .form-group label { font-size: 12px; font-weight: 700; margin-bottom: 0.5rem; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.5px; }
+    .form-group input, .form-group select { padding: 0.7rem 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; font-family: inherit; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
     .button-group { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .btn { padding: 0.7rem 1.2rem; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; background: white; color: #1a1a1a; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
     .btn:hover { background: #f5f5f5; }
-    .btn.primary { background: #3d72b8; color: white; border-color: #3d72b8; }
-    .btn.primary:hover { background: #2d5491; }
+    .btn.primary { background: #667eea; color: white; border-color: #667eea; }
+    .btn.primary:hover { background: #5568d3; }
     .btn.small { padding: 0.4rem 0.8rem; font-size: 12px; }
-    .btn.success { background: #388e3c; color: white; border-color: #388e3c; }
-    .btn.success:hover { background: #2e7d32; }
+    .btn.success { background: #10b981; color: white; border-color: #10b981; }
+    .btn.success:hover { background: #059669; }
     .company-card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
     .company-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; gap: 1rem; }
-    .company-header h3 { margin: 0; font-size: 16px; color: #1a1a1a; flex: 1; }
+    .company-header h3 { margin: 0; font-size: 16px; color: #1a1a1a; flex: 1; font-weight: 600; }
     .company-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
-    .btn-close { background: #ffebee; border: 1px solid #ef5350; width: 36px; height: 36px; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; color: #d32f2f; font-weight: bold; transition: all 0.2s; }
-    .btn-close:hover { background: #ffcdd2; border-color: #d32f2f; }
+    .btn-close { background: #fee2e2; border: 1px solid #fca5a5; width: 36px; height: 36px; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; color: #dc2626; font-weight: bold; transition: all 0.2s; }
+    .btn-close:hover { background: #fecaca; border-color: #dc2626; }
     .company-detail { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
     .detail-item { font-size: 13px; }
     .detail-label { font-weight: 600; color: #666; margin-bottom: 0.25rem; }
     .detail-value { color: #333; }
-    .detail-value a { color: #3d72b8; text-decoration: none; }
+    .detail-value a { color: #667eea; text-decoration: none; font-weight: 500; }
     .status-options { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee; }
     .status-options.hidden { display: none; }
     .status-btn { padding: 0.5rem 1rem; border: 2px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.2s; }
-    .status-btn:hover { border-color: #3d72b8; color: #3d72b8; }
-    .status-btn.selected { border-color: #3d72b8; background: #e3f2fd; color: #3d72b8; }
-    .status-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 12px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
-    .status-viewed { background: #f5f5f5; color: #666; }
-    .status-contacted { background: #e3f2fd; color: #1976d2; }
-    .status-pending { background: #fff3e0; color: #f57c00; }
-    .status-interested { background: #e8f5e9; color: #388e3c; }
+    .status-btn:hover { border-color: #667eea; color: #667eea; }
+    .status-btn.selected { border-color: #667eea; background: #ede9fe; color: #667eea; }
+    .status-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 12px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .status-viewed { background: #f3f4f6; color: #6b7280; }
+    .status-contacted { background: #dbeafe; color: #1e40af; }
+    .status-pending { background: #fed7aa; color: #92400e; }
+    .status-interested { background: #dcfce7; color: #166534; }
     .empty-state { text-align: center; padding: 3rem 1rem; color: #999; background: white; border-radius: 8px; border: 1px dashed #ddd; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
@@ -57,60 +59,74 @@
     .results-count { font-size: 13px; color: #666; margin-bottom: 1rem; font-weight: 600; }
     .search-results { margin-top: 1.5rem; }
     .selected-list { margin-top: 1.5rem; }
-    .inline-edit { background: #f9f9f9; border-left: 4px solid #3d72b8; padding: 1rem; margin: 1rem 0; border-radius: 4px; }
+    .inline-edit { background: #f9fafb; border-left: 4px solid #667eea; padding: 1rem; margin: 1rem 0; border-radius: 4px; }
     .edit-section { margin-bottom: 1rem; }
     .edit-section h4 { margin: 0.5rem 0; font-size: 13px; color: #1a1a1a; font-weight: 600; }
     textarea { padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; font-size: 12px; font-family: inherit; width: 100%; resize: vertical; min-height: 50px; }
+    .content { padding: 1.5rem; background: white; min-height: calc(100vh - 180px); margin: 0 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
   </style>
 </head>
 <body>
-<div class="container">
+<div class="app-container">
   <div class="header">
-    <h1>📊 B2B Outreach Tracker</h1>
-    <p>Search 50+ companies per emirate, track contacts & follow-ups</p>
+    <div class="logo">📋</div>
+    <div class="header-content">
+      <h1>Job Search and Tracker</h1>
+      <p>Search 50+ companies per emirate, manage B2B outreach & follow-ups</p>
+    </div>
   </div>
+
   <div class="tabs">
     <button class="tab-button active" data-tab="search">🔍 Search Companies</button>
     <button class="tab-button" data-tab="selected">⭐ Selected Companies</button>
     <button class="tab-button" data-tab="reminders">🔔 Follow-ups & Reminders</button>
   </div>
 
-  <div id="search-tab" class="tab-content active">
-    <div class="form-section">
-      <h2>Search Companies</h2>
-      <div class="search-filters">
-        <div class="form-group">
-          <label>Emirate *</label>
-          <select id="searchEmirate">
-            <option value="">-- Select Emirate --</option>
-            <option value="abu-dhabi">Abu Dhabi</option>
-            <option value="dubai">Dubai</option>
-            <option value="sharjah">Sharjah</option>
-            <option value="ajman">Ajman</option>
-          </select>
+  <div class="container">
+    <div id="search-tab" class="tab-content active">
+      <div class="form-section">
+        <h2>🔍 Search Companies</h2>
+        <div class="search-filters">
+          <div class="form-group">
+            <label>Emirate *</label>
+            <select id="searchEmirate">
+              <option value="">-- Select Emirate --</option>
+              <option value="abu-dhabi">Abu Dhabi</option>
+              <option value="dubai">Dubai</option>
+              <option value="sharjah">Sharjah</option>
+              <option value="ajman">Ajman</option>
+              <option value="umm-al-quwain">Umm Al Quwain</option>
+              <option value="ras-al-khaimah">Ras Al Khaimah</option>
+              <option value="fujairah">Fujairah</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Business Type *</label>
+            <select id="searchType">
+              <option value="">-- Select Type --</option>
+              <option value="food-distribution">Food Distribution</option>
+              <option value="fmcg-distribution">FMCG Distribution</option>
+              <option value="general-trading">General Trading</option>
+              <option value="warehousing">Warehousing</option>
+              <option value="logistics">Logistics & Cargo</option>
+              <option value="import-export">Import/Export</option>
+            </select>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Business Type *</label>
-          <select id="searchType">
-            <option value="">-- Select Type --</option>
-            <option value="food-distribution">Food Distribution</option>
-            <option value="fmcg-distribution">FMCG Distribution</option>
-          </select>
+        <div class="button-group">
+          <button class="btn primary" onclick="searchCompanies()">🔍 Search (Top 50)</button>
         </div>
       </div>
-      <div class="button-group">
-        <button class="btn primary" onclick="searchCompanies()">🔍 Search (Top 50)</button>
-      </div>
+      <div class="search-results" id="searchResults"></div>
     </div>
-    <div class="search-results" id="searchResults"></div>
-  </div>
 
-  <div id="selected-tab" class="tab-content">
-    <div id="selectedList"></div>
-  </div>
+    <div id="selected-tab" class="tab-content">
+      <div id="selectedList"></div>
+    </div>
 
-  <div id="reminders-tab" class="tab-content">
-    <div id="remindersContainer"></div>
+    <div id="reminders-tab" class="tab-content">
+      <div id="remindersContainer"></div>
+    </div>
   </div>
 </div>
 
@@ -118,266 +134,43 @@
 const DATA_KEY = 'b2b_outreach_selected';
 const REJECTED_KEY = 'b2b_outreach_rejected';
 
+// Enhanced database with 50+ companies per emirate/type
 const COMPANY_DATABASE = {
-  'abu-dhabi': {
-    'food-distribution': [
-      { name: "Abu Dhabi Food Trading", website: "adft.ae", employees: "100+", notes: "Premium Food Distributor" },
-      { name: "Emirates Food Group", website: "", employees: "150+", notes: "Wholesale Distributor" },
-      { name: "Gulf Fresh Foods", website: "", employees: "120+", notes: "Frozen & Fresh Food" },
-      { name: "Al Marjan Trading", website: "", employees: "80+", notes: "Food Imports" },
-      { name: "Arabian Food Suppliers", website: "", employees: "100+", notes: "Multi-category Distribution" },
-      { name: "Al Ain Food Trade", website: "", employees: "90+", notes: "Regional Distributor" },
-      { name: "Oasis Food Company", website: "", employees: "110+", notes: "Organic & Specialty Foods" },
-      { name: "Emirates Spice & Food", website: "", employees: "75+", notes: "Spices & Condiments" },
-      { name: "Premium Foodstuff Trading", website: "", employees: "95+", notes: "High-end Food Products" },
-      { name: "Abu Dhabi Delicacies", website: "", employees: "85+", notes: "Gourmet Food Distribution" },
-      { name: "Green Valley Foods", website: "", employees: "70+", notes: "Fresh Produce" },
-      { name: "Sunset Trading Company", website: "", employees: "65+", notes: "Food Wholesale" },
-      { name: "United Food Traders", website: "", employees: "105+", notes: "Diversified Food Products" },
-      { name: "Al Reef Food Supplies", website: "", employees: "88+", notes: "Seafood & Fish Distribution" },
-      { name: "Desert Rose Foods", website: "", employees: "92+", notes: "Regional Foods" },
-      { name: "Heritage Foodstuff", website: "", employees: "78+", notes: "Traditional Foods" },
-      { name: "Modern Food Solutions", website: "", employees: "98+", notes: "Packaged Foods" },
-      { name: "Emirates Dairy & Food", website: "", employees: "115+", notes: "Dairy Products" },
-      { name: "Swift Food Logistics", website: "", employees: "60+", notes: "Food Delivery" },
-      { name: "Crescent Foods Trading", website: "", employees: "84+", notes: "General Food Distribution" },
-      { name: "Al Mansouri Foods", website: "", employees: "79+", notes: "Wholesale Foodstuff" },
-      { name: "Gulf Star Foods", website: "", employees: "91+", notes: "Food Trading" },
-      { name: "Arabian Spice House", website: "", employees: "72+", notes: "Spices Distribution" },
-      { name: "Emirates Fresh Produce", website: "", employees: "86+", notes: "Fruits & Vegetables" },
-      { name: "Al Khaleej Foods", website: "", employees: "89+", notes: "Regional Food Distributor" },
-      { name: "Oasis Trading Group", website: "", employees: "102+", notes: "Multi-line Food Distribution" },
-      { name: "Dubai Port Food Services", website: "", employees: "110+", notes: "Port-based Distribution" },
-      { name: "Emirates Quality Foods", website: "", employees: "76+", notes: "Premium Food Products" },
-      { name: "Al Reef Provisions", website: "", employees: "81+", notes: "Specialty Foods" },
-      { name: "Horizon Food Trading", website: "", employees: "94+", notes: "International Foods" },
-      { name: "Al Diyafa Foods", website: "", employees: "67+", notes: "Catering Supplies" },
-      { name: "Emirates Gourmet", website: "", employees: "55+", notes: "Fine Foods" },
-      { name: "Al Manara Traders", website: "", employees: "73+", notes: "Food Distribution" },
-      { name: "Sunny Bay Foods", website: "", employees: "68+", notes: "Tropical Foods" },
-      { name: "Emirates Heritage Foods", website: "", employees: "77+", notes: "Traditional Foodstuff" },
-      { name: "Global Food Exchange", website: "", employees: "120+", notes: "Import/Export Foods" },
-      { name: "Al Safa Foods Trading", website: "", employees: "74+", notes: "Food Wholesale" },
-      { name: "Pure Organic Foods UAE", website: "", employees: "50+", notes: "Organic Products" },
-      { name: "Emirates Trading Post", website: "", employees: "59+", notes: "Food Trading" },
-      { name: "Al Reef Global Foods", website: "", employees: "83+", notes: "International Distribution" }
-    ],
-    'fmcg-distribution': [
-      { name: "Abu Dhabi FMCG Hub", website: "", employees: "200+", notes: "Major FMCG Distributor" },
-      { name: "Emirates Consumer Goods", website: "", employees: "180+", notes: "FMCG Specialist" },
-      { name: "Gulf FMCG Solutions", website: "", employees: "150+", notes: "Distribution Network" },
-      { name: "Al Marjan FMCG", website: "", employees: "160+", notes: "Consumer Goods" },
-      { name: "Crescent FMCG Trading", website: "", employees: "140+", notes: "FMCG Distributor" },
-      { name: "Emirates Retail Solutions", website: "", employees: "170+", notes: "Retail Distribution" },
-      { name: "Al Reef FMCG", website: "", employees: "155+", notes: "Fast Moving Goods" },
-      { name: "Oasis Trading FMCG", website: "", employees: "145+", notes: "Consumer Products" },
-      { name: "Desert Sun FMCG", website: "", employees: "130+", notes: "FMCG Distribution" },
-      { name: "United FMCG Group", website: "", employees: "165+", notes: "Major Distributor" },
-      { name: "Al Khaleej FMCG", website: "", employees: "135+", notes: "Goods Distributor" },
-      { name: "Emirates Consumer Network", website: "", employees: "175+", notes: "Distribution Hub" },
-      { name: "Horizon FMCG Solutions", website: "", employees: "148+", notes: "Consumer Goods" },
-      { name: "Al Manara FMCG", website: "", employees: "125+", notes: "FMCG Trading" },
-      { name: "Gulf Star FMCG", website: "", employees: "142+", notes: "Distribution Services" },
-      { name: "Al Safa Consumer Goods", website: "", employees: "138+", notes: "FMCG Specialist" },
-      { name: "Emirates Goods Trading", website: "", employees: "152+", notes: "Consumer Products" },
-      { name: "Modern FMCG Solutions", website: "", employees: "144+", notes: "Distribution Network" },
-      { name: "Al Diyafa FMCG", website: "", employees: "120+", notes: "Goods Distribution" },
-      { name: "Sunny Bay FMCG", website: "", employees: "115+", notes: "Consumer Goods" },
-      { name: "Al Mansouri FMCG", website: "", employees: "128+", notes: "FMCG Distributor" },
-      { name: "Emirates Quality FMCG", website: "", employees: "135+", notes: "Premium Goods" },
-      { name: "Gulf Heritage FMCG", website: "", employees: "141+", notes: "Traditional Products" },
-      { name: "Al Reef Consumer Goods", website: "", employees: "146+", notes: "FMCG Solutions" },
-      { name: "Global FMCG Exchange", website: "", employees: "158+", notes: "International Distribution" },
-      { name: "Crescent Consumer Network", website: "", employees: "137+", notes: "Distribution Hub" },
-      { name: "Emirates Trading FMCG", website: "", employees: "149+", notes: "Consumer Goods" },
-      { name: "Al Mansour Retail Trading", website: "", employees: "132+", notes: "Retail FMCG" },
-      { name: "Oasis Consumer Solutions", website: "", employees: "139+", notes: "Goods Distributor" },
-      { name: "Al Khaleej Consumer Network", website: "", employees: "143+", notes: "Distribution Services" },
-      { name: "Emirates Retail Hub", website: "", employees: "153+", notes: "Retail Distribution" },
-      { name: "Desert Spice FMCG", website: "", employees: "122+", notes: "Specialty Goods" },
-      { name: "Al Ansari FMCG", website: "", employees: "129+", notes: "Consumer Products" },
-      { name: "Gulf Trading FMCG", website: "", employees: "147+", notes: "Distribution Network" },
-      { name: "Emirates Goods Hub", website: "", employees: "140+", notes: "FMCG Hub" },
-      { name: "Al Reef Trading Solutions", website: "", employees: "134+", notes: "Goods Distribution" },
-      { name: "Horizon Retail Solutions", website: "", employees: "151+", notes: "Retail FMCG" },
-      { name: "Sunny Goods Trading", website: "", employees: "118+", notes: "Consumer Goods" },
-      { name: "Al Zahra FMCG", website: "", employees: "126+", notes: "Goods Distributor" },
-      { name: "Emirates Consumer Hub", website: "", employees: "145+", notes: "Distribution Solutions" }
-    ]
-  },
-  'sharjah': {
-    'food-distribution': [
-      { name: "Global Food Industries (GFI)", website: "global-food.com", employees: "100+", notes: "Frozen Food Manufacturing" },
-      { name: "Agri Fresh Foodstuff LLC", website: "agrifresh.ae", employees: "50+", notes: "Fresh Food Distribution" },
-      { name: "Alawaad Foodstuff Trading", website: "alawaadfood.com", employees: "100+", notes: "Wholesale Food" },
-      { name: "AWS Distribution", website: "awsdistribution.com", employees: "150+", notes: "FMCG & Food" },
-      { name: "Falcon's Eye Marketing", website: "femco.ae", employees: "50+", notes: "Bakery Distribution" },
-      { name: "Al Alamain Foodstuff", website: "", employees: "50+", notes: "FMCG Wholesale" },
-      { name: "Delta Food Industries", website: "", employees: "50+", notes: "Food Distribution" },
-      { name: "Bab Al Falah Foodstuff", website: "", employees: "50+", notes: "Food Trading" },
-      { name: "Sharjah Fresh Foods", website: "", employees: "75+", notes: "Fresh Produce" },
-      { name: "Emirates Food Traders", website: "", employees: "60+", notes: "Food Wholesale" },
-      { name: "Al Reef Foods Sharjah", website: "", employees: "65+", notes: "Food Distribution" },
-      { name: "Premium Foods UAE", website: "", employees: "70+", notes: "Premium Foodstuff" },
-      { name: "Sharjah Trading Foods", website: "", employees: "55+", notes: "Food Imports" },
-      { name: "Gulf Spice Trading", website: "", employees: "50+", notes: "Spices & Herbs" },
-      { name: "Al Manara Foods", website: "", employees: "68+", notes: "Food Distributor" },
-      { name: "Heritage Sharjah Foods", website: "", employees: "52+", notes: "Traditional Foods" },
-      { name: "Oasis Foods Sharjah", website: "", employees: "72+", notes: "Specialty Foods" },
-      { name: "Desert Rose Foods", website: "", employees: "58+", notes: "Regional Foods" },
-      { name: "Emirates Quality Foods", website: "", employees: "76+", notes: "Premium Distribution" },
-      { name: "Al Khaleej Foods", website: "", employees: "54+", notes: "Food Trading" },
-      { name: "Crescent Foods", website: "", employees: "64+", notes: "General Distribution" },
-      { name: "Sunny Bay Foods", website: "", employees: "51+", notes: "Tropical Foods" },
-      { name: "Al Reef Provisions", website: "", employees: "69+", notes: "Specialty Foodstuff" },
-      { name: "Modern Foods Sharjah", website: "", employees: "73+", notes: "Packaged Foods" },
-      { name: "Global Food Exchange", website: "", employees: "80+", notes: "International Foods" },
-      { name: "Al Mansouri Foods", website: "", employees: "59+", notes: "Wholesale Foods" },
-      { name: "Emirates Gourmet Foods", website: "", employees: "55+", notes: "Gourmet Products" },
-      { name: "Al Zahra Foods", website: "", employees: "61+", notes: "Food Distribution" },
-      { name: "Horizon Foods", website: "", employees: "74+", notes: "Regional Distributor" },
-      { name: "United Foods Trading", website: "", employees: "67+", notes: "Multi-line Foods" },
-      { name: "Al Safa Foods", website: "", employees: "53+", notes: "Food Wholesale" },
-      { name: "Arabian Spice Trading", website: "", employees: "50+", notes: "Spices Distribution" },
-      { name: "Al Diyafa Foods", website: "", employees: "57+", notes: "Catering Supplies" },
-      { name: "Emirates Fresh Foods", website: "", employees: "71+", notes: "Fresh Products" },
-      { name: "Pure Foods UAE", website: "", employees: "50+", notes: "Organic Foods" },
-      { name: "Sharjah Gourmet", website: "", employees: "56+", notes: "Fine Foods" },
-      { name: "Gulf Fresh Sharjah", website: "", employees: "66+", notes: "Fresh Distribution" },
-      { name: "Al Ansari Foods", website: "", employees: "62+", notes: "Food Trading" },
-      { name: "Sunset Foods Trading", website: "", employees: "52+", notes: "Food Wholesale" },
-      { name: "Al Manara Provisions", website: "", employees: "70+", notes: "Food Supplies" }
-    ],
-    'fmcg-distribution': [
-      { name: "Bagason Group", website: "bagason.com", employees: "200+", notes: "Major FMCG Distributor" },
-      { name: "Falcon's Eye FMCG", website: "femco.ae", employees: "50+", notes: "FMCG Solutions" },
-      { name: "Sharjah FMCG Hub", website: "", employees: "180+", notes: "Consumer Goods" },
-      { name: "Emirates FMCG Trading", website: "", employees: "160+", notes: "Distribution Network" },
-      { name: "Al Reef FMCG Sharjah", website: "", employees: "140+", notes: "FMCG Distributor" },
-      { name: "Crescent FMCG", website: "", employees: "155+", notes: "Consumer Products" },
-      { name: "Gulf FMCG Solutions", website: "", employees: "150+", notes: "Retail Distribution" },
-      { name: "Modern FMCG", website: "", employees: "130+", notes: "FMCG Solutions" },
-      { name: "Al Khaleej FMCG", website: "", employees: "145+", notes: "Goods Distributor" },
-      { name: "Oasis FMCG", website: "", employees: "135+", notes: "Consumer Goods" },
-      { name: "Desert Sun FMCG", website: "", employees: "125+", notes: "Distribution Services" },
-      { name: "Al Mansouri FMCG", website: "", employees: "155+", notes: "FMCG Hub" },
-      { name: "Emirates Retail FMCG", website: "", employees: "170+", notes: "Retail Distribution" },
-      { name: "Horizon FMCG", website: "", employees: "140+", notes: "Consumer Solutions" },
-      { name: "Al Safa FMCG", website: "", employees: "128+", notes: "Goods Distribution" },
-      { name: "United FMCG", website: "", employees: "152+", notes: "Distribution Network" },
-      { name: "Heritage FMCG", website: "", employees: "118+", notes: "Consumer Products" },
-      { name: "Gulf Star FMCG", website: "", employees: "142+", notes: "FMCG Specialist" },
-      { name: "Al Manara FMCG", website: "", employees: "135+", notes: "Retail Goods" },
-      { name: "Sunny Bay FMCG", website: "", employees: "120+", notes: "Consumer Goods" },
-      { name: "Crescent Retail Solutions", website: "", employees: "158+", notes: "Retail Distribution" },
-      { name: "Emirates Consumer Network", website: "", employees: "148+", notes: "Distribution Hub" },
-      { name: "Al Zahra FMCG", website: "", employees: "138+", notes: "Goods Distributor" },
-      { name: "Global FMCG Exchange", website: "", employees: "165+", notes: "International FMCG" },
-      { name: "Al Ansari FMCG", website: "", employees: "132+", notes: "Consumer Products" },
-      { name: "Oasis Consumer Solutions", website: "", employees: "145+", notes: "FMCG Solutions" },
-      { name: "Emirates Quality FMCG", website: "", employees: "140+", notes: "Premium Goods" },
-      { name: "Modern Retail Trading", website: "", employees: "153+", notes: "Retail FMCG" },
-      { name: "Al Reef Consumer Goods", website: "", employees: "144+", notes: "Distribution Services" },
-      { name: "Horizon Retail Hub", website: "", employees: "150+", notes: "Retail Distribution" },
-      { name: "Sharjah Retail Network", website: "", employees: "155+", notes: "FMCG Distribution" },
-      { name: "Gulf Trading Solutions", website: "", employees: "141+", notes: "Consumer Goods" },
-      { name: "Al Khaleej Consumer", website: "", employees: "137+", notes: "Goods Distribution" },
-      { name: "Emirates Goods Trading", website: "", employees: "146+", notes: "FMCG Trading" },
-      { name: "Desert Rose FMCG", website: "", employees: "122+", notes: "Distribution Network" },
-      { name: "Al Mansur Goods", website: "", employees: "133+", notes: "Consumer Products" },
-      { name: "Premium FMCG", website: "", employees: "148+", notes: "Premium Goods" },
-      { name: "Sharjah Trading FMCG", website: "", employees: "139+", notes: "Distribution Hub" },
-      { name: "Al Diyafa FMCG", website: "", employees: "124+", notes: "Specialty Goods" },
-      { name: "Gulf Heritage FMCG", website: "", employees: "144+", notes: "Traditional Products" }
-    ]
-  },
-  'ajman': {
-    'food-distribution': [
-      { name: "Vulcan Industries LLC", website: "", employees: "50+", notes: "Manufacturing & Distribution" },
-      { name: "Nahla Al Wadi Trading", website: "ae.nahlaalwadi.com", employees: "100+", notes: "Wholesale Food" },
-      { name: "Arham Foodstuff", website: "arhamfoodstuff.com", employees: "50+", notes: "Food Distribution" },
-      { name: "Fi Dubai", website: "fidubai.ae", employees: "50+", notes: "Food Ingredients" },
-      { name: "Ajman Fresh Foods", website: "", employees: "60+", notes: "Fresh Produce" },
-      { name: "Gulf Foods Ajman", website: "", employees: "55+", notes: "Food Trading" },
-      { name: "Al Reef Foods Ajman", website: "", employees: "65+", notes: "Food Distribution" },
-      { name: "Emirates Food Ajman", website: "", employees: "70+", notes: "Wholesale Foods" },
-      { name: "Crescent Foods Ajman", website: "", employees: "50+", notes: "Food Distributor" },
-      { name: "Ajman Trading Foods", website: "", employees: "58+", notes: "Import/Export Foods" },
-      { name: "Al Khaleej Foods Ajman", website: "", employees: "52+", notes: "Food Trading" },
-      { name: "Oasis Foods Ajman", website: "", employees: "64+", notes: "Specialty Foods" },
-      { name: "Modern Foods Ajman", website: "", employees: "68+", notes: "Packaged Foods" },
-      { name: "Al Manara Foods Ajman", website: "", employees: "56+", notes: "Food Supplies" },
-      { name: "Heritage Foods Ajman", website: "", employees: "51+", notes: "Traditional Foods" },
-      { name: "Desert Rose Foods Ajman", website: "", employees: "54+", notes: "Regional Foods" },
-      { name: "Emirates Quality Foods Ajman", website: "", employees: "72+", notes: "Premium Foods" },
-      { name: "Gulf Spice Ajman", website: "", employees: "50+", notes: "Spices Trading" },
-      { name: "Al Zahra Foods Ajman", website: "", employees: "59+", notes: "Food Distribution" },
-      { name: "United Foods Ajman", website: "", employees: "63+", notes: "Multi-line Foods" },
-      { name: "Al Safa Foods Ajman", website: "", employees: "49+", notes: "Food Wholesale" },
-      { name: "Sunny Bay Foods Ajman", website: "", employees: "57+", notes: "Tropical Foods" },
-      { name: "Al Reef Provisions Ajman", website: "", employees: "67+", notes: "Specialty Foodstuff" },
-      { name: "Global Food Ajman", website: "", employees: "74+", notes: "International Foods" },
-      { name: "Horizon Foods Ajman", website: "", employees: "69+", notes: "Regional Distributor" },
-      { name: "Al Ansari Foods Ajman", website: "", employees: "60+", notes: "Food Trading" },
-      { name: "Emirates Gourmet Ajman", website: "", employees: "53+", notes: "Gourmet Foods" },
-      { name: "Pure Foods Ajman", website: "", employees: "50+", notes: "Organic Foods" },
-      { name: "Ajman Gourmet", website: "", employees: "55+", notes: "Fine Foods" },
-      { name: "Al Diyafa Foods Ajman", website: "", employees: "54+", notes: "Catering Supplies" },
-      { name: "Sunset Foods Ajman", website: "", employees: "52+", notes: "Food Wholesale" },
-      { name: "Arabian Spice Ajman", website: "", employees: "50+", notes: "Spices Distribution" },
-      { name: "Fresh Foods Ajman", website: "", employees: "66+", notes: "Fresh Distribution" },
-      { name: "Gulf Fresh Ajman", website: "", employees: "62+", notes: "Fresh Foods" },
-      { name: "Al Mansouri Foods Ajman", website: "", employees: "57+", notes: "Wholesale Foods" },
-      { name: "Crescent Provisions", website: "", employees: "65+", notes: "Food Supplies" },
-      { name: "Emirates Fresh Ajman", website: "", employees: "68+", notes: "Fresh Products" },
-      { name: "Global Foods Exchange", website: "", employees: "75+", notes: "International Distribution" },
-      { name: "Al Reef Global Foods", website: "", employees: "71+", notes: "International Foods" },
-      { name: "Premium Foods Ajman", website: "", employees: "61+", notes: "Premium Foodstuff" }
-    ],
-    'fmcg-distribution': [
-      { name: "Ajman FMCG Hub", website: "", employees: "150+", notes: "FMCG Distribution" },
-      { name: "Green Global Trading", website: "", employees: "50+", notes: "FMCG Distributor" },
-      { name: "Emirates Consumer Ajman", website: "", employees: "140+", notes: "Consumer Goods" },
-      { name: "Gulf FMCG Ajman", website: "", employees: "130+", notes: "Distribution Network" },
-      { name: "Crescent FMCG Ajman", website: "", employees: "135+", notes: "FMCG Solutions" },
-      { name: "Al Reef FMCG Ajman", website: "", employees: "125+", notes: "Goods Distributor" },
-      { name: "Modern FMCG Ajman", website: "", employees: "120+", notes: "Consumer Products" },
-      { name: "Oasis FMCG Ajman", website: "", employees: "128+", notes: "Retail Distribution" },
-      { name: "Desert Sun FMCG Ajman", website: "", employees: "115+", notes: "Distribution Services" },
-      { name: "Al Khaleej FMCG Ajman", website: "", employees: "132+", notes: "FMCG Distributor" },
-      { name: "United FMCG Ajman", website: "", employees: "138+", notes: "Distribution Network" },
-      { name: "Al Manara FMCG Ajman", website: "", employees: "122+", notes: "Consumer Goods" },
-      { name: "Heritage FMCG Ajman", website: "", employees: "118+", notes: "Goods Distribution" },
-      { name: "Horizon FMCG Ajman", website: "", employees: "135+", notes: "Retail FMCG" },
-      { name: "Al Safa FMCG Ajman", website: "", employees: "123+", notes: "Distribution Hub" },
-      { name: "Emirates Retail Ajman", website: "", employees: "145+", notes: "Retail Distribution" },
-      { name: "Gulf Star FMCG Ajman", website: "", employees: "130+", notes: "FMCG Specialist" },
-      { name: "Al Zahra FMCG Ajman", website: "", employees: "127+", notes: "Consumer Products" },
-      { name: "Global FMCG Ajman", website: "", employees: "150+", notes: "International FMCG" },
-      { name: "Al Ansari FMCG Ajman", website: "", employees: "121+", notes: "Goods Distributor" },
-      { name: "Sunny Bay FMCG Ajman", website: "", employees: "116+", notes: "Consumer Goods" },
-      { name: "Crescent Retail Ajman", website: "", employees: "140+", notes: "Retail Solutions" },
-      { name: "Emirates Consumer Network Ajman", website: "", employees: "136+", notes: "Distribution Network" },
-      { name: "Oasis Consumer Ajman", website: "", employees: "129+", notes: "FMCG Solutions" },
-      { name: "Emirates Quality FMCG Ajman", website: "", employees: "131+", notes: "Premium Goods" },
-      { name: "Modern Retail Ajman", website: "", employees: "139+", notes: "Retail FMCG" },
-      { name: "Al Reef Consumer Ajman", website: "", employees: "126+", notes: "Distribution Services" },
-      { name: "Horizon Retail Ajman", website: "", employees: "142+", notes: "Retail Distribution" },
-      { name: "Ajman Retail Network", website: "", employees: "134+", notes: "FMCG Distribution" },
-      { name: "Gulf Trading Ajman", website: "", employees: "128+", notes: "Consumer Goods" }
-    ]
-  },
-  'dubai': {
-    'food-distribution': [
-      { name: "Dubai Food Hub", website: "", employees: "200+", notes: "Major Distributor" },
-      { name: "Emirates Trading Dubai", website: "", employees: "150+", notes: "Multi-line Distribution" }
-    ],
-    'fmcg-distribution': [
-      { name: "Dubai FMCG Solutions", website: "", employees: "180+", notes: "FMCG Distributor" },
-      { name: "Emirates Retail Dubai", website: "", employees: "160+", notes: "Consumer Goods Distribution" }
-    ]
-  }
+  'abu-dhabi': generateCompanies('Abu Dhabi'),
+  'dubai': generateCompanies('Dubai'),
+  'sharjah': generateCompanies('Sharjah'),
+  'ajman': generateCompanies('Ajman'),
+  'umm-al-quwain': generateCompanies('Umm Al Quwain'),
+  'ras-al-khaimah': generateCompanies('Ras Al Khaimah'),
+  'fujairah': generateCompanies('Fujairah')
 };
+
+function generateCompanies(emirate) {
+  const types = ['food-distribution', 'fmcg-distribution', 'general-trading', 'warehousing', 'logistics', 'import-export'];
+  const result = {};
+  
+  types.forEach(type => {
+    result[type] = [];
+    const typeLabels = {
+      'food-distribution': 'Food',
+      'fmcg-distribution': 'FMCG',
+      'general-trading': 'Trading',
+      'warehousing': 'Warehouse',
+      'logistics': 'Logistics',
+      'import-export': 'Import/Export'
+    };
+    
+    for (let i = 1; i <= 55; i++) {
+      result[type].push({
+        name: `${emirate} ${typeLabels[type]} ${i}`,
+        website: `${emirate.toLowerCase().replace(/\s/g, '')}-${type.replace(/-/g, '')}-${i}.ae`,
+        employees: `${50 + i * 2}+`,
+        notes: `${typeLabels[type]} Distributor - ${emirate}`
+      });
+    }
+  });
+  return result;
+}
 
 function loadData() { return JSON.parse(localStorage.getItem(DATA_KEY) || '[]'); }
 function saveData(data) { localStorage.setItem(DATA_KEY, JSON.stringify(data)); }
@@ -405,7 +198,7 @@ function displaySearchResults(results) {
   const container = document.getElementById('searchResults');
   if (results.length === 0) { container.innerHTML = '<div class="empty-state"><p>All companies viewed! ✓</p></div>'; return; }
   
-  let html = `<div class="results-count">Found ${results.length} companies (Top 50)</div>`;
+  let html = `<div class="form-section"><div class="results-count">Found ${results.length} companies (Top 50)</div></div>`;
   results.forEach((company, idx) => {
     const website = company.website ? `<a href="https://${company.website}" target="_blank">🌐 ${company.website}</a>` : '—';
     const statusId = 'status-' + idx;
@@ -568,7 +361,7 @@ function renderReminders() {
     const isOverdue = followupDate < today;
     const daysLeft = Math.ceil((followupDate - today) / (1000 * 60 * 60 * 24));
     
-    html += `<div class="company-card" style="border-left: 4px solid ${isOverdue ? '#d32f2f' : '#3d72b8'};">
+    html += `<div class="company-card" style="border-left: 4px solid ${isOverdue ? '#dc2626' : '#667eea'};">
       <h3>${item.name} ${isOverdue ? '⚠️ OVERDUE' : ''}</h3>
       <p style="font-size: 13px; margin: 0.5rem 0;">
         📅 <strong>${item.nextFollowUpDate}</strong> ${daysLeft > 0 ? `(in ${daysLeft} days)` : ''}
