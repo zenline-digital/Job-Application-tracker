@@ -13,247 +13,147 @@
       background: #f5f5f5;
       color: #333;
     }
-
     .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem; }
-
     .header { margin-bottom: 2rem; background: white; padding: 2rem; border-radius: 8px; border-bottom: 3px solid #3d72b8; }
     .header h1 { font-size: 28px; font-weight: 600; margin: 0 0 0.5rem 0; color: #1a1a1a; }
     .header p { font-size: 15px; color: #666; margin: 0; }
-
-    .tabs { display: flex; gap: 1rem; border-bottom: 1px solid #ddd; margin-bottom: 1.5rem; background: white; padding: 0 1rem; }
-    .tab-button { background: none; border: none; padding: 1rem 0; font-size: 14px; color: #666; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; font-weight: 500; }
+    .tabs { display: flex; gap: 1rem; border-bottom: 1px solid #ddd; margin-bottom: 1.5rem; background: white; padding: 0 1rem; overflow-x: auto; }
+    .tab-button { background: none; border: none; padding: 1rem 0; font-size: 14px; color: #666; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; font-weight: 500; white-space: nowrap; }
     .tab-button.active { color: #3d72b8; border-bottom-color: #3d72b8; }
     .tab-button:hover { color: #3d72b8; }
-
     .form-section { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
     .form-section h2 { font-size: 18px; margin-top: 0; color: #1a1a1a; }
-    
+    .form-section h3 { font-size: 15px; margin: 1.5rem 0 1rem 0; color: #1a1a1a; border-top: 1px solid #eee; padding-top: 1rem; }
     .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
     .form-group { display: flex; flex-direction: column; }
     .form-group label { font-size: 13px; font-weight: 600; margin-bottom: 0.5rem; color: #1a1a1a; }
-    .form-group input, .form-group select, .form-group textarea { 
-      padding: 0.6rem 0.75rem; 
-      border: 1px solid #ddd; 
-      border-radius: 6px; 
-      font-size: 13px; 
-      font-family: inherit;
-      transition: all 0.2s;
-    }
+    .form-group input, .form-group select, .form-group textarea { padding: 0.6rem 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; font-family: inherit; transition: all 0.2s; }
     .form-group textarea { resize: vertical; min-height: 80px; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
-      outline: none; 
-      border-color: #3d72b8; 
-      box-shadow: 0 0 0 3px rgba(61, 114, 184, 0.1); 
-    }
-
-    .button-group { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
-    .btn { 
-      padding: 0.7rem 1.2rem; 
-      border: 1px solid #ddd; 
-      border-radius: 6px; 
-      cursor: pointer; 
-      font-size: 13px; 
-      font-weight: 600; 
-      background: white; 
-      color: #1a1a1a; 
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #3d72b8; box-shadow: 0 0 0 3px rgba(61, 114, 184, 0.1); }
+    .button-group { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    .btn { padding: 0.7rem 1.2rem; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; background: white; color: #1a1a1a; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
     .btn:hover { background: #f5f5f5; border-color: #999; }
     .btn.primary { background: #3d72b8; color: white; border-color: #3d72b8; }
-    .btn.primary:hover { background: #2d5491; border-color: #2d5491; }
+    .btn.primary:hover { background: #2d5491; }
     .btn.danger { color: #d32f2f; }
     .btn.danger:hover { background: #ffebee; }
-
+    .btn.small { padding: 0.4rem 0.8rem; font-size: 12px; }
     .table-container { overflow-x: auto; margin-top: 1.5rem; background: white; border-radius: 8px; border: 1px solid #ddd; }
     .table { width: 100%; border-collapse: collapse; font-size: 13px; }
     .table thead { background: #f9f9f9; border-bottom: 2px solid #ddd; }
     .table th { padding: 1rem; text-align: left; font-weight: 600; color: #1a1a1a; }
     .table td { padding: 1rem; border-bottom: 1px solid #eee; color: #333; }
     .table tr:hover { background: #fafafa; }
-
-    .status-badge { 
-      display: inline-block; 
-      padding: 0.4rem 0.8rem; 
-      border-radius: 12px; 
-      font-size: 12px; 
-      font-weight: 600;
-      text-transform: uppercase;
-    }
+    .status-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 12px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
     .status-contacted { background: #e3f2fd; color: #1976d2; }
     .status-pending { background: #fff3e0; color: #f57c00; }
     .status-interested { background: #e8f5e9; color: #388e3c; }
     .status-not-interested { background: #ffebee; color: #d32f2f; }
     .status-followup { background: #f3e5f5; color: #7b1fa2; }
-
-    .reminder-alert { 
-      background: #fff3e0; 
-      border-left: 4px solid #f57c00; 
-      padding: 1rem; 
-      border-radius: 6px; 
-      margin-bottom: 1rem; 
-      font-size: 13px; 
-      color: #333;
-    }
-    .reminder-alert.overdue { background: #ffebee; border-left-color: #d32f2f; }
-    .reminder-alert strong { color: #f57c00; }
-    .reminder-alert.overdue strong { color: #d32f2f; }
-
-    .contact-info { font-size: 12px; color: #666; max-width: 200px; word-break: break-word; }
-
-    .action-buttons { display: flex; gap: 0.5rem; }
-    .action-buttons button { 
-      padding: 0.4rem 0.8rem; 
-      font-size: 11px; 
-      background: #f5f5f5; 
-      border: 1px solid #ddd; 
-      border-radius: 4px; 
-      cursor: pointer; 
-      color: #333; 
-      transition: 0.2s;
-    }
-    .action-buttons button:hover { background: #e0e0e0; }
-    .action-buttons button.danger:hover { background: #ffebee; color: #d32f2f; }
-
-    .empty-state { 
-      text-align: center; 
-      padding: 3rem 1rem; 
-      color: #999;
-      background: white;
-      border-radius: 8px;
-      border: 1px dashed #ddd;
-    }
+    .company-card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .company-card h3 { margin: 0 0 1rem 0; font-size: 16px; color: #1a1a1a; }
+    .company-detail { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+    .detail-item { font-size: 13px; }
+    .detail-label { font-weight: 600; color: #666; margin-bottom: 0.25rem; }
+    .detail-value { color: #333; }
+    .detail-value a { color: #3d72b8; text-decoration: none; }
+    .detail-value a:hover { text-decoration: underline; }
+    .application-timeline { background: #e3f2fd; border-left: 4px solid #1976d2; padding: 1rem; margin: 1rem 0; border-radius: 4px; }
+    .timeline-item { margin-bottom: 0.75rem; font-size: 13px; }
+    .timeline-label { font-weight: 600; color: #1976d2; }
+    .timeline-date { color: #555; }
+    .search-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+    .search-results { margin-top: 1.5rem; }
+    .results-count { font-size: 13px; color: #666; margin-bottom: 1rem; }
+    .empty-state { text-align: center; padding: 3rem 1rem; color: #999; background: white; border-radius: 8px; border: 1px dashed #ddd; }
     .empty-state p { margin: 0.5rem 0; }
-
-    .stats-grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
-      gap: 1rem; 
-      margin-bottom: 2rem; 
-    }
-    .stat-card { 
-      background: white; 
-      border: 1px solid #ddd; 
-      border-radius: 8px; 
-      padding: 1.5rem; 
-      text-align: center;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    .stat-card .number { 
-      font-size: 32px; 
-      font-weight: 700; 
-      color: #3d72b8; 
-      margin-bottom: 0.5rem; 
-    }
-    .stat-card .label { 
-      font-size: 12px; 
-      color: #666;
-      font-weight: 500;
-    }
-
-    .success-message { 
-      background: #e8f5e9; 
-      color: #388e3c; 
-      padding: 0.75rem 1rem; 
-      border-radius: 6px; 
-      margin-bottom: 1rem; 
-      font-size: 13px;
-      border-left: 4px solid #388e3c;
-    }
-
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .stat-card .number { font-size: 32px; font-weight: 700; color: #3d72b8; margin-bottom: 0.5rem; }
+    .stat-card .label { font-size: 12px; color: #666; font-weight: 500; }
+    .success-message { background: #e8f5e9; color: #388e3c; padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem; font-size: 13px; border-left: 4px solid #388e3c; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-    }
-    .modal-overlay.active {
-      display: flex;
-    }
-    .modal {
-      background: white;
-      border-radius: 8px;
-      padding: 2rem;
-      max-width: 500px;
-      width: 90%;
-      box-shadow: 0 5px 40px rgba(0,0,0,0.2);
-    }
   </style>
 </head>
 <body>
-
 <div class="container">
   <div class="header">
     <h1>📊 B2B Outreach Tracker</h1>
-    <p>Track Sharjah & Ajman companies, contact outcomes, and schedule follow-ups</p>
+    <p>Track Sharjah & Ajman companies, contact details, and application follow-ups</p>
   </div>
-
   <div class="tabs">
-    <button class="tab-button active" data-tab="add">➕ Add Company</button>
+    <button class="tab-button active" data-tab="search">🔍 Search Companies</button>
+    <button class="tab-button" data-tab="add">➕ Add Manual</button>
     <button class="tab-button" data-tab="view">📋 View All</button>
-    <button class="tab-button" data-tab="reminders">🔔 Reminders</button>
+    <button class="tab-button" data-tab="applications">📝 Applications</button>
     <button class="tab-button" data-tab="stats">📈 Statistics</button>
   </div>
-
-  <div id="add-tab" class="tab-content active">
+  <div id="search-tab" class="tab-content active">
     <div class="form-section">
-      <h2>Add New Company</h2>
-      
-      <div class="form-grid">
+      <h2>Search Companies</h2>
+      <p style="color: #666; font-size: 13px; margin-bottom: 1rem;">Find and add new companies from Sharjah & Ajman</p>
+      <div class="search-filters">
         <div class="form-group">
-          <label>Company Name *</label>
-          <input type="text" id="companyName" placeholder="e.g. Vulcan Industries LLC">
-        </div>
-        <div class="form-group">
-          <label>Contact Person</label>
-          <input type="text" id="contactPerson" placeholder="Name">
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="email" placeholder="email@company.com">
-        </div>
-        <div class="form-group">
-          <label>Phone</label>
-          <input type="tel" id="phone" placeholder="+971-6-xxxxx">
-        </div>
-        <div class="form-group">
-          <label>Status *</label>
-          <select id="status">
-            <option value="contacted">Contacted</option>
-            <option value="pending">Pending Response</option>
-            <option value="interested">Interested</option>
-            <option value="not-interested">Not Interested</option>
-            <option value="followup">Follow-up Needed</option>
+          <label>Emirate *</label>
+          <select id="searchEmirate">
+            <option value="">-- Select Emirate --</option>
+            <option value="sharjah">Sharjah</option>
+            <option value="ajman">Ajman</option>
+            <option value="both">Both</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Contact Date</label>
-          <input type="date" id="contactDate">
+          <label>Business Type *</label>
+          <select id="searchType">
+            <option value="">-- Select Type --</option>
+            <option value="food-distribution">Food Distribution</option>
+            <option value="fmcg-distribution">FMCG Distribution</option>
+            <option value="general-trading">General Trading</option>
+            <option value="warehousing">Warehousing</option>
+            <option value="logistics">Logistics & Cargo</option>
+            <option value="import-export">Import/Export</option>
+          </select>
         </div>
       </div>
-
+      <div class="button-group">
+        <button class="btn primary" onclick="searchCompanies()">🔍 Search</button>
+        <button class="btn" onclick="clearSearch()">✕ Clear</button>
+      </div>
+      <div id="searchMessage"></div>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+  <div id="add-tab" class="tab-content">
+    <div class="form-section">
+      <h2>Add Company Manually</h2>
       <div class="form-grid">
-        <div class="form-group" style="grid-column: span 2;">
-          <label>Notes / Outcome</label>
-          <textarea id="notes" placeholder="Record the outcome of your contact, next steps, key discussion points..."></textarea>
-        </div>
-        <div class="form-group">
-          <label>Remind Me On</label>
-          <input type="date" id="reminderDate">
-        </div>
+        <div class="form-group"><label>Company Name *</label><input type="text" id="companyName" placeholder="e.g. Vulcan Industries LLC"></div>
+        <div class="form-group"><label>Contact Person</label><input type="text" id="contactPerson" placeholder="Name"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="email" placeholder="email@company.com"></div>
+        <div class="form-group"><label>Phone</label><input type="tel" id="phone" placeholder="+971-6-xxxxx"></div>
+        <div class="form-group"><label>Business Type</label><input type="text" id="businessType" placeholder="e.g. Food Distribution"></div>
+        <div class="form-group"><label>Website</label><input type="url" id="website" placeholder="https://example.com"></div>
+        <div class="form-group"><label>Employees</label><input type="number" id="employees" placeholder="50"></div>
+        <div class="form-group"><label>Status *</label><select id="status"><option value="contacted">Contacted</option><option value="pending">Pending Response</option><option value="interested">Interested</option><option value="not-interested">Not Interested</option><option value="followup">Follow-up Needed</option></select></div>
       </div>
-
+      <h3>📞 Contact Details Found</h3>
+      <p style="color: #666; font-size: 13px;">Log phone numbers, names, or emails as you find them</p>
+      <div class="form-grid">
+        <div class="form-group"><label>Found Phone Number</label><input type="tel" id="foundPhone" placeholder="+971-6-xxxxx"></div>
+        <div class="form-group"><label>Found Contact Name</label><input type="text" id="foundName" placeholder="e.g. Ahmad, Manager, etc."></div>
+        <div class="form-group"><label>Found Email</label><input type="email" id="foundEmail" placeholder="contact@company.com"></div>
+      </div>
+      <h3>📋 Application Tracking</h3>
+      <p style="color: #666; font-size: 13px;">Track when you applied and when to follow up</p>
+      <div class="form-grid">
+        <div class="form-group"><label>Applied / Contacted On</label><input type="date" id="appliedDate"></div>
+        <div class="form-group"><label>Next Follow-up Date</label><input type="date" id="nextFollowUpDate"></div>
+        <div class="form-group"><label>Application Status</label><select id="applicationStatus"><option value="">-- Not Applied Yet --</option><option value="applied">Applied</option><option value="pending-response">Waiting for Response</option><option value="interview-scheduled">Interview Scheduled</option><option value="rejected">Rejected</option><option value="offer-received">Offer Received</option></select></div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group" style="grid-column: span 2;"><label>Notes / Outcome</label><textarea id="notes" placeholder="Record the outcome of your contact, next steps, key discussion points..."></textarea></div>
+      </div>
       <div class="button-group">
         <button class="btn primary" onclick="addCompany()">✓ Add Company</button>
         <button class="btn" onclick="clearForm()">✕ Clear</button>
@@ -261,243 +161,193 @@
       <div id="successMessage"></div>
     </div>
   </div>
-
   <div id="view-tab" class="tab-content">
     <div class="table-container" id="tableContainer"></div>
   </div>
-
-  <div id="reminders-tab" class="tab-content">
-    <div id="remindersContainer"></div>
+  <div id="applications-tab" class="tab-content">
+    <div id="applicationsContainer"></div>
   </div>
-
   <div id="stats-tab" class="tab-content">
     <div class="stats-grid" id="statsContainer"></div>
   </div>
 </div>
-
 <script>
 const DATA_KEY = 'b2b_outreach_data';
-
-function loadData() {
-  const data = localStorage.getItem(DATA_KEY);
-  return data ? JSON.parse(data) : [];
+const COMPANY_DATABASE = [
+  { name: "Global Food Industries (GFI)", type: "food-distribution", emirate: "sharjah", website: "global-food.com", employees: "100+", notes: "Frozen Food Manufacturing & Distribution" },
+  { name: "Agri Fresh Foodstuff LLC", type: "food-distribution", emirate: "sharjah", website: "agrifresh.ae", employees: "50+", notes: "Food Distribution" },
+  { name: "Vulcan Industries LLC", type: "warehousing", emirate: "ajman", website: "", employees: "50-249", notes: "Contract Manufacturing" },
+  { name: "Nahla Al Wadi Trading", type: "food-distribution", emirate: "ajman", website: "ae.nahlaalwadi.com", employees: "100+", notes: "Wholesale Food & Beverage Distributor" },
+  { name: "Texas General Trading FZE", type: "general-trading", emirate: "ajman", website: "texasgeneraltrading.com", employees: "50+", notes: "Construction Materials & Commodities" },
+  { name: "Arham Foodstuff", type: "food-distribution", emirate: "ajman", website: "arhamfoodstuff.com", employees: "50+", notes: "Food Distribution & Wholesale" },
+];
+function loadData() { return (localStorage.getItem(DATA_KEY) ? JSON.parse(localStorage.getItem(DATA_KEY)) : []); }
+function saveData(data) { localStorage.setItem(DATA_KEY, JSON.stringify(data)); }
+function searchCompanies() {
+  const emirate = document.getElementById('searchEmirate').value;
+  const type = document.getElementById('searchType').value;
+  if (!emirate || !type) { alert('Please select both Emirate and Business Type'); return; }
+  let results = COMPANY_DATABASE;
+  if (emirate !== 'both') results = results.filter(c => c.emirate === emirate);
+  results = results.filter(c => c.type === type);
+  const addedCompanies = loadData();
+  const addedNames = addedCompanies.map(c => c.name.toLowerCase());
+  results = results.filter(c => !addedNames.includes(c.name.toLowerCase()));
+  displaySearchResults(results);
 }
-
-function saveData(data) {
-  localStorage.setItem(DATA_KEY, JSON.stringify(data));
+function displaySearchResults(results) {
+  const container = document.getElementById('searchResults');
+  if (results.length === 0) { container.innerHTML = '<div class="empty-state"><p>No companies found</p></div>'; return; }
+  let html = `<div class="results-count">Found <strong>${results.length}</strong> companies</div>`;
+  results.forEach(company => {
+    const website = company.website ? `<a href="https://${company.website}" target="_blank">🌐 ${company.website}</a>` : '—';
+    html += `<div class="company-card"><h3>${company.name}</h3><div class="company-detail"><div class="detail-item"><div class="detail-label">Business Type</div><div class="detail-value">${company.type.replace(/-/g, ' ').toUpperCase()}</div></div><div class="detail-item"><div class="detail-label">Employees</div><div class="detail-value">${company.employees}</div></div><div class="detail-item"><div class="detail-label">Website</div><div class="detail-value">${website}</div></div></div><div style="font-size: 13px; color: #666; margin-bottom: 1rem;"><strong>Notes:</strong> ${company.notes}</div><div class="button-group"><select id="quick-status-${company.name.replace(/\s+/g, '-')}" style="padding: 0.6rem 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 13px;"><option value="contacted">Contacted</option><option value="pending">Pending Response</option><option value="interested">Interested</option></select><button class="btn primary small" onclick="addFromSearch('${company.name}', '${company.type}', '${company.website}', '${company.employees}', '${company.notes}')">+ Add</button></div></div>`;
+  });
+  container.innerHTML = html;
 }
-
+function addFromSearch(name, type, website, employees, notes) {
+  const status = document.getElementById(`quick-status-${name.replace(/\s+/g, '-')}`).value;
+  const data = loadData();
+  data.push({
+    id: Date.now(), name, contactPerson: '', email: '', phone: '', status,
+    foundPhones: [], foundEmails: [], foundNames: [],
+    notes: `${notes} | Website: ${website} | Employees: ${employees}`,
+    businessType: type, appliedDate: '', nextFollowUpDate: '', applicationStatus: '', createdAt: new Date().toISOString()
+  });
+  saveData(data);
+  alert(`✓ ${name} added to tracker!`);
+  searchCompanies();
+}
+function clearSearch() {
+  document.getElementById('searchEmirate').value = '';
+  document.getElementById('searchType').value = '';
+  document.getElementById('searchResults').innerHTML = '';
+}
 function addCompany() {
   const name = document.getElementById('companyName').value.trim();
-  const contactPerson = document.getElementById('contactPerson').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const status = document.getElementById('status').value;
-  const contactDate = document.getElementById('contactDate').value;
-  const reminderDate = document.getElementById('reminderDate').value;
-  const notes = document.getElementById('notes').value.trim();
-
-  if (!name) {
-    alert('Please enter a company name');
-    return;
-  }
-
+  if (!name) { alert('Please enter a company name'); return; }
   const data = loadData();
-  const newEntry = {
-    id: Date.now(),
-    name,
-    contactPerson,
-    email,
-    phone,
-    status,
-    contactDate: contactDate || new Date().toISOString().split('T')[0],
-    reminderDate,
-    notes,
-    createdAt: new Date().toISOString()
-  };
-
-  data.push(newEntry);
+  data.push({
+    id: Date.now(), name, contactPerson: document.getElementById('contactPerson').value.trim(),
+    email: document.getElementById('email').value.trim(), phone: document.getElementById('phone').value.trim(),
+    status: document.getElementById('status').value,
+    foundPhones: document.getElementById('foundPhone').value ? [{number: document.getElementById('foundPhone').value, foundOn: new Date().toISOString().split('T')[0]}] : [],
+    foundEmails: document.getElementById('foundEmail').value ? [{email: document.getElementById('foundEmail').value, foundOn: new Date().toISOString().split('T')[0]}] : [],
+    foundNames: document.getElementById('foundName').value ? [{name: document.getElementById('foundName').value, foundOn: new Date().toISOString().split('T')[0]}] : [],
+    notes: document.getElementById('notes').value.trim(), businessType: document.getElementById('businessType').value.trim(),
+    website: document.getElementById('website').value.trim(), employees: document.getElementById('employees').value.trim(),
+    appliedDate: document.getElementById('appliedDate').value, nextFollowUpDate: document.getElementById('nextFollowUpDate').value,
+    applicationStatus: document.getElementById('applicationStatus').value, createdAt: new Date().toISOString()
+  });
   saveData(data);
-
-  showSuccessMessage('✓ Company added successfully!');
+  alert('✓ Company added!');
   clearForm();
   renderTable();
   updateStats();
 }
-
 function clearForm() {
-  document.getElementById('companyName').value = '';
-  document.getElementById('contactPerson').value = '';
-  document.getElementById('email').value = '';
-  document.getElementById('phone').value = '';
+  ['companyName','contactPerson','email','phone','businessType','website','employees','status','foundPhone','foundName','foundEmail','appliedDate','nextFollowUpDate','applicationStatus','notes'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('status').value = 'contacted';
-  document.getElementById('contactDate').value = '';
-  document.getElementById('reminderDate').value = '';
-  document.getElementById('notes').value = '';
+  document.getElementById('appliedDate').value = new Date().toISOString().split('T')[0];
 }
-
 function deleteCompany(id) {
-  if (!confirm('Are you sure you want to delete this entry?')) return;
-  
+  if (!confirm('Delete this entry?')) return;
   let data = loadData();
   data = data.filter(item => item.id !== id);
   saveData(data);
   renderTable();
   updateStats();
-  renderReminders();
+  renderApplications();
 }
-
 function editCompany(id) {
   const data = loadData();
   const entry = data.find(item => item.id === id);
   if (!entry) return;
-
   document.getElementById('companyName').value = entry.name;
   document.getElementById('contactPerson').value = entry.contactPerson;
   document.getElementById('email').value = entry.email;
   document.getElementById('phone').value = entry.phone;
+  document.getElementById('businessType').value = entry.businessType || '';
+  document.getElementById('website').value = entry.website || '';
+  document.getElementById('employees').value = entry.employees || '';
   document.getElementById('status').value = entry.status;
-  document.getElementById('contactDate').value = entry.contactDate;
-  document.getElementById('reminderDate').value = entry.reminderDate;
+  document.getElementById('foundPhone').value = entry.foundPhones?.[0]?.number || '';
+  document.getElementById('foundName').value = entry.foundNames?.[0]?.name || '';
+  document.getElementById('foundEmail').value = entry.foundEmails?.[0]?.email || '';
+  document.getElementById('appliedDate').value = entry.appliedDate || '';
+  document.getElementById('nextFollowUpDate').value = entry.nextFollowUpDate || '';
+  document.getElementById('applicationStatus').value = entry.applicationStatus || '';
   document.getElementById('notes').value = entry.notes;
-
   deleteCompany(id);
-  document.getElementById('add-tab').scrollIntoView({ behavior: 'smooth' });
   setActiveTab('add');
 }
-
 function renderTable() {
   const data = loadData();
   const container = document.getElementById('tableContainer');
-
-  if (data.length === 0) {
-    container.innerHTML = '<div class="empty-state"><p style="font-size: 28px; margin-bottom: 1rem;">📭</p><p>No companies tracked yet</p><p style="font-size: 12px; color: #999;">Add your first company to get started</p></div>';
-    return;
-  }
-
-  const statusColor = {
-    contacted: 'status-contacted',
-    pending: 'status-pending',
-    interested: 'status-interested',
-    'not-interested': 'status-not-interested',
-    followup: 'status-followup'
-  };
-
-  const statusLabel = {
-    contacted: 'Contacted',
-    pending: 'Pending',
-    interested: 'Interested',
-    'not-interested': 'Not Interested',
-    followup: 'Follow-up'
-  };
-
-  let html = '<table class="table"><thead><tr>';
-  html += '<th style="min-width: 180px;">Company</th>';
-  html += '<th style="min-width: 120px;">Contact</th>';
-  html += '<th style="min-width: 100px;">Status</th>';
-  html += '<th style="min-width: 120px;">Date</th>';
-  html += '<th style="min-width: 150px;">Reminder</th>';
-  html += '<th style="min-width: 200px;">Notes</th>';
-  html += '<th style="width: 100px; text-align: center;">Actions</th></tr></thead><tbody>';
-
+  if (data.length === 0) { container.innerHTML = '<div class="empty-state"><p>No companies tracked yet</p></div>'; return; }
+  const statusColor = { contacted: 'status-contacted', pending: 'status-pending', interested: 'status-interested', 'not-interested': 'status-not-interested', followup: 'status-followup' };
+  const statusLabel = { contacted: 'Contacted', pending: 'Pending', interested: 'Interested', 'not-interested': 'Not Interested', followup: 'Follow-up' };
+  let html = '<table class="table"><thead><tr><th>Company</th><th>Found Contacts</th><th>Status</th><th>Applied?</th><th>Website</th><th>Actions</th></tr></thead><tbody>';
   data.forEach(entry => {
-    const reminderClass = entry.reminderDate && new Date(entry.reminderDate) <= new Date() ? ' style="background: #fff3e0;"' : '';
-    html += `<tr${reminderClass}>`;
-    html += `<td><strong>${entry.name}</strong>${entry.contactPerson ? '<br><small style="color: #666;">' + entry.contactPerson + '</small>' : ''}</td>`;
-    html += `<td class="contact-info">${entry.email || '—'}<br>${entry.phone || '—'}</td>`;
-    html += `<td><span class="status-badge ${statusColor[entry.status]}">${statusLabel[entry.status]}</span></td>`;
-    html += `<td>${entry.contactDate || '—'}</td>`;
-    html += `<td>${entry.reminderDate ? entry.reminderDate + (new Date(entry.reminderDate) <= new Date() ? ' ⚠️' : '') : '—'}</td>`;
-    html += `<td class="contact-info">${entry.notes || '—'}</td>`;
-    html += `<td><div class="action-buttons">`;
-    html += `<button onclick="editCompany(${entry.id})">✎ Edit</button>`;
-    html += `<button class="danger" onclick="deleteCompany(${entry.id})">🗑 Delete</button>`;
-    html += `</div></td></tr>`;
+    const websiteLink = entry.website ? `<a href="https://${entry.website}" target="_blank">🌐 Visit</a>` : '—';
+    const phonesList = entry.foundPhones?.length ? entry.foundPhones.map(p => p.number).join(', ') : '—';
+    const emailsList = entry.foundEmails?.length ? entry.foundEmails.map(e => e.email).join(', ') : '—';
+    const appStatus = entry.applicationStatus ? `<span style="color: #1976d2;">✓ ${entry.applicationStatus}</span>` : '—';
+    html += `<tr><td><strong>${entry.name}</strong></td><td style="font-size: 12px; color: #666;">📱 ${phonesList}<br>✉️ ${emailsList}</td><td><span class="status-badge ${statusColor[entry.status]}">${statusLabel[entry.status]}</span></td><td>${appStatus}</td><td>${websiteLink}</td><td><button class="btn small" onclick="editCompany(${entry.id})">✎ Edit</button> <button class="btn small danger" onclick="deleteCompany(${entry.id})">🗑</button></td></tr>`;
   });
-
   html += '</tbody></table>';
   container.innerHTML = html;
 }
-
-function renderReminders() {
+function renderApplications() {
   const data = loadData();
-  const container = document.getElementById('remindersContainer');
-  const today = new Date().toISOString().split('T')[0];
-  const reminders = data.filter(item => item.reminderDate && item.reminderDate >= today).sort((a, b) => new Date(a.reminderDate) - new Date(b.reminderDate));
-
-  if (reminders.length === 0) {
-    container.innerHTML = '<div class="empty-state"><p style="font-size: 28px; margin-bottom: 1rem;">🔔</p><p>No upcoming reminders</p><p style="font-size: 12px; color: #999;">Set reminder dates when adding or editing companies</p></div>';
-    return;
-  }
-
+  const container = document.getElementById('applicationsContainer');
+  const applicationsData = data.filter(item => item.appliedDate || item.applicationStatus);
+  if (applicationsData.length === 0) { container.innerHTML = '<div class="empty-state"><p>No applications tracked yet</p></div>'; return; }
   let html = '<div>';
-  reminders.forEach(item => {
-    const isOverdue = new Date(item.reminderDate) < new Date(today);
-    html += `<div class="reminder-alert ${isOverdue ? 'overdue' : ''}">`;
-    html += `<strong>📅 ${item.reminderDate}${isOverdue ? ' - OVERDUE ⚠️' : ''}</strong>`;
-    html += `<p style="margin: 0.5rem 0 0 0;">${item.name}${item.contactPerson ? ' • ' + item.contactPerson : ''}</p>`;
-    html += `<p style="margin: 0.5rem 0; font-size: 12px; color: #666;">${item.notes || 'Follow up with this company'}</p>`;
-    html += `<button class="btn" style="padding: 0.5rem 1rem; font-size: 12px; margin-top: 0.5rem;" onclick="editCompany(${item.id})">✎ Edit</button>`;
-    html += `</div>`;
+  applicationsData.forEach(item => {
+    const today = new Date().toISOString().split('T')[0];
+    const isOverdue = item.nextFollowUpDate && new Date(item.nextFollowUpDate) < new Date(today);
+    html += `<div class="company-card"><h3>${item.name}</h3><div class="application-timeline"><div class="timeline-item"><span class="timeline-label">📅 Applied:</span> <span class="timeline-date">${item.appliedDate || 'Not recorded'}</span></div><div class="timeline-item"><span class="timeline-label">🎯 Status:</span> <span class="timeline-date">${item.applicationStatus || 'Not specified'}</span></div><div class="timeline-item" style="background: ${isOverdue ? '#ffebee' : ''}; padding: ${isOverdue ? '0.5rem' : '0'};"><span class="timeline-label">⏰ Next Follow-up:</span> <span class="timeline-date">${item.nextFollowUpDate || 'Not set'} ${isOverdue ? '⚠️ OVERDUE' : ''}</span></div></div><button class="btn small" onclick="editCompany(${item.id})">✎ Update</button></div>`;
   });
   html += '</div>';
   container.innerHTML = html;
 }
-
 function updateStats() {
   const data = loadData();
   const container = document.getElementById('statsContainer');
-
   const stats = {
     total: data.length,
-    contacted: data.filter(d => d.status === 'contacted').length,
-    interested: data.filter(d => d.status === 'interested').length,
-    pending: data.filter(d => d.status === 'pending').length,
-    upcomingFollowups: data.filter(d => d.reminderDate && new Date(d.reminderDate) >= new Date().toISOString().split('T')[0]).length
+    withContacts: data.filter(d => d.foundPhones?.length || d.foundEmails?.length).length,
+    applied: data.filter(d => d.appliedDate).length,
+    pendingFollowUp: data.filter(d => d.nextFollowUpDate && new Date(d.nextFollowUpDate) >= new Date()).length,
+    overdue: data.filter(d => d.nextFollowUpDate && new Date(d.nextFollowUpDate) < new Date()).length
   };
-
   let html = '';
   html += `<div class="stat-card"><div class="number">${stats.total}</div><div class="label">Total Companies</div></div>`;
-  html += `<div class="stat-card"><div class="number">${stats.contacted}</div><div class="label">Contacted</div></div>`;
-  html += `<div class="stat-card"><div class="number">${stats.interested}</div><div class="label">Interested</div></div>`;
-  html += `<div class="stat-card"><div class="number">${stats.pending}</div><div class="label">Awaiting Response</div></div>`;
-  html += `<div class="stat-card"><div class="number">${stats.upcomingFollowups}</div><div class="label">Follow-ups Scheduled</div></div>`;
-
+  html += `<div class="stat-card"><div class="number">${stats.withContacts}</div><div class="label">With Contacts Found</div></div>`;
+  html += `<div class="stat-card"><div class="number">${stats.applied}</div><div class="label">Applications Sent</div></div>`;
+  html += `<div class="stat-card"><div class="number">${stats.pendingFollowUp}</div><div class="label">Pending Follow-ups</div></div>`;
+  html += `<div class="stat-card"><div class="number" style="color: #d32f2f;">${stats.overdue}</div><div class="label">Overdue Follow-ups</div></div>`;
   container.innerHTML = html;
 }
-
-function showSuccessMessage(msg) {
-  const msgDiv = document.getElementById('successMessage');
-  msgDiv.innerHTML = `<div class="success-message">${msg}</div>`;
-  setTimeout(() => msgDiv.innerHTML = '', 3000);
-}
-
 function setActiveTab(tabName) {
   document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
   document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
   document.getElementById(tabName + '-tab').classList.add('active');
 }
-
-// Tab navigation
 document.querySelectorAll('.tab-button').forEach(btn => {
   btn.addEventListener('click', function() {
     const tab = this.getAttribute('data-tab');
     setActiveTab(tab);
-
     if (tab === 'view') renderTable();
-    if (tab === 'reminders') renderReminders();
+    if (tab === 'applications') renderApplications();
     if (tab === 'stats') updateStats();
   });
 });
-
-// Set today's date as default
-document.getElementById('contactDate').valueAsDate = new Date();
-
-// Initial load
+document.getElementById('appliedDate').value = new Date().toISOString().split('T')[0];
 renderTable();
 updateStats();
 </script>
-
 </body>
 </html>
