@@ -53,6 +53,7 @@
         .tabs {
             display: flex;
             border-bottom: 2px solid #eee;
+            overflow-x: auto;
         }
         
         .tab-button {
@@ -66,6 +67,7 @@
             border-bottom: 3px solid transparent;
             transition: all 0.3s;
             text-align: center;
+            min-width: 120px;
         }
         
         .tab-button.active {
@@ -102,47 +104,85 @@
             color: #333;
         }
         
-        select, input {
-            padding: 10px 12px;
+        select, input[type="text"] {
+            padding: 10px 15px;
             border: 1px solid #ddd;
             border-radius: 6px;
             font-size: 1em;
+            background: white;
         }
         
-        button {
+        select:hover, input[type="text"]:hover {
+            border-color: #667eea;
+        }
+        
+        .btn {
             padding: 10px 20px;
-            background: #667eea;
-            color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s;
         }
         
-        button:hover {
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
             background: #5568d3;
         }
         
+        .btn-success {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+        
+        .results-info {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
         .company-card {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
+            background: white;
+            border: 1px solid #eee;
             border-radius: 8px;
             padding: 20px;
-            margin-bottom: 20px;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            transition: all 0.3s;
+        }
+        
+        .company-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        
+        .company-info {
+            flex: 1;
         }
         
         .company-info h3 {
             color: #667eea;
             margin-bottom: 10px;
+            font-size: 1.2em;
         }
         
         .company-info p {
-            margin: 6px 0;
+            margin: 5px 0;
             color: #666;
-            font-size: 0.95em;
         }
         
         .company-info a {
@@ -150,25 +190,182 @@
             text-decoration: none;
         }
         
-        .results-info {
-            padding: 15px;
-            background: #e8f5e9;
+        .company-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        
+        .company-actions button {
+            padding: 8px 16px;
+            border: none;
             border-radius: 6px;
-            margin-bottom: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+        
+        .status-select {
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        
+        .followup-section {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        
+        .followup-date {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .followup-date input[type="date"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .followup-notes {
+            margin-top: 10px;
+        }
+        
+        .followup-notes textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9em;
+            resize: vertical;
+            min-height: 60px;
+        }
+        
+        .urgency-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .urgency-overdue {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .urgency-due-soon {
+            background: #fff3e0;
+            color: #e65100;
+        }
+        
+        .urgency-upcoming {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .urgency-done {
+            background: #e8f5e9;
             color: #2e7d32;
         }
         
-        .company-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            min-width: 150px;
+        .calendar-view {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-bottom: 30px;
         }
-
+        
+        .calendar-day {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            min-height: 100px;
+            border: 2px solid transparent;
+        }
+        
+        .calendar-day.has-followup {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .calendar-day-number {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .calendar-items {
+            font-size: 0.8em;
+            color: #666;
+        }
+        
+        .bulk-actions {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .bulk-actions input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
         .loading {
             text-align: center;
             padding: 20px;
             color: #667eea;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .modal-content h2 {
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        .modal-close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
         }
         
         @keyframes slideIn {
@@ -197,89 +394,139 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🏢 B2B Company Tracker</h1>
-            <span class="badge">✓ 300+ Verified Companies</span>
+            <h1>🎯 B2B Company Tracker</h1>
+            <p>Search • Track • Follow-up • Succeed</p>
         </div>
         
         <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('search')">🔍 Search Companies</button>
+            <button class="tab-button active" onclick="switchTab('search-companies')">🔍 Search Companies</button>
             <button class="tab-button" onclick="switchTab('my-companies')">⭐ My Companies</button>
+            <button class="tab-button" onclick="switchTab('calendar')">📅 Follow-up Calendar</button>
+            <button class="tab-button" onclick="switchTab('overdue')">🔔 Due & Overdue</button>
         </div>
         
-        <div class="tab-content active" id="search">
+        <!-- Search Tab -->
+        <div id="search-companies" class="tab-content active">
             <div class="search-section">
                 <div class="form-group">
                     <label for="emirate">Emirate</label>
-                    <select id="emirate">
+                    <select id="emirate" onchange="searchCompanies()">
                         <option value="">All Emirates</option>
-                        <option value="Dubai">Dubai</option>
-                        <option value="Abu Dhabi">Abu Dhabi</option>
-                        <option value="Sharjah">Sharjah</option>
-                        <option value="Ajman">Ajman</option>
-                        <option value="Ras Al Khaimah">Ras Al Khaimah</option>
-                        <option value="Fujairah">Fujairah</option>
-                        <option value="Umm Al Quwain">Umm Al Quwain</option>
                     </select>
                 </div>
-                
                 <div class="form-group">
                     <label for="business-type">Business Type</label>
-                    <select id="business-type">
+                    <select id="business-type" onchange="searchCompanies()">
                         <option value="">All Types</option>
                     </select>
                 </div>
-                
                 <div class="form-group">
                     <label for="search-name">Company Name</label>
-                    <input type="text" id="search-name" placeholder="Search...">
+                    <input type="text" id="search-name" placeholder="Search..." onkeyup="searchCompanies()">
                 </div>
-                
-                <button onclick="searchCompanies()">Search</button>
+                <button class="btn btn-primary" onclick="searchCompanies()">Search</button>
             </div>
             
             <div id="results-container"></div>
         </div>
         
-        <div class="tab-content" id="my-companies">
-            <button onclick="exportCompanies()" style="background: #4CAF50; margin-bottom: 20px;">📥 Export Companies</button>
+        <!-- My Companies Tab -->
+        <div id="my-companies" class="tab-content">
+            <div class="bulk-actions">
+                <input type="checkbox" id="select-all" onchange="toggleSelectAll()"> Select All
+                <button class="btn btn-success" onclick="bulkReschedule()" style="margin-left: 20px;">📅 Reschedule Selected</button>
+                <button class="btn btn-danger" onclick="bulkRemove()">🗑️ Remove Selected</button>
+            </div>
             <div id="my-companies-list"></div>
+        </div>
+        
+        <!-- Calendar Tab -->
+        <div id="calendar" class="tab-content">
+            <h2>Follow-up Schedule</h2>
+            <div id="calendar-container"></div>
+        </div>
+        
+        <!-- Overdue Tab -->
+        <div id="overdue" class="tab-content">
+            <h2>Due & Overdue Follow-ups</h2>
+            <div id="overdue-container"></div>
+        </div>
+    </div>
+    
+    <!-- Follow-up Modal -->
+    <div id="followup-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeFollowupModal()">&times;</span>
+            <h2>Schedule Follow-up</h2>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="modal-followup-date">Follow-up Date</label>
+                <input type="date" id="modal-followup-date">
+            </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="modal-followup-notes">Notes</label>
+                <textarea id="modal-followup-notes" placeholder="Add notes for follow-up..."></textarea>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-primary" onclick="saveFollowup()" style="flex: 1;">Save</button>
+                <button class="btn" onclick="closeFollowupModal()" style="flex: 1; background: #999;">Cancel</button>
+            </div>
         </div>
     </div>
     
     <script>
         let companiesDatabase = {};
         let selectedCompanies = [];
+        let currentEditCompany = null;
+        let selectedCheckboxes = new Set();
         
-        // Load database from JSON file
-        async function loadDatabase() {
-            try {
-                const response = await fetch('./complete_uae_companies_database.json');
-                const data = await response.json();
-                companiesDatabase = data;
-                populateBusinessTypes();
-                console.log('Database loaded:', Object.keys(companiesDatabase));
-            } catch (error) {
-                console.error('Failed to load database:', error);
-                document.getElementById('results-container').innerHTML = '<div style="padding: 20px; color: red;">Failed to load company database. Please refresh the page.</div>';
-            }
+        // Initialize
+        window.addEventListener('load', () => {
+            loadDatabase();
+            loadSelectedCompanies();
+            populateDropdowns();
+            searchCompanies();
+            displayMyCompanies();
+        });
+        
+        function loadDatabase() {
+            fetch('./complete_uae_companies_database.json')
+                .then(response => response.json())
+                .then(data => {
+                    companiesDatabase = data;
+                    populateDropdowns();
+                    searchCompanies();
+                })
+                .catch(error => console.error('Error loading database:', error));
         }
         
-        function populateBusinessTypes() {
+        function populateDropdowns() {
+            const emirateSelect = document.getElementById('emirate');
+            const businessTypeSelect = document.getElementById('business-type');
+            
+            const emirates = [];
             const types = new Set();
-            for (const emirate in companiesDatabase) {
-                if (emirate !== 'metadata' && emirate !== 'notes') {
-                    for (const type in companiesDatabase[emirate]) {
-                        types.add(type);
-                    }
+            
+            for (const [emirate, typeData] of Object.entries(companiesDatabase)) {
+                if (emirate === 'metadata' || emirate === 'notes') continue;
+                emirates.push(emirate);
+                
+                for (const type of Object.keys(typeData)) {
+                    types.add(type);
                 }
             }
             
-            const select = document.getElementById('business-type');
+            emirates.forEach(emirate => {
+                const option = document.createElement('option');
+                option.value = emirate;
+                option.textContent = emirate;
+                emirateSelect.appendChild(option);
+            });
+            
             types.forEach(type => {
                 const option = document.createElement('option');
                 option.value = type;
                 option.textContent = type;
-                select.appendChild(option);
+                businessTypeSelect.appendChild(option);
             });
         }
         
@@ -298,9 +545,9 @@
             document.getElementById(tab).classList.add('active');
             event.target.classList.add('active');
             
-            if (tab === 'my-companies') {
-                displayMyCompanies();
-            }
+            if (tab === 'my-companies') displayMyCompanies();
+            if (tab === 'calendar') displayCalendar();
+            if (tab === 'overdue') displayOverdue();
         }
         
         function searchCompanies() {
@@ -326,19 +573,19 @@
                 }
             }
             
-            displayResults(results);
-        }
-        
-        function displayResults(results) {
-            const container = document.getElementById('results-container');
-            
             // Filter out already selected companies
             const availableCompanies = results.filter(company => 
                 !selectedCompanies.some(c => c.name === company.name && c.emirate === company.emirate)
             );
             
-            if (availableCompanies.length === 0) {
-                if (results.length > 0) {
+            displayResults(availableCompanies);
+        }
+        
+        function displayResults(results) {
+            const container = document.getElementById('results-container');
+            
+            if (results.length === 0) {
+                if (document.getElementById('emirate').value || document.getElementById('business-type').value || document.getElementById('search-name').value) {
                     container.innerHTML = '<div class="results-info" style="background: #e8f5e9;">All companies in this filter have been added! 🎉</div>';
                 } else {
                     container.innerHTML = '<div class="results-info" style="background: #ffebee; color: #c62828;">No companies found</div>';
@@ -346,9 +593,9 @@
                 return;
             }
             
-            let html = `<div class="results-info">Found ${availableCompanies.length} companies</div>`;
+            let html = `<div class="results-info">Found ${results.length} companies</div>`;
             
-            availableCompanies.forEach(company => {
+            results.forEach(company => {
                 html += `
                     <div class="company-card">
                         <div class="company-info">
@@ -361,7 +608,7 @@
                             <p><strong>Phone:</strong> ${company.phone}</p>
                         </div>
                         <div class="company-actions">
-                            <button onclick='addCompany(${JSON.stringify(company).replace(/'/g, "&apos;")})'>
+                            <button class="btn btn-primary" onclick='addCompany(${JSON.stringify(company).replace(/'/g, "&apos;")})'>
                                 + Add
                             </button>
                         </div>
@@ -399,6 +646,9 @@
         function addCompany(company) {
             if (!selectedCompanies.find(c => c.name === company.name && c.emirate === company.emirate)) {
                 company.status = 'Pending';
+                company.followupDate = '';
+                company.notes = '';
+                company.checked = false;
                 selectedCompanies.push(company);
                 saveSelectedCompanies();
                 showToast(`✓ ${company.name} added!`);
@@ -417,26 +667,42 @@
             let html = `<div class="results-info">${selectedCompanies.length} companies tracked</div>`;
             
             selectedCompanies.forEach((company, index) => {
+                const urgency = getUrgency(company.followupDate);
+                const urgencyBadge = urgency ? `<span class="urgency-badge urgency-${urgency.class}">${urgency.text}</span>` : '';
+                
                 html += `
                     <div class="company-card">
-                        <div class="company-info">
-                            <h3>${company.name}</h3>
+                        <div style="flex: 1;">
+                            <input type="checkbox" onchange="toggleCheckbox(${index})" style="margin-right: 10px;">
+                        </div>
+                        <div class="company-info" style="flex: 3;">
+                            <h3>${company.name} ${urgencyBadge}</h3>
                             <p><strong>Emirate:</strong> ${company.emirate}</p>
                             <p><strong>Type:</strong> ${company.type}</p>
                             ${company.website ? `<p><strong>Website:</strong> <a href="https://${company.website}" target="_blank">${company.website}</a></p>` : ''}
                             <p><strong>Email:</strong> <a href="mailto:${company.email}">${company.email}</a></p>
                             <p><strong>Phone:</strong> ${company.phone}</p>
-                            <p><strong>Status:</strong> <span style="padding:4px 8px;background:#f0f0f0;border-radius:4px;">${company.status || 'Pending'}</span></p>
-                        </div>
-                        <div class="company-actions">
-                            <select onchange="updateStatus(${index}, this.value)" style="width:100%;padding:8px;">
-                                <option value="Pending" ${(company.status || 'Pending') === 'Pending' ? 'selected' : ''}>Pending</option>
-                                <option value="Contacted" ${company.status === 'Contacted' ? 'selected' : ''}>Contacted</option>
-                                <option value="Interested" ${company.status === 'Interested' ? 'selected' : ''}>Interested</option>
-                                <option value="Rejected" ${company.status === 'Rejected' ? 'selected' : ''}>Rejected</option>
-                                <option value="Closed" ${company.status === 'Closed' ? 'selected' : ''}>Closed</option>
-                            </select>
-                            <button style="background: #f44336;" onclick="removeCompany(${index})">Remove</button>
+                            
+                            <div class="followup-section">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <strong>Status:</strong>
+                                    <select class="status-select" onchange="updateStatus(${index}, this.value)">
+                                        <option value="Pending" ${company.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                                        <option value="Contacted" ${company.status === 'Contacted' ? 'selected' : ''}>Contacted</option>
+                                        <option value="Interested" ${company.status === 'Interested' ? 'selected' : ''}>Interested</option>
+                                        <option value="Rejected" ${company.status === 'Rejected' ? 'selected' : ''}>Rejected</option>
+                                        <option value="Closed" ${company.status === 'Closed' ? 'selected' : ''}>Closed</option>
+                                    </select>
+                                </div>
+                                
+                                ${company.followupDate ? `<p><strong>📅 Follow-up:</strong> ${formatDate(company.followupDate)}</p>` : ''}
+                                ${company.notes ? `<p><strong>📝 Notes:</strong> ${company.notes}</p>` : ''}
+                                
+                                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                                    <button class="btn btn-primary" onclick="openFollowupModal(${index})">📅 Schedule</button>
+                                    <button class="btn" style="background: #999;" onclick="removeCompany(${index})">🗑️ Remove</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -445,38 +711,290 @@
             container.innerHTML = html;
         }
         
+        function getUrgency(followupDate) {
+            if (!followupDate) return null;
+            
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const fdate = new Date(followupDate);
+            fdate.setHours(0, 0, 0, 0);
+            
+            const diffDays = Math.floor((fdate - today) / (1000 * 60 * 60 * 24));
+            
+            if (diffDays < 0) return { class: 'overdue', text: '🔴 OVERDUE' };
+            if (diffDays === 0) return { class: 'due-soon', text: '🟡 TODAY' };
+            if (diffDays <= 7) return { class: 'due-soon', text: `🟡 ${diffDays}d` };
+            return { class: 'upcoming', text: `🔵 ${diffDays}d` };
+        }
+        
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+        
         function updateStatus(index, status) {
             selectedCompanies[index].status = status;
+            saveSelectedCompanies();
+            showToast(`✓ Status updated to ${status}`);
+        }
+        
+        function toggleCheckbox(index) {
+            selectedCompanies[index].checked = !selectedCompanies[index].checked;
+            saveSelectedCompanies();
+        }
+        
+        function toggleSelectAll() {
+            const allChecked = document.getElementById('select-all').checked;
+            selectedCompanies.forEach(c => c.checked = allChecked);
             saveSelectedCompanies();
             displayMyCompanies();
         }
         
+        function openFollowupModal(index) {
+            currentEditCompany = index;
+            document.getElementById('modal-followup-date').value = selectedCompanies[index].followupDate || '';
+            document.getElementById('modal-followup-notes').value = selectedCompanies[index].notes || '';
+            document.getElementById('followup-modal').classList.add('active');
+        }
+        
+        function closeFollowupModal() {
+            document.getElementById('followup-modal').classList.remove('active');
+        }
+        
+        function saveFollowup() {
+            const date = document.getElementById('modal-followup-date').value;
+            const notes = document.getElementById('modal-followup-notes').value;
+            
+            if (!date) {
+                showToast('⚠️ Please select a date');
+                return;
+            }
+            
+            selectedCompanies[currentEditCompany].followupDate = date;
+            selectedCompanies[currentEditCompany].notes = notes;
+            saveSelectedCompanies();
+            closeFollowupModal();
+            displayMyCompanies();
+            showToast('✓ Follow-up scheduled!');
+        }
+        
         function removeCompany(index) {
-            if (confirm('Remove this company?')) {
-                selectedCompanies.splice(index, 1);
+            const company = selectedCompanies[index];
+            selectedCompanies.splice(index, 1);
+            saveSelectedCompanies();
+            displayMyCompanies();
+            searchCompanies();
+            showToast(`✓ ${company.name} removed`);
+        }
+        
+        function bulkRemove() {
+            const toRemove = selectedCompanies.filter(c => c.checked);
+            if (toRemove.length === 0) {
+                showToast('⚠️ Select companies first');
+                return;
+            }
+            
+            if (confirm(`Remove ${toRemove.length} companies?`)) {
+                selectedCompanies = selectedCompanies.filter(c => !c.checked);
                 saveSelectedCompanies();
                 displayMyCompanies();
+                searchCompanies();
+                showToast(`✓ ${toRemove.length} companies removed`);
             }
+        }
+        
+        function bulkReschedule() {
+            const toReschedule = selectedCompanies.filter(c => c.checked);
+            if (toReschedule.length === 0) {
+                showToast('⚠️ Select companies first');
+                return;
+            }
+            
+            const days = prompt('Reschedule to how many days from today?', '7');
+            if (days) {
+                const date = new Date();
+                date.setDate(date.getDate() + parseInt(days));
+                const dateStr = date.toISOString().split('T')[0];
+                
+                toReschedule.forEach(c => c.followupDate = dateStr);
+                saveSelectedCompanies();
+                displayMyCompanies();
+                showToast(`✓ ${toReschedule.length} companies rescheduled`);
+            }
+        }
+        
+        function displayCalendar() {
+            const container = document.getElementById('calendar-container');
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = today.getMonth();
+            
+            // Get first day of month and number of days
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            let html = `<h3>${today.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</h3><div class="calendar-view">`;
+            
+            // Day headers
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            days.forEach(day => {
+                html += `<div style="text-align: center; font-weight: 600; padding: 10px; color: #667eea;">${day}</div>`;
+            });
+            
+            // Empty cells
+            for (let i = 0; i < firstDay; i++) {
+                html += `<div class="calendar-day"></div>`;
+            }
+            
+            // Days
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const followups = selectedCompanies.filter(c => c.followupDate === dateStr);
+                
+                html += `<div class="calendar-day ${followups.length > 0 ? 'has-followup' : ''}">
+                    <div class="calendar-day-number">${day}</div>
+                    <div class="calendar-items">
+                        ${followups.map(c => `<div>📌 ${c.name.substring(0, 15)}</div>`).join('')}
+                    </div>
+                </div>`;
+            }
+            
+            html += '</div>';
+            
+            // Future months
+            for (let month = 1; month <= 2; month++) {
+                const nextMonth = new Date(year, today.getMonth() + month, 1);
+                const nextMonthStr = nextMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+                const nextFirstDay = nextMonth.getDay();
+                const nextDaysInMonth = new Date(nextMonth.getFullYear(), nextMonth.getMonth() + 1, 0).getDate();
+                
+                html += `<h3 style="margin-top: 30px;">${nextMonthStr}</h3><div class="calendar-view">`;
+                
+                days.forEach(day => {
+                    html += `<div style="text-align: center; font-weight: 600; padding: 10px; color: #667eea;">${day}</div>`;
+                });
+                
+                for (let i = 0; i < nextFirstDay; i++) {
+                    html += `<div class="calendar-day"></div>`;
+                }
+                
+                for (let day = 1; day <= nextDaysInMonth; day++) {
+                    const dateStr = `${nextMonth.getFullYear()}-${String(nextMonth.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    const followups = selectedCompanies.filter(c => c.followupDate === dateStr);
+                    
+                    html += `<div class="calendar-day ${followups.length > 0 ? 'has-followup' : ''}">
+                        <div class="calendar-day-number">${day}</div>
+                        <div class="calendar-items">
+                            ${followups.map(c => `<div>📌 ${c.name.substring(0, 15)}</div>`).join('')}
+                        </div>
+                    </div>`;
+                }
+                
+                html += '</div>';
+            }
+            
+            container.innerHTML = html;
+        }
+        
+        function displayOverdue() {
+            const container = document.getElementById('overdue-container');
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            const overdue = selectedCompanies.filter(c => {
+                if (!c.followupDate) return false;
+                const fdate = new Date(c.followupDate);
+                fdate.setHours(0, 0, 0, 0);
+                return fdate < today;
+            });
+            
+            const dueToday = selectedCompanies.filter(c => {
+                if (!c.followupDate) return false;
+                return c.followupDate === today.toISOString().split('T')[0];
+            });
+            
+            const dueSoon = selectedCompanies.filter(c => {
+                if (!c.followupDate) return false;
+                const fdate = new Date(c.followupDate);
+                fdate.setHours(0, 0, 0, 0);
+                const diff = Math.floor((fdate - today) / (1000 * 60 * 60 * 24));
+                return diff > 0 && diff <= 7;
+            });
+            
+            let html = '';
+            
+            if (overdue.length > 0) {
+                html += `<h3 style="color: #c62828; margin-bottom: 15px;">🔴 OVERDUE (${overdue.length})</h3>`;
+                overdue.forEach(c => {
+                    html += createCompanyCompactCard(c, 'overdue');
+                });
+            }
+            
+            if (dueToday.length > 0) {
+                html += `<h3 style="color: #e65100; margin: 30px 0 15px;">🟡 DUE TODAY (${dueToday.length})</h3>`;
+                dueToday.forEach(c => {
+                    html += createCompanyCompactCard(c, 'due-soon');
+                });
+            }
+            
+            if (dueSoon.length > 0) {
+                html += `<h3 style="color: #1565c0; margin: 30px 0 15px;">🔵 DUE THIS WEEK (${dueSoon.length})</h3>`;
+                dueSoon.forEach(c => {
+                    html += createCompanyCompactCard(c, 'due-soon');
+                });
+            }
+            
+            if (html === '') {
+                html = '<div class="results-info" style="background: #e8f5e9;">No overdue or due follow-ups! 🎉</div>';
+            }
+            
+            container.innerHTML = html;
+        }
+        
+        function createCompanyCompactCard(company, urgency) {
+            return `
+                <div class="company-card" style="margin-bottom: 10px;">
+                    <div style="flex: 1;">
+                        <h3 style="color: #667eea; margin-bottom: 5px;">${company.name}</h3>
+                        <p style="margin: 3px 0; font-size: 0.9em;"><strong>${company.emirate}</strong> • ${company.type}</p>
+                        ${company.followupDate ? `<p style="margin: 3px 0; font-size: 0.9em;">📅 ${formatDate(company.followupDate)}</p>` : ''}
+                        ${company.notes ? `<p style="margin: 3px 0; font-size: 0.9em;">📝 ${company.notes}</p>` : ''}
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-success" onclick="updateStatus(${selectedCompanies.indexOf(company)}, 'Contacted')" style="font-size: 0.85em;">✓ Done</button>
+                    </div>
+                </div>
+            `;
         }
         
         function exportCompanies() {
             if (selectedCompanies.length === 0) {
-                showToast('⚠ Add companies first!');
+                showToast('⚠️ Add companies first!');
                 return;
             }
             
-            const dataStr = JSON.stringify(selectedCompanies, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const exportData = selectedCompanies.map(c => ({
+                name: c.name,
+                emirate: c.emirate,
+                type: c.type,
+                status: c.status,
+                website: c.website,
+                email: c.email,
+                phone: c.phone,
+                followupDate: c.followupDate,
+                notes: c.notes
+            }));
+            
+            const dataStr = JSON.stringify(exportData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
             const url = URL.createObjectURL(dataBlob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = `b2b-companies-${new Date().toISOString().split('T')[0]}.json`;
+            link.download = `b2b-tracker-${new Date().toISOString().split('T')[0]}.json`;
             link.click();
+            
+            showToast('✓ Exported successfully!');
         }
-        
-        // Initialize
-        loadDatabase();
-        loadSelectedCompanies();
     </script>
 </body>
 </html>
