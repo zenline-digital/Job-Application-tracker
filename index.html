@@ -332,15 +332,23 @@
         function displayResults(results) {
             const container = document.getElementById('results-container');
             
-            if (results.length === 0) {
-                container.innerHTML = '<div class="results-info" style="background: #ffebee; color: #c62828;">No companies found</div>';
+            // Filter out already selected companies
+            const availableCompanies = results.filter(company => 
+                !selectedCompanies.some(c => c.name === company.name && c.emirate === company.emirate)
+            );
+            
+            if (availableCompanies.length === 0) {
+                if (results.length > 0) {
+                    container.innerHTML = '<div class="results-info" style="background: #e8f5e9;">All companies in this filter have been added! 🎉</div>';
+                } else {
+                    container.innerHTML = '<div class="results-info" style="background: #ffebee; color: #c62828;">No companies found</div>';
+                }
                 return;
             }
             
-            let html = `<div class="results-info">Found ${results.length} companies</div>`;
+            let html = `<div class="results-info">Found ${availableCompanies.length} companies</div>`;
             
-            results.forEach(company => {
-                const isSelected = selectedCompanies.some(c => c.name === company.name && c.emirate === company.emirate);
+            availableCompanies.forEach(company => {
                 html += `
                     <div class="company-card">
                         <div class="company-info">
@@ -353,8 +361,8 @@
                             <p><strong>Phone:</strong> ${company.phone}</p>
                         </div>
                         <div class="company-actions">
-                            <button onclick='addCompany(${JSON.stringify(company).replace(/'/g, "&apos;")})' ${isSelected ? 'disabled style="opacity:0.5"' : ''}>
-                                ${isSelected ? '✓ Added' : '+ Add'}
+                            <button onclick='addCompany(${JSON.stringify(company).replace(/'/g, "&apos;")})'>
+                                + Add
                             </button>
                         </div>
                     </div>
