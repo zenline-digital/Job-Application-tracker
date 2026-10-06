@@ -53,6 +53,7 @@
     .status-pending { background: #fed7aa; color: #92400e; }
     .status-interested { background: #dcfce7; color: #166534; }
     .empty-state { text-align: center; padding: 3rem 1rem; color: #999; background: white; border-radius: 8px; border: 1px dashed #ddd; }
+    .error-state { text-align: center; padding: 2rem 1rem; color: #dc2626; background: #fee2e2; border-radius: 8px; border: 1px solid #fca5a5; }
     .loading { text-align: center; padding: 2rem; color: #667eea; font-weight: 600; }
     .spinner { display: inline-block; width: 20px; height: 20px; border: 3px solid #f3f3f3; border-top: 3px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin-right: 8px; }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -74,7 +75,7 @@
     <div class="logo">📋</div>
     <div class="header-content">
       <h1>Job Search and Tracker</h1>
-      <p>Real-time company search across all UAE emirates</p>
+      <p>Real-time company search powered by Claude AI</p>
     </div>
   </div>
 
@@ -135,6 +136,7 @@
 <script>
 const DATA_KEY = 'b2b_outreach_selected';
 const REJECTED_KEY = 'b2b_outreach_rejected';
+const API_BASE = window.location.origin;
 
 function loadData() { return JSON.parse(localStorage.getItem(DATA_KEY) || '[]'); }
 function saveData(data) { localStorage.setItem(DATA_KEY, JSON.stringify(data)); }
@@ -150,41 +152,22 @@ async function searchCompanies() {
   const container = document.getElementById('searchResults');
   const btn = document.getElementById('searchBtn');
   
-  // Show loading
-  container.innerHTML = '<div class="loading"><div class="spinner"></div>Fetching real companies from Claude...</div>';
+  container.innerHTML = '<div class="loading"><div class="spinner"></div>Searching for real companies...</div>';
   btn.disabled = true;
   
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch(`${API_BASE}/api/search`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        messages: [{
-          role: 'user',
-          content: `Find me 20 REAL ${type} companies operating in ${emirate}, UAE. 
-          
-          Return ONLY JSON (no preamble) with this format:
-          {
-            "companies": [
-              {"name": "Company Name", "website": "website.ae", "employees": "150+", "notes": "Brief description"},
-              ...
-            ]
-          }`
-        }]
-      })
+      body: JSON.stringify({ emirate, type })
     });
     
-    if (!response.ok) throw new Error(`API error: ${response.status}`);
-    const data = await response.json();
-    const text = data.content[0].text;
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || `Error: ${response.status}`);
+    }
     
-    // Parse JSON response
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error('Invalid response format');
-    
-    const result = JSON.parse(jsonMatch[0]);
+    const result = await response.json();
     const selected = loadData().map(c => c.name.toLowerCase());
     const rejected = loadRejected();
     
@@ -195,7 +178,7 @@ async function searchCompanies() {
     
     displaySearchResults(companies, emirate, type);
   } catch (error) {
-    container.innerHTML = `<div class="empty-state">⚠️ Error: ${error.message}<br><br><small>Note: This app uses Claude API. If you're testing locally, you'll need an API key.</small></div>`;
+    container.innerHTML = `<div class="error-state"><strong>⚠️ Error:</strong> ${error.message}<br><br><small>Make sure the app is deployed on Vercel and has CLAUDE_API_KEY configured in environment variables.</small></div>`;
   } finally {
     btn.disabled = false;
   }
@@ -214,11 +197,16 @@ function displaySearchResults(companies, emirate, type) {
   companies.forEach((company, idx) => {
     const website = company.website ? `<a href="https://${company.website}" target="_blank">🌐 ${company.website}</a>` : '—';
     const statusId = 'status-' + idx;
+    const companyName = (company.name || '').replace(/'/g, "\\'");
+    const websiteEsc = (company.website || '').replace(/'/g, "\\'");
+    const employeesEsc = (company.employees || '').replace(/'/g, "\\'");
+    const notesEsc = (company.notes || '').replace(/'/g, "\\'");
+    
     html += `<div class="company-card">
       <div class="company-header">
-        <h3>${company.name}</h3>
+        <h3>${company.name || 'Unknown Company'}</h3>
         <div class="company-actions">
-          <button class="btn-close" onclick="rejectCompany('${company.name.replace(/'/g, "\\'")}'); searchCompanies();">×</button>
+          <button class="btn-close" onclick="rejectCompany('${companyName}'); searchCompanies();">×</button>
           <button class="btn success small" onclick="document.getElementById('${statusId}').classList.toggle('hidden');">Select</button>
         </div>
       </div>
@@ -228,10 +216,10 @@ function displaySearchResults(companies, emirate, type) {
       </div>
       <p style="font-size: 13px; color: #666; margin: 0.5rem 0 0 0;">${company.notes || '—'}</p>
       <div class="status-options hidden" id="${statusId}">
-        <button class="status-btn" onclick="addCompany('${company.name.replace(/'/g, "\\'")}', 'viewed', '${(company.website || '').replace(/'/g, "\\'")}', '${(company.employees || '').replace(/'/g, "\\'")}', '${(company.notes || '').replace(/'/g, "\\'")}')" >Viewed</button>
-        <button class="status-btn" onclick="addCompany('${company.name.replace(/'/g, "\\'")}', 'contacted', '${(company.website || '').replace(/'/g, "\\'")}', '${(company.employees || '').replace(/'/g, "\\'")}', '${(company.notes || '').replace(/'/g, "\\'")}')" >Contacted</button>
-        <button class="status-btn" onclick="addCompany('${company.name.replace(/'/g, "\\'")}', 'pending', '${(company.website || '').replace(/'/g, "\\'")}', '${(company.employees || '').replace(/'/g, "\\'")}', '${(company.notes || '').replace(/'/g, "\\'")}')" >Pending Response</button>
-        <button class="status-btn" onclick="addCompany('${company.name.replace(/'/g, "\\'")}', 'interested', '${(company.website || '').replace(/'/g, "\\'")}', '${(company.employees || '').replace(/'/g, "\\'")}', '${(company.notes || '').replace(/'/g, "\\'")}')" >Interested</button>
+        <button class="status-btn" onclick="addCompany('${companyName}', 'viewed', '${websiteEsc}', '${employeesEsc}', '${notesEsc}')">Viewed</button>
+        <button class="status-btn" onclick="addCompany('${companyName}', 'contacted', '${websiteEsc}', '${employeesEsc}', '${notesEsc}')">Contacted</button>
+        <button class="status-btn" onclick="addCompany('${companyName}', 'pending', '${websiteEsc}', '${employeesEsc}', '${notesEsc}')">Pending Response</button>
+        <button class="status-btn" onclick="addCompany('${companyName}', 'interested', '${websiteEsc}', '${employeesEsc}', '${notesEsc}')">Interested</button>
       </div>
     </div>`;
   });
