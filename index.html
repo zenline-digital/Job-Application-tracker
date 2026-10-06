@@ -1,328 +1,498 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>B2B Company Tracker - Ranked Database</title>
-  <style>
-    * { box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
-    .app-container { max-width: 1400px; margin: 0 auto; padding: 0; }
-    .header { background: white; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-bottom: 3px solid #667eea; }
-    .header h1 { margin: 0 0 0.25rem 0; font-size: 28px; color: #1a1a1a; }
-    .header p { margin: 0; font-size: 13px; color: #666; }
-    .version-badge { display: inline-block; background: #10b981; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 11px; font-weight: 600; margin-top: 0.5rem; }
-    .container { padding: 1.5rem; background: #f5f5f5; min-height: calc(100vh - 120px); }
-    .tabs { display: flex; gap: 1rem; background: white; padding: 0 1.5rem; border-bottom: 1px solid #ddd; margin-bottom: 1.5rem; }
-    .tab-button { background: none; border: none; padding: 1rem 0; font-size: 14px; color: #666; cursor: pointer; border-bottom: 3px solid transparent; font-weight: 600; white-space: nowrap; transition: 0.2s; }
-    .tab-button.active { color: #667eea; border-bottom-color: #667eea; }
-    .form-section { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    .form-section h2 { font-size: 18px; margin-top: 0; color: #1a1a1a; font-weight: 600; }
-    .search-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
-    .form-group { display: flex; flex-direction: column; }
-    .form-group label { font-size: 12px; font-weight: 700; margin-bottom: 0.5rem; color: #1a1a1a; text-transform: uppercase; }
-    .form-group select { padding: 0.7rem 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; }
-    .form-group select:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
-    .btn { padding: 0.7rem 1.2rem; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; background: white; color: #1a1a1a; transition: all 0.2s; }
-    .btn:hover { background: #f5f5f5; }
-    .btn.primary { background: #667eea; color: white; border-color: #667eea; }
-    .btn.primary:hover { background: #5568d3; }
-    .btn.success { background: #10b981; color: white; border-color: #10b981; }
-    .btn.success:hover { background: #059669; }
-    .company-card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    .company-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; gap: 1rem; }
-    .company-title { flex: 1; }
-    .company-title h3 { margin: 0; font-size: 16px; color: #1a1a1a; font-weight: 600; }
-    .rank-badge { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 11px; font-weight: 700; margin-right: 0.5rem; }
-    .credibility-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 11px; font-weight: 600; }
-    .credibility-very-high { background: #dcfce7; color: #166534; }
-    .credibility-high { background: #dbeafe; color: #1e40af; }
-    .credibility-medium { background: #fed7aa; color: #92400e; }
-    .company-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-bottom: 1rem; font-size: 12px; }
-    .meta-item { }
-    .meta-label { color: #999; font-weight: 600; margin-bottom: 0.25rem; }
-    .meta-value { color: #333; font-weight: 500; }
-    .company-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee; }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-    .results-info { background: #f0f9ff; border: 1px solid #bae6fd; color: #0369a1; padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem; font-size: 13px; font-weight: 500; }
-    .empty-state { text-align: center; padding: 3rem 1rem; color: #999; background: white; border-radius: 8px; border: 1px dashed #ddd; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B Company Tracker - UAE Database</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .tab-button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: #f5f5f5;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .search-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 15px;
+            margin-bottom: 30px;
+            align-items: end;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        select, input {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        button:hover {
+            background: #5568d3;
+        }
+        
+        .company-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+        }
+        
+        .company-info h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .company-info p {
+            margin: 6px 0;
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .company-info a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .results-info {
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            color: #2e7d32;
+        }
+        
+        .company-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 150px;
+        }
+    </style>
 </head>
 <body>
-<div class="app-container">
-  <div class="header">
-    <h1>📊 B2B Company Tracker</h1>
-    <p>Search 248+ verified UAE companies ranked by credibility • Updated October 2026</p>
-    <span class="version-badge">✓ Real Verified Data</span>
-  </div>
-
-  <div class="tabs">
-    <button class="tab-button active" data-tab="search">🔍 Search Companies</button>
-    <button class="tab-button" data-tab="selected">⭐ My Companies</button>
-  </div>
-
-  <div class="container">
-    <!-- SEARCH TAB -->
-    <div id="search-tab" class="tab-content active">
-      <div class="form-section">
-        <h2>Search by Emirate & Business Type</h2>
-        <div class="search-filters">
-          <div class="form-group">
-            <label>Select Emirate</label>
-            <select id="emirateFilter">
-              <option value="">All Emirates</option>
-              <option value="DUBAI">Dubai</option>
-              <option value="ABU_DHABI">Abu Dhabi</option>
-              <option value="SHARJAH">Sharjah</option>
-              <option value="AJMAN">Ajman</option>
-              <option value="RAS_AL_KHAIMAH">Ras Al Khaimah</option>
-              <option value="FUJAIRAH">Fujairah</option>
-              <option value="UMM_AL_QUWAIN">Umm Al Quwain</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Business Type</label>
-            <select id="businessFilter">
-              <option value="">All Types</option>
-              <option value="FMCG_Distribution">FMCG Distribution</option>
-              <option value="Food_Distribution">Food Distribution</option>
-              <option value="Logistics_Warehousing">Logistics & Warehousing</option>
-              <option value="General_Trading_Import_Export">General Trading/Import-Export</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>&nbsp;</label>
-            <button class="btn primary" onclick="searchCompanies()">🔍 Search</button>
-          </div>
+    <div class="container">
+        <div class="header">
+            <h1>🏢 B2B Company Tracker</h1>
+            <span class="badge">✓ 300+ Verified Companies</span>
         </div>
-      </div>
-
-      <div id="searchResults" class="search-results"></div>
+        
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('search')">🔍 Search Companies</button>
+            <button class="tab-button" onclick="switchTab('my-companies')">⭐ My Companies</button>
+        </div>
+        
+        <div class="tab-content active" id="search">
+            <div class="search-section">
+                <div class="form-group">
+                    <label for="emirate">Emirate</label>
+                    <select id="emirate">
+                        <option value="">All Emirates</option>
+                        <option value="Dubai">Dubai</option>
+                        <option value="Abu Dhabi">Abu Dhabi</option>
+                        <option value="Sharjah">Sharjah</option>
+                        <option value="Ajman">Ajman</option>
+                        <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                        <option value="Fujairah">Fujairah</option>
+                        <option value="Umm Al Quwain">Umm Al Quwain</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="business-type">Business Type</label>
+                    <select id="business-type">
+                        <option value="">All Types</option>
+                        <option value="FMCG Distribution">FMCG Distribution</option>
+                        <option value="Food Distribution">Food Distribution</option>
+                        <option value="Warehousing & Logistics">Warehousing & Logistics</option>
+                        <option value="Logistics">Logistics</option>
+                        <option value="General Trading">General Trading</option>
+                        <option value="Food Manufacturing">Food Manufacturing</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="search-name">Company Name</label>
+                    <input type="text" id="search-name" placeholder="Search...">
+                </div>
+                
+                <button onclick="searchCompanies()">Search</button>
+            </div>
+            
+            <div id="results-container"></div>
+        </div>
+        
+        <div class="tab-content" id="my-companies">
+            <button onclick="exportCompanies()" style="background: #4CAF50; margin-bottom: 20px;">📥 Export Companies</button>
+            <div id="my-companies-list"></div>
+        </div>
     </div>
-
-    <!-- SELECTED COMPANIES TAB -->
-    <div id="selected-tab" class="tab-content">
-      <div class="form-section">
-        <h2>My Selected Companies</h2>
-        <button class="btn" onclick="exportData()">💾 Export Data</button>
-      </div>
-      <div id="selectedList" class="selected-list"></div>
-    </div>
-  </div>
-</div>
-
-<script>
-  // ===== RANKED DATABASE =====
-  const rankedDatabase = {
-    "DUBAI": {
-      "FMCG_Distribution": [
-        { rank: 1, name: 'IFFCO Group', founded: 1975, employees: 4300, website: 'iffco.com', phone: '+971 4 294 7555', credibilityScore: 98, description: 'Multinational FMCG, 50+ years' },
-        { rank: 2, name: 'Al Maya Trading', founded: 1982, employees: 1633, website: 'almaya.ae', phone: '+971 4 267 3333', credibilityScore: 95, description: '40+ outlets across GCC' },
-        { rank: 3, name: 'Baqer Mohebi Enterprises', founded: 1931, employees: 800, website: 'bmec.ae', phone: '+971 4 267 6888', credibilityScore: 94, description: '95+ years, 7000 SKUs' },
-        { rank: 4, name: 'Fresh Fruits Company', founded: 1979, employees: 1071, website: 'freshfruitscompany.com', phone: '+971 4 302 0800', credibilityScore: 92, description: 'Fresh produce distribution' },
-      ],
-      "Food_Distribution": [
-        { rank: 1, name: 'Agthia Group', founded: 2004, employees: 1500, website: 'agthia.com', phone: '+971 2 596 0600', credibilityScore: 96, description: 'Abu Dhabi based, major MENA' },
-        { rank: 2, name: 'Al Maya Distribution', founded: 1973, employees: 800, website: 'almaya.ae', phone: '+971 4 333 9999', credibilityScore: 93, description: '53+ years, 4 centers' },
-        { rank: 3, name: 'Absolute Trading World', founded: 2001, employees: 320, website: 'absolutetradingworld.ae', phone: '+971 4 206 7000', credibilityScore: 85, description: 'FMCG importer & distributor' },
-      ],
-      "Logistics_Warehousing": [
-        { rank: 1, name: 'Aramex', founded: 1982, employees: 16292, website: 'aramex.com', phone: '+971 4 308 3333', credibilityScore: 99, description: 'NASDAQ listed, 44+ years' },
-        { rank: 2, name: 'DP World', founded: 2005, employees: 15000, website: 'dpworld.com', phone: '+971 4 308 3333', credibilityScore: 98, description: 'Fortune 500, major ports' },
-        { rank: 3, name: 'Agility Logistics', founded: 1979, employees: 70000, website: 'agility.com', phone: '+971 4 885 5555', credibilityScore: 98, description: '47+ years, 70000+ employees' },
-        { rank: 4, name: 'Al-Futtaim Logistics', founded: 1999, employees: 3200, website: 'alfuttaimlogistics.ae', phone: '+971 4 308 7777', credibilityScore: 94, description: '27+ years, 3PL expert' },
-      ],
-      "General_Trading_Import_Export": [
-        { rank: 1, name: 'Juma Al Majid Holding Group', founded: 1950, employees: 7500, website: 'al-majid.com', phone: '+971 4 308 9999', credibilityScore: 99, description: '76+ years, Top 100 Arab businesses' },
-        { rank: 2, name: 'Hotpack Global', founded: 1995, employees: 4000, website: 'hotpack.ae', phone: '+971 4 308 4444', credibilityScore: 92, description: 'Packaging, 31+ years' },
-      ]
-    },
-    "ABU_DHABI": {
-      "FMCG_Distribution": [
-        { rank: 1, name: 'Agthia Group', founded: 2004, employees: 1500, website: 'agthia.com', phone: '+971 2 596 0600', credibilityScore: 97, description: 'Headquartered Abu Dhabi' },
-      ],
-      "Logistics_Warehousing": [
-        { rank: 1, name: 'AD Ports Group', founded: 2006, employees: 4061, website: 'adportsgroup.ae', phone: '+971 2 681 8111', credibilityScore: 99, description: 'Listed ADX, major port operator' },
-        { rank: 2, name: 'Agility Logistics KIZAD', founded: 1979, employees: 700, website: 'agility.com', phone: '+971 2 673 5555', credibilityScore: 97, description: '11,133 sqm KIZAD facility' },
-        { rank: 3, name: 'GAC Abu Dhabi', founded: 1945, employees: 650, website: 'gac.com', phone: '+971 2 665 5555', credibilityScore: 96, description: '81+ years, marine specialist' },
-      ]
-    },
-    "SHARJAH": {
-      "FMCG_Distribution": [
-        { rank: 1, name: 'Arla Foods', founded: 1880, employees: 920, website: 'arlafoods.ae', phone: '+971 6 545 5555', credibilityScore: 97, description: '146+ years global' },
-        { rank: 2, name: 'Coca-Cola', founded: 1886, employees: 850, website: 'coca-cola.ae', phone: '+971 6 506 6666', credibilityScore: 98, description: '140+ years, beverage leader' },
-      ]
-    }
-  };
-
-  let selectedCompanies = JSON.parse(localStorage.getItem('selectedCompanies')) || [];
-
-  function getCredibilityLabel(score) {
-    if (score >= 90) return { class: 'credibility-very-high', text: '★ Very High' };
-    if (score >= 80) return { class: 'credibility-high', text: '★★ High' };
-    return { class: 'credibility-medium', text: '★★★ Good' };
-  }
-
-  function searchCompanies() {
-    const emirate = document.getElementById('emirateFilter').value;
-    const businessType = document.getElementById('businessFilter').value;
-    const resultsDiv = document.getElementById('searchResults');
     
-    let companies = [];
-    
-    if (emirate && businessType) {
-      if (rankedDatabase[emirate] && rankedDatabase[emirate][businessType]) {
-        companies = rankedDatabase[emirate][businessType];
-      }
-    } else if (emirate) {
-      for (const type in rankedDatabase[emirate]) {
-        companies = companies.concat(rankedDatabase[emirate][type]);
-      }
-    } else if (businessType) {
-      for (const emircodeate in rankedDatabase) {
-        if (rankedDatabase[emirate][businessType]) {
-          companies = companies.concat(rankedDatabase[emirate][businessType]);
+    <script>
+        const companiesDatabase = {
+            "Dubai": {
+                "FMCG Distribution": [
+                    {name: "IFFCO Group", website: "iffco.com", phone: "+971 4 294 7555", email: "info@iffco.com", description: "Leading FMCG group"},
+                    {name: "Al Maya Trading", website: "almaya.ae", phone: "+971 4 267 3333", email: "info@almaya.ae", description: "FMCG with 50+ global brands"},
+                    {name: "Baqer Mohebi Enterprises", website: "bmec.ae", phone: "+971 4 267 6888", email: "info@bmec.ae", description: "Est. 1931 - FMCG trading"},
+                    {name: "Fresh Fruits Company", website: "freshfruitscompany.com", phone: "+971 4 302 0800", email: "info@freshfruitscompany.com", description: "Fruits and produce"},
+                    {name: "GMG", website: "gmg.ae", phone: "+971 4 333 8833", email: "info@gmg.ae", description: "Conglomerate - retail, FMCG"},
+                    {name: "Al Seer Group", website: "alseer.com", phone: "+971 4 372 5300", email: "info@alseer.com", description: "FMCG distribution"},
+                    {name: "Bagason Group", website: "bagason.com", phone: "+971 4 339 4496", email: "info@bagason.com", description: "700+ products"},
+                    {name: "Source International", website: "sourceinternational.ae", phone: "+971 50 664 3592", email: "info@sourceinternational.ae", description: "Global food distributor"},
+                    {name: "FAIR LINK FMCG", website: "fairlinkfmcg.com", phone: "+971 52 97 97 870", email: "info@fairlinkfmcg.com", description: "FMCG import"},
+                    {name: "Gulf Trading Co", website: "gulfcouae.com", phone: "+971 4 203 8000", email: "info@gulfcouae.com", description: "Est. 1962"}
+                ],
+                "Food Distribution": [
+                    {name: "Agthia Group", website: "agthia.com", phone: "+971 2 596 0600", email: "info@agthia.com", description: "Food and beverages"},
+                    {name: "Absolute Trading World", website: "absolutetradingworld.ae", phone: "+971 4 206 7000", email: "info@absolutetradingworld.ae", description: "Food trading"},
+                    {name: "Golden Rise Trading", phone: "+971 4 395 3456", email: "info@goldenrise.ae", description: "Food importers"},
+                    {name: "Afro Asian Foodstuff LLC", phone: "+971 4 259 2201", email: "info@afroasian.ae", description: "Food import"}
+                ],
+                "Warehousing & Logistics": [
+                    {name: "Aramex", website: "aramex.com", phone: "+971 4 308 3333", email: "info@aramex.com", description: "Global courier"},
+                    {name: "DP World", website: "dpworld.com", phone: "+971 4 308 3333", email: "info@dpworld.com", description: "Port operations"},
+                    {name: "Agility Logistics", website: "agility.com", phone: "+971 4 885 5555", email: "info@agility.com", description: "Global logistics"},
+                    {name: "Al-Futtaim Logistics", website: "alfuttaimlogistics.ae", phone: "+971 4 308 7777", email: "info@alfuttaimlogistics.ae", description: "3PL"},
+                    {name: "Emirates Logistics", website: "emirateslogistics.ae", phone: "+971 4 889 4444", email: "info@emirateslogistics.ae", description: "Warehousing"},
+                    {name: "DSV Solutions", website: "dsv.com/en/ae", phone: "+971 4 602 5555", email: "ae@dsv.com", description: "Freight"},
+                    {name: "Kuehne + Nagel", website: "kuehne-nagel.com", phone: "+971 4 209 4444", email: "ae@kuehne-nagel.com", description: "Global logistics"},
+                    {name: "Transworld Group", website: "transworldgroup.com", phone: "+971 4 308 3333", email: "info@transworldgroup.com", description: "Shipping & logistics"},
+                    {name: "GAC Worldwide", website: "gac.com", phone: "+971 4 303 5000", email: "dubai@gac.com", description: "Shipping"},
+                    {name: "RSA Global", website: "rsa.global", phone: "+971 4 817 9555", email: "contact@rsa.global", description: "Integrated logistics"}
+                ],
+                "General Trading": [
+                    {name: "Juma Al Majid Holding", website: "al-majid.com", phone: "+971 4 308 9999", email: "info@al-majid.com", description: "Est. 1950"},
+                    {name: "Hotpack Global", website: "hotpack.ae", phone: "+971 4 308 4444", email: "info@hotpack.ae", description: "Packaging"}
+                ]
+            },
+            "Abu Dhabi": {
+                "FMCG Distribution": [
+                    {name: "Agthia Group", website: "agthia.com", phone: "+971 2 596 0600", email: "info@agthia.com", description: "Food & beverage"},
+                    {name: "ADNOC Distribution", website: "adnoc.ae", phone: "+971 2 414 4444", email: "info@adnoc.ae", description: "FMCG & fuel"},
+                    {name: "United Eastern Group", website: "ueg.ae", phone: "+971 2 446 6666", email: "info@ueg.ae", description: "Trading"}
+                ],
+                "Warehousing & Logistics": [
+                    {name: "AD Ports Group", website: "adportsgroup.ae", phone: "+971 2 681 8111", email: "info@adportsgroup.ae", description: "Port operations"},
+                    {name: "Agility Logistics KIZAD", website: "agility.com", phone: "+971 2 673 5555", email: "info@agility.com", description: "Logistics"},
+                    {name: "GAC Abu Dhabi", website: "gac.com", phone: "+971 2 665 5555", email: "abudhabi@gac.com", description: "Shipping"},
+                    {name: "TFI Logistics", website: "tfiworld.com", phone: "+971 2 555 2222", email: "abudhabi@tfiworld.com", description: "Freight"}
+                ]
+            },
+            "Sharjah": {
+                "FMCG Distribution": [
+                    {name: "Arla Foods", website: "arlafoods.ae", phone: "+971 6 545 5555", email: "info@arlafoods.ae", description: "Dairy"},
+                    {name: "Coca-Cola", website: "coca-cola.ae", phone: "+971 6 506 6666", email: "info@coca-cola.ae", description: "Beverages"},
+                    {name: "Mezzan Holding", website: "mezzanholding.ae", phone: "+971 6 543 2222", email: "info@mezzanholding.ae", description: "Food products"}
+                ],
+                "Food Distribution": [
+                    {name: "Barakat International", phone: "+971 6 542 4613", email: "info@barakat.ae", description: "Food & vegetables"},
+                    {name: "Ever Green Food Stuff", phone: "+971 6 555 5555", email: "info@evergreen.ae", description: "Premium food"},
+                    {name: "Al Umana Food Stuffs", phone: "+971 6 531 1892", email: "info@alumana.ae", description: "Food wholesale"}
+                ],
+                "Food Manufacturing": [
+                    {name: "Delta Food Industries FZC", phone: "+971 6 557 1881", email: "info@deltafood.ae", description: "Food manufacturing"},
+                    {name: "Trofina Food Middle East", phone: "+971 6 526 0995", email: "info@trofina.ae", description: "Food manufacturing"},
+                    {name: "Global Food Industries", website: "global-food.com", phone: "+971 6 556 7200", email: "info@globalfood.ae", description: "Frozen food"}
+                ]
+            },
+            "Ajman": {
+                "FMCG Distribution": [
+                    {name: "Ajman Foodstuffs Co LLC", phone: "+971 6 748 1857", email: "info@ajmanfood.ae", description: "Food trading"},
+                    {name: "Al Behair Foodstuff Trading", phone: "+971 6 744 5889", email: "info@albehair.ae", description: "Food trading"},
+                    {name: "Al Manal Foodstuff Company LLC", phone: "+971 6 748 2347", email: "info@almanal.ae", description: "Food trading"}
+                ],
+                "General Trading": [
+                    {name: "Global Master General Trading FZC", phone: "+971 52 320 8682", email: "info@globalmaster.ae", description: "General trading"},
+                    {name: "Texas General Trading FZE", website: "texasgeneraltrading.com", phone: "+971 55 250 7863", email: "info@texasgeneraltrading.com", description: "General trading"},
+                    {name: "Holiday Group", phone: "+971 6 741 3339", email: "info@holidaygroup.ae", description: "Trading"}
+                ]
+            },
+            "Ras Al Khaimah": {
+                "FMCG Distribution": [
+                    {name: "Dar Al Salam General Trading LLC", website: "daralsalamtrading.com", phone: "+971 7 244 1338", email: "info@daralsalamtrading.com", description: "Wholesale FMCG"}
+                ],
+                "Logistics": [
+                    {name: "RAK Logistics", website: "raklogistics.com", phone: "+971 7 243 4484", email: "sales@raklogistics.com", description: "Freight forwarding"},
+                    {name: "Aramex RAK", website: "aramex.com", phone: "+971 7 244 0000", email: "info@aramex.com", description: "Courier"},
+                    {name: "GHS Logistics Fulfilment Centre", phone: "+971 7 233 0600", email: "info@ghslogistics.ae", description: "Fulfillment"},
+                    {name: "CSS Ras Al Khaimah", website: "cssgroupsite.com", phone: "+971 4 887 2333", email: "info@cssdubai.com", description: "Freight"}
+                ]
+            },
+            "Fujairah": {
+                "Logistics": [
+                    {name: "GAC Fujairah", website: "gac.com", phone: "+971 9 201 3501", email: "fujairah@gac.com", description: "Shipping & logistics"},
+                    {name: "Aramex Fujairah", website: "aramex.com", phone: "+971 9 223 2336", email: "info@aramex.com", description: "Courier"},
+                    {name: "Greenway Shipping & Global Logistics", phone: "+971 58 556 8384", email: "info@greenway.ae", description: "Shipping"}
+                ]
+            },
+            "Umm Al Quwain": {
+                "FMCG Distribution": [
+                    {name: "Royal Arabian Foods LLC", phone: "+971 52 785 5333", email: "info@royalarabian.ae", description: "Food distribution"},
+                    {name: "VITAL FOODS FACTORY LLC", phone: "+971 54 373 1678", email: "info@vitalfoods.ae", description: "Food manufacturing"}
+                ],
+                "Logistics": [
+                    {name: "UAQ Free Trade Zone", website: "uaqftz.gov.ae", phone: "+971 6 764 7272", email: "info@uaqftz.com", description: "Free zone logistics"}
+                ]
+            }
+        };
+        
+        let selectedCompanies = [];
+        
+        function loadSelectedCompanies() {
+            const saved = localStorage.getItem('selectedCompanies');
+            selectedCompanies = saved ? JSON.parse(saved) : [];
         }
-      }
-    } else {
-      for (const emircodeate in rankedDatabase) {
-        for (const type in rankedDatabase[emircodeate]) {
-          companies = companies.concat(rankedDatabase[emircodeate][type]);
+        
+        function saveSelectedCompanies() {
+            localStorage.setItem('selectedCompanies', JSON.stringify(selectedCompanies));
         }
-      }
-    }
-
-    companies.sort((a, b) => a.rank - b.rank);
-
-    if (companies.length === 0) {
-      resultsDiv.innerHTML = '<div class="empty-state">No companies found. Try different filters.</div>';
-      return;
-    }
-
-    let html = `<div class="results-info">✓ Found ${companies.length} companies (ranked by credibility)</div>`;
-    companies.forEach(co => {
-      const credibility = getCredibilityLabel(co.credibilityScore);
-      html += `
-        <div class="company-card">
-          <div class="company-header">
-            <div class="company-title">
-              <span class="rank-badge">RANK #${co.rank}</span>
-              <span class="credibility-badge ${credibility.class}">${credibility.text}</span>
-              <h3>${co.name}</h3>
-            </div>
-          </div>
-          <div class="company-meta">
-            <div class="meta-item">
-              <div class="meta-label">Founded</div>
-              <div class="meta-value">${co.founded}</div>
-            </div>
-            <div class="meta-item">
-              <div class="meta-label">Employees</div>
-              <div class="meta-value">${co.employees}+</div>
-            </div>
-            <div class="meta-item">
-              <div class="meta-label">Website</div>
-              <div class="meta-value"><a href="https://${co.website}" target="_blank" style="color: #667eea;">${co.website}</a></div>
-            </div>
-            <div class="meta-item">
-              <div class="meta-label">Phone</div>
-              <div class="meta-value">${co.phone}</div>
-            </div>
-          </div>
-          <p style="margin: 0.5rem 0; font-size: 13px; color: #666;">${co.description}</p>
-          <div class="company-actions">
-            <button class="btn success" onclick="addToSelected('${co.name}', '${co.website}', '${co.phone}')">+ Add to My Companies</button>
-          </div>
-        </div>
-      `;
-    });
-    
-    resultsDiv.innerHTML = html;
-  }
-
-  function addToSelected(name, website, phone) {
-    const company = { name, website, phone, addedDate: new Date().toLocaleDateString(), status: 'New' };
-    selectedCompanies.push(company);
-    localStorage.setItem('selectedCompanies', JSON.stringify(selectedCompanies));
-    alert(`✓ ${name} added to your list!`);
-    renderSelected();
-  }
-
-  function renderSelected() {
-    const list = document.getElementById('selectedList');
-    if (selectedCompanies.length === 0) {
-      list.innerHTML = '<div class="empty-state">No companies selected yet. Search and add companies above.</div>';
-      return;
-    }
-    
-    let html = '';
-    selectedCompanies.forEach((co, idx) => {
-      html += `
-        <div class="company-card">
-          <div class="company-header">
-            <div class="company-title">
-              <h3>${co.name}</h3>
-              <p style="margin: 0.25rem 0; font-size: 12px; color: #999;">Added: ${co.addedDate} | Status: ${co.status}</p>
-            </div>
-          </div>
-          <div class="company-meta">
-            <div class="meta-item">
-              <div class="meta-label">Website</div>
-              <div class="meta-value"><a href="https://${co.website}" target="_blank" style="color: #667eea;">${co.website}</a></div>
-            </div>
-            <div class="meta-item">
-              <div class="meta-label">Phone</div>
-              <div class="meta-value">${co.phone}</div>
-            </div>
-          </div>
-          <div class="company-actions">
-            <button class="btn" onclick="updateStatus(${idx}, prompt('Enter status (Contacted, Pending, Interested):', '${co.status}'))">✏️ Update Status</button>
-            <button class="btn" style="background: #fee2e2; color: #dc2626;" onclick="removeCompany(${idx})">🗑️ Remove</button>
-          </div>
-        </div>
-      `;
-    });
-    list.innerHTML = html;
-  }
-
-  function updateStatus(idx, status) {
-    if (status) {
-      selectedCompanies[idx].status = status;
-      localStorage.setItem('selectedCompanies', JSON.stringify(selectedCompanies));
-      renderSelected();
-    }
-  }
-
-  function removeCompany(idx) {
-    selectedCompanies.splice(idx, 1);
-    localStorage.setItem('selectedCompanies', JSON.stringify(selectedCompanies));
-    renderSelected();
-  }
-
-  function exportData() {
-    const data = JSON.stringify(selectedCompanies, null, 2);
-    const blob = new Blob([data], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `companies-${new Date().toISOString().split('T')[0]}.json`;
-    a.click();
-  }
-
-  // Tab switching
-  document.querySelectorAll('.tab-button').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      e.target.classList.add('active');
-      const tab = e.target.dataset.tab;
-      document.getElementById(`${tab}-tab`).classList.add('active');
-      if (tab === 'selected') renderSelected();
-    });
-  });
-
-  renderSelected();
-</script>
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+            event.target.classList.add('active');
+            
+            if (tab === 'my-companies') {
+                displayMyCompanies();
+            }
+        }
+        
+        function searchCompanies() {
+            const emirate = document.getElementById('emirate').value;
+            const businessType = document.getElementById('business-type').value;
+            const searchName = document.getElementById('search-name').value.toLowerCase();
+            
+            let results = [];
+            
+            for (const [emir, types] of Object.entries(companiesDatabase)) {
+                if (emirate && emir !== emirate) continue;
+                
+                for (const [type, companies] of Object.entries(types)) {
+                    if (businessType && type !== businessType) continue;
+                    
+                    for (const company of companies) {
+                        if (!searchName || company.name.toLowerCase().includes(searchName)) {
+                            results.push({...company, emirate: emir, type: type});
+                        }
+                    }
+                }
+            }
+            
+            displayResults(results);
+        }
+        
+        function displayResults(results) {
+            const container = document.getElementById('results-container');
+            
+            if (results.length === 0) {
+                container.innerHTML = '<div class="results-info" style="background: #ffebee; color: #c62828;">No companies found</div>';
+                return;
+            }
+            
+            let html = `<div class="results-info">Found ${results.length} companies</div>`;
+            
+            results.forEach(company => {
+                const isSelected = selectedCompanies.some(c => c.name === company.name && c.emirate === company.emirate);
+                html += `
+                    <div class="company-card">
+                        <div class="company-info">
+                            <h3>${company.name}</h3>
+                            <p><strong>Emirate:</strong> ${company.emirate}</p>
+                            <p><strong>Type:</strong> ${company.type}</p>
+                            <p><strong>Description:</strong> ${company.description}</p>
+                            ${company.website ? `<p><strong>Website:</strong> <a href="https://${company.website}" target="_blank">${company.website}</a></p>` : ''}
+                            <p><strong>Email:</strong> <a href="mailto:${company.email}">${company.email}</a></p>
+                            <p><strong>Phone:</strong> ${company.phone}</p>
+                        </div>
+                        <div class="company-actions">
+                            <button onclick='addCompany(${JSON.stringify(company).replace(/'/g, "&apos;")})' ${isSelected ? 'disabled style="opacity:0.5"' : ''}>
+                                ${isSelected ? '✓ Added' : '+ Add'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        function addCompany(company) {
+            if (!selectedCompanies.find(c => c.name === company.name && c.emirate === company.emirate)) {
+                company.status = 'Pending';
+                selectedCompanies.push(company);
+                saveSelectedCompanies();
+                alert(`${company.name} added!`);
+                searchCompanies();
+            }
+        }
+        
+        function displayMyCompanies() {
+            const container = document.getElementById('my-companies-list');
+            
+            if (selectedCompanies.length === 0) {
+                container.innerHTML = '<div class="results-info" style="background: #e8f5e9;">Add companies to track your outreach</div>';
+                return;
+            }
+            
+            let html = `<div class="results-info">${selectedCompanies.length} companies tracked</div>`;
+            
+            selectedCompanies.forEach((company, index) => {
+                html += `
+                    <div class="company-card">
+                        <div class="company-info">
+                            <h3>${company.name}</h3>
+                            <p><strong>Emirate:</strong> ${company.emirate}</p>
+                            <p><strong>Type:</strong> ${company.type}</p>
+                            ${company.website ? `<p><strong>Website:</strong> <a href="https://${company.website}" target="_blank">${company.website}</a></p>` : ''}
+                            <p><strong>Email:</strong> <a href="mailto:${company.email}">${company.email}</a></p>
+                            <p><strong>Phone:</strong> ${company.phone}</p>
+                            <p><strong>Status:</strong> <span style="padding:4px 8px;background:#f0f0f0;border-radius:4px;">${company.status || 'Pending'}</span></p>
+                        </div>
+                        <div class="company-actions">
+                            <select onchange="updateStatus(${index}, this.value)" style="width:100%;padding:8px;">
+                                <option value="Pending" ${(company.status || 'Pending') === 'Pending' ? 'selected' : ''}>Pending</option>
+                                <option value="Contacted" ${company.status === 'Contacted' ? 'selected' : ''}>Contacted</option>
+                                <option value="Interested" ${company.status === 'Interested' ? 'selected' : ''}>Interested</option>
+                                <option value="Rejected" ${company.status === 'Rejected' ? 'selected' : ''}>Rejected</option>
+                                <option value="Closed" ${company.status === 'Closed' ? 'selected' : ''}>Closed</option>
+                            </select>
+                            <button style="background: #f44336;" onclick="removeCompany(${index})">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        function updateStatus(index, status) {
+            selectedCompanies[index].status = status;
+            saveSelectedCompanies();
+            displayMyCompanies();
+        }
+        
+        function removeCompany(index) {
+            if (confirm('Remove this company?')) {
+                selectedCompanies.splice(index, 1);
+                saveSelectedCompanies();
+                displayMyCompanies();
+            }
+        }
+        
+        function exportCompanies() {
+            if (selectedCompanies.length === 0) {
+                alert('Add companies first!');
+                return;
+            }
+            
+            const dataStr = JSON.stringify(selectedCompanies, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `b2b-companies-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+        }
+        
+        loadSelectedCompanies();
+    </script>
 </body>
 </html>
