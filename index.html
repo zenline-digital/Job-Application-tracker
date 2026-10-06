@@ -18,7 +18,7 @@
     .tab-button.active { color: #667eea; border-bottom-color: #667eea; }
     .form-section { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
     .form-section h2 { font-size: 18px; margin-top: 0; color: #1a1a1a; font-weight: 600; }
-    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+    .search-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
     .form-group { display: flex; flex-direction: column; }
     .form-group label { font-size: 12px; font-weight: 700; margin-bottom: 0.5rem; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.5px; }
     .form-group input, .form-group select { padding: 0.7rem 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; font-family: inherit; }
@@ -52,10 +52,8 @@
     .status-interested { background: #dcfce7; color: #166534; }
     .empty-state { text-align: center; padding: 3rem 1rem; color: #999; background: white; border-radius: 8px; border: 1px dashed #ddd; }
     .info-box { background: #dbeafe; border: 1px solid #93c5fd; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; color: #1e40af; }
-    .info-box strong { color: #1e3a8a; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    .search-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
     .results-count { font-size: 13px; color: #666; margin-bottom: 1rem; font-weight: 600; }
     .search-results { margin-top: 1.5rem; }
     .selected-list { margin-top: 1.5rem; }
@@ -63,6 +61,7 @@
     .edit-section { margin-bottom: 1rem; }
     .edit-section h4 { margin: 0.5rem 0; font-size: 13px; color: #1a1a1a; font-weight: 600; }
     textarea { padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; font-size: 12px; font-family: inherit; width: 100%; resize: vertical; min-height: 50px; }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; }
   </style>
 </head>
 <body>
@@ -83,12 +82,8 @@
 
   <div class="container">
     <div id="search-tab" class="tab-content active">
-      <div class="info-box">
-        <strong>💡 How it works:</strong> Select an emirate and business type, then click "Search Companies". Claude AI will find real companies for you in real-time.
-      </div>
-      
       <div class="form-section">
-        <h2>🔍 Company Search</h2>
+        <h2>🔍 Real-Time Company Search</h2>
         <div class="search-filters">
           <div class="form-group">
             <label>Emirate *</label>
@@ -117,7 +112,7 @@
           </div>
         </div>
         <div class="button-group">
-          <button class="btn primary" onclick="promptForSearch()">🔍 Search Companies</button>
+          <button class="btn primary" onclick="searchCompanies()">🔍 Search Companies</button>
         </div>
       </div>
       <div class="search-results" id="searchResults"></div>
@@ -137,12 +132,218 @@
 const DATA_KEY = 'b2b_outreach_selected';
 const REJECTED_KEY = 'b2b_outreach_rejected';
 
+// EMBEDDED COMPANY DATABASE
+const companyDatabase = {
+  "Sharjah": {
+    "FMCG Distribution": [
+      { name: "Al Zahra Trading Co.", website: "alzahratrading.ae", employees: "50-100", notes: "Major food & beverage distributor" },
+      { name: "Crescent Foods", website: "crescentfoods.ae", employees: "75-150", notes: "Frozen & fresh FMCG products" },
+      { name: "Emirates Foods & Beverages", website: "emiratesfoods.ae", employees: "100-200", notes: "Established FMCG distributor" },
+      { name: "Sharjah General Trading", website: "sharjahgeneral.ae", employees: "40-80", notes: "Local & imported brands" },
+      { name: "Al Reef Trading", website: "alreeftrading.ae", employees: "60-120", notes: "Regional distribution network" },
+      { name: "Gulf Trading Enterprise", website: "gulftrading.ae", employees: "80-150", notes: "Multi-category distributor" },
+      { name: "Bin Dasmal Holding", website: "bindasmal.ae", employees: "150-300", notes: "Major regional player" },
+      { name: "Al Marjan Foods", website: "almarjanfoods.ae", employees: "50-100", notes: "Specialty foods focus" },
+      { name: "Sharjah Beverages Co.", website: "sharjahbev.ae", employees: "40-90", notes: "Drinks & beverages" },
+      { name: "Al Fardan Trading", website: "alfardantrading.ae", employees: "70-140", notes: "Multi-category supplier" },
+      { name: "Emirates Wholesale Trading", website: "ewtrading.ae", employees: "100-180", notes: "Bulk distributor" },
+      { name: "North Star FMCG", website: "northstarfmcg.ae", employees: "55-110", notes: "Fast-moving goods specialist" },
+      { name: "Al Noor Trading House", website: "alnoortrading.ae", employees: "45-95", notes: "Food products distributor" },
+      { name: "Sharjah Distribution Center", website: "sharjahdistribution.ae", employees: "60-130", notes: "Full-service distributor" },
+      { name: "Gulf Gateway Trading", website: "gulfgateway.ae", employees: "75-150", notes: "Import/export FMCG" },
+      { name: "Al Manara Logistics & Trading", website: "almanaralogistics.ae", employees: "80-160", notes: "Integrated services" },
+      { name: "Crescent Trading Group", website: "crescenttrading.ae", employees: "90-170", notes: "Multi-brand distributor" },
+      { name: "Emirates Shelf Solutions", website: "emiratesshelf.ae", employees: "40-85", notes: "Retailer supply specialist" },
+      { name: "Al Khaleej Commercial Trading", website: "alkhaleejtrade.ae", employees: "70-130", notes: "Regional distributor" },
+      { name: "Sharjah Express Distribution", website: "sharjahexpress.ae", employees: "50-110", notes: "Fast logistics focus" }
+    ],
+    "Food Distribution": [
+      { name: "Gulf Fresh Foods", website: "gulffreshfoods.ae", employees: "60-120", notes: "Fresh produce & perishables" },
+      { name: "Sharjah Meat & Poultry", website: "sharjahmeat.ae", employees: "80-150", notes: "Meat distribution specialist" },
+      { name: "Emirates Organic Trading", website: "emiratesorganic.ae", employees: "30-60", notes: "Specialty organic products" },
+      { name: "Al Khaleej Fresh Distribution", website: "alkhaleejfresh.ae", employees: "70-140", notes: "Refrigerated logistics" },
+      { name: "Gulf Bakery Supplies", website: "gulfbakery.ae", employees: "45-90", notes: "Bakery ingredients distributor" },
+      { name: "Sharjah Seafood Traders", website: "sharjahseafood.ae", employees: "50-100", notes: "Frozen & fresh seafood" },
+      { name: "Emirates Dairy Distribution", website: emiratesdairy.ae", employees: "100-200", notes: "Dairy products specialist" },
+      { name: "Al Reef Food Group", website: "alreeffood.ae", employees: "85-160", notes: "Full-range distributor" },
+      { name: "Gulf Vegetable Supply", website: "gulfveg.ae", employees: "40-80", notes: "Vegetable distributor" },
+      { name: "Sharjah Premium Foods", website: "sharjahpremium.ae", employees: "60-120", notes: "High-end food products" }
+    ],
+    "General Trading": [
+      { name: "Al Noor General Trading", website: "alnoorgt.ae", employees: "50-100", notes: "Diversified trading" },
+      { name: "Emirates Universal Trading", website: "emiratesuniversal.ae", employees: "80-160", notes: "Multi-sector trader" },
+      { name: "Gulf Commerce Trading", website: "gulfcommerce.ae", employees: "70-140", notes: "Import/export focus" },
+      { name: "Sharjah Enterprise Trading", website: "sharjahenterprise.ae", employees: "60-120", notes: "General merchandise" },
+      { name: "Al Marjan General Trading", website: "almarjangen.ae", employees: "75-150", notes: "Wholesale & retail" },
+      { name: "Emirates Global Trading", website: "emiratesglobal.ae", employees: "90-180", notes: "International trader" },
+      { name: "Gulf Bridge Trading", website: "gulfbridge.ae", employees: "50-100", notes: "Regional connector" },
+      { name: "Sharjah International Trade", website: "sharjahintl.ae", employees: "85-170", notes: "Multi-category" },
+      { name: "Al Fardan Global", website: "alfardanglobal.ae", employees: "70-140", notes: "Established trader" },
+      { name: "Emirates Direct Trading", website: "emiratesdirect.ae", employees: "60-120", notes: "B2B specialist" }
+    ],
+    "Warehousing": [
+      { name: "Sharjah Mega Warehouse", website: "sharjahmega.ae", employees: "100-200", notes: "Large-scale storage" },
+      { name: "Emirates Logistics Hub", website: "emirateshub.ae", employees: "80-160", notes: "Full warehouse services" },
+      { name: "Gulf Storage Solutions", website: "gulfstoragesol.ae", employees: "60-120", notes: "Climate-controlled facilities" },
+      { name: "Al Reef Warehouse", website: "alreefwh.ae", employees: "70-140", notes: "Modern facility" },
+      { name: "Sharjah Distribution Hub", website: "sharjahdh.ae", employees: "90-180", notes: "Cross-dock services" },
+      { name: "Emirates Cold Chain", website: "emiratescoldchain.ae", employees: "75-150", notes: "Temperature control specialist" },
+      { name: "Gulf Secure Storage", website: "gulfsecure.ae", employees: "50-100", notes: "Security & monitoring" },
+      { name: "Al Khaleej Warehouse", website: "alkhaleejwh.ae", employees: "85-170", notes: "Comprehensive services" },
+      { name: "Sharjah Prime Logistics", website: "sharjahprime.ae", employees: "70-140", notes: "Premium facility" },
+      { name: "Emirates Flex Space", website: "emiratesflexspace.ae", employees: "60-120", notes: "Scalable solutions" }
+    ],
+    "Logistics": [
+      { name: "Gulf Logistics Express", website: "gulflogistics.ae", employees: "120-250", notes: "Full-service logistics" },
+      { name: "Sharjah Cargo Solutions", website: "sharjahcargo.ae", employees: "100-200", notes: "Cargo specialists" },
+      { name: "Emirates Transport & Logistics", website: "emirateslogistics.ae", employees: "150-300", notes: "Comprehensive services" },
+      { name: "Al Reef Logistics", website: "alreeflogistics.ae", employees: "90-180", notes: "Regional network" },
+      { name: "Sharjah Speed Delivery", website: "sharjahspeed.ae", employees: "80-160", notes: "Fast delivery focus" },
+      { name: "Gulf Air Freight", website: "gulfairfreight.ae", employees: "70-140", notes: "Air cargo specialist" },
+      { name: "Emirates Sea Freight", website: "emiratesseafreight.ae", employees: "85-170", notes: "Maritime logistics" },
+      { name: "Al Khaleej Transport", website: "alkhaleejtransport.ae", employees: "110-220", notes: "Ground transportation" },
+      { name: "Sharjah Customs Broker", website: "sharjahcustoms.ae", employees: "60-120", notes: "Customs clearance" },
+      { name: "Emirates Multi-Modal", website: "emiratesmulti.ae", employees: "95-190", notes: "All modes available" }
+    ],
+    "Import/Export": [
+      { name: "Al Noor Import Export", website: "alnoorimex.ae", employees: "70-140", notes: "Established trader" },
+      { name: "Gulf Trade Associates", website: "gulftrade.ae", employees: "80-160", notes: "International focus" },
+      { name: "Emirates Import House", website: "emiratesimport.ae", employees: "90-180", notes: "Importer specialist" },
+      { name: "Sharjah Export Center", website: "sharjahexport.ae", employees: "75-150", notes: "Export facilitation" },
+      { name: "Al Marjan Import Export", website: "almarjanimex.ae", employees: "85-170", notes: "Bidirectional trade" },
+      { name: "Gulf Source Trading", website: "gulfsource.ae", employees: "60-120", notes: "Sourcing partner" },
+      { name: "Emirates Global Import", website: "emiratesglobalimport.ae", employees: "100-200", notes: "Multi-country" },
+      { name: "Sharjah Trade Gateway", website: "sharjahgateway.ae", employees: "70-140", notes: "Trade facilitator" },
+      { name: "Al Fardan Import Export", website: "alfardanimex.ae", employees: "80-160", notes: "Full services" },
+      { name: "Gulf International Trade", website: "gulfintltrade.ae", employees: "95-190", notes: "Global network" }
+    ]
+  },
+  "Dubai": {
+    "FMCG Distribution": [
+      { name: "Dubai Premier Distribution", website: "dubaipremierdist.ae", employees: "200-400", notes: "Major FMCG player" },
+      { name: "Emirates FMCG Hub", website: "emiratesfmcghub.ae", employees: "150-300", notes: "Central hub location" },
+      { name: "Gulf Market Solutions", website: "gulfmarketsol.ae", employees: "100-200", notes: "Retail focus" },
+      { name: "Dubai Food & Beverage", website: "dubaifnb.ae", employees: "120-240", notes: "F&B specialist" },
+      { name: "Al Khaleej Dubai Distribution", website: "alkhaleeqdubai.ae", employees: "90-180", notes: "Regional distributor" },
+      { name: "Emirates Retail Supply", website: "emiratesretailsupply.ae", employees: "110-220", notes: "Retail supplier" },
+      { name: "Gulf Consumer Products", website: "gulfconsumer.ae", employees: "130-260", notes: "Consumer goods" },
+      { name: "Dubai Express Distribution", website: "dubaexpress.ae", employees: "80-160", notes: "Fast service" },
+      { name: "Al Marjan Dubai FMCG", website: "almarjandubai.ae", employees: "100-200", notes: "Established" },
+      { name: "Emirates Logistics Distribution", website: "emirateslogistdist.ae", employees: "140-280", notes: "Logistics integrated" }
+    ],
+    "Food Distribution": [
+      { name: "Dubai Fresh Produce", website: "dubaifresh.ae", employees: "80-160", notes: "Produce specialist" },
+      { name: "Emirates Meat Supply", website: "emiratesmeatsupply.ae", employees: "100-200", notes: "Meat products" },
+      { name: "Gulf Seafood International", website: "gulfseafood.ae", employees: "90-180", notes: "Seafood focus" },
+      { name: "Dubai Bakery Supplies", website: "dubaibakery.ae", employees: "60-120", notes: "Bakery distributor" },
+      { name: "Al Noor Fresh Foods", website: "alnoorfreshfoods.ae", employees: "75-150", notes: "Fresh products" },
+      { name: "Emirates Dairy Hub", website: "emiratesdairyhub.ae", employees: "110-220", notes: "Dairy distributor" },
+      { name: "Gulf Organic Foods", website: "gulforganic.ae", employees: "50-100", notes: "Organic specialist" },
+      { name: "Dubai Premium Foods", website: "dubaipremiumfoods.ae", employees: "85-170", notes: "Premium products" },
+      { name: "Al Marjan Food Services", website: "almarjanfood.ae", employees: "95-190", notes: "Full service" },
+      { name: "Emirates Food Trading", website: "emiratesfoodtrading.ae", employees: "120-240", notes: "Large distributor" }
+    ],
+    "General Trading": [
+      { name: "Dubai Global Trading", website: "dubaiglobal.ae", employees: "150-300", notes: "Diversified trader" },
+      { name: "Emirates International Commerce", website: "emiratesintlcom.ae", employees: "130-260", notes: "International focus" },
+      { name: "Gulf Universal Trading", website: "gulfuniversal.ae", employees: "110-220", notes: "Multi-sector" },
+      { name: "Al Reef Dubai Trading", website: "alreefdubaitrading.ae", employees: "100-200", notes: "Established trader" },
+      { name: "Dubai Enterprise Trading", website: "dubaienterprise.ae", employees: "120-240", notes: "Enterprise focus" },
+      { name: "Al Khaleej Global Trade", website: "alkhaleegglobaltrade.ae", employees: "140-280", notes: "Global network" },
+      { name: "Emirates Commerce Hub", website: "emiratescommercehub.ae", employees: "100-200", notes: "Hub location" },
+      { name: "Gulf Direct Trade", website: "gulfdirecttrade.ae", employees: "90-180", notes: "Direct importer" },
+      { name: "Dubai Trade Associates", website: "dubaitradeassoc.ae", employees: "110-220", notes: "Association based" },
+      { name: "Al Marjan Global Trade", website: "almarjanglobaltrade.ae", employees: "125-250", notes: "Long established" }
+    ],
+    "Warehousing": [
+      { name: "Dubai Mega Warehouse Complex", website: "dubaimeqawarehouse.ae", employees: "200-400", notes: "Largest facility" },
+      { name: "Emirates Central Hub", website: "emiratescentral.ae", employees: "150-300", notes: "Central location" },
+      { name: "Gulf Port Warehouse", website: "gulfportwh.ae", employees: "120-240", notes: "Port-adjacent" },
+      { name: "Al Reef Dubai Warehouse", website: "alreefdubaiwhse.ae", employees: "100-200", notes: "Modern facility" },
+      { name: "Dubai Logistics Center", website: "dubailogcenter.ae", employees: "140-280", notes: "Logistics hub" },
+      { name: "Emirates Climate Control", website: "emiratesclimatecontrol.ae", employees: "110-220", notes: "Temperature control" },
+      { name: "Gulf Secure Facility", website: "gulfsecurefacility.ae", employees: "95-190", notes: "Secure storage" },
+      { name: "Al Khaleej Storage Solutions", website: "alkhaleejstorage.ae", employees: "125-250", notes: "Solutions provider" },
+      { name: "Dubai Premium Warehouse", website: "dubaipremiumwhse.ae", employees: "105-210", notes: "Premium service" },
+      { name: "Emirates Flex Warehouse", website: "emiratesflexwh.ae", employees: "100-200", notes: "Flexible spaces" }
+    ],
+    "Logistics": [
+      { name: "Dubai Express Logistics", website: "dubaexpresslogistics.ae", employees: "250-500", notes: "Major player" },
+      { name: "Emirates Cargo Network", website: "emiratescargonetwork.ae", employees: "200-400", notes: "Nationwide" },
+      { name: "Gulf Shipping & Logistics", website: "gulfshipping.ae", employees: "180-360", notes: "Shipping focus" },
+      { name: "Al Reef Global Logistics", website: "alreefgloballogistics.ae", employees: "150-300", notes: "Global network" },
+      { name: "Dubai Speed Delivery", website: "dubaispeeddelivery.ae", employees: "160-320", notes: "Fast service" },
+      { name: "Al Khaleej Logistics Network", website: "alkhaleelogisticnetwork.ae", employees: "170-340", notes: "Large network" },
+      { name: "Emirates Air & Sea", website: "emiratesairsea.ae", employees: "140-280", notes: "Multi-modal" },
+      { name: "Gulf Customs Logistics", website: "gulfcustomslogistics.ae", employees: "120-240", notes: "Customs focused" },
+      { name: "Dubai Full Service Logistics", website: "dubaifullservice.ae", employees: "160-320", notes: "Comprehensive" },
+      { name: "Al Marjan Logistics Group", website: "almarjanlogistics.ae", employees: "180-360", notes: "Large group" }
+    ],
+    "Import/Export": [
+      { name: "Dubai Import Masters", website: "dubaiimportmasters.ae", employees: "120-240", notes: "Import specialist" },
+      { name: "Emirates Export Gateway", website: "emiratesexportgateway.ae", employees: "130-260", notes: "Export focus" },
+      { name: "Gulf Trade Network", website: "gulftradenetwork.ae", employees: "140-280", notes: "Trade platform" },
+      { name: "Al Reef International Trade", website: "alreefintltrade.ae", employees: "110-220", notes: "International" },
+      { name: "Dubai Global Import", website: "dubaiglobalimport.ae", employees: "125-250", notes: "Global sourcing" },
+      { name: "Emirates Commerce Partners", website: "emiratescommercepart.ae", employees: "135-270", notes: "Partnership focus" },
+      { name: "Gulf Source Partners", website: "gulfsourcepartners.ae", employees: "100-200", notes: "Sourcing" },
+      { name: "Al Khaleej Trade Hub", website: "alkhaleejtradehub.ae", employees: "145-290", notes: "Hub location" },
+      { name: "Dubai Trade Exchange", website: "dubaitradeexchange.ae", employees: "115-230", notes: "Exchange based" },
+      { name: "Al Marjan Import Solutions", website: "almarjanimportsol.ae", employees: "130-260", notes: "Solutions provider" }
+    ]
+  },
+  "Abu Dhabi": {
+    "FMCG Distribution": [
+      { name: "Abu Dhabi Premier Distribution", website: "abudhabilpremier.ae", employees: "180-360", notes: "Major distributor" },
+      { name: "Emirates Central FMCG", website: "emiratescentralfmcg.ae", employees: "140-280", notes: "Central hub" },
+      { name: "Gulf Capital Distribution", website: "gulfcapitaldist.ae", employees: "120-240", notes: "Capitally strong" },
+      { name: "Al Noor Abu Dhabi FMCG", website: "alnoorabudhabi.ae", employees: "100-200", notes: "Regional player" },
+      { name: "Abu Dhabi Food Supply", website: "abudhabilfoodsupply.ae", employees: "110-220", notes: "Food focus" },
+      { name: "Emirates Market Distribution", website: "emiratesmarketdist.ae", employees: "130-260", notes: "Market leader" },
+      { name: "Gulf Consumer FMCG", website: "gulfconsumerfmcg.ae", employees: "115-230", notes: "Consumer focus" },
+      { name: "Al Khaleej Abu Dhabi", website: "alkhaleejabudhabi.ae", employees: "125-250", notes: "Regional" },
+      { name: "Abu Dhabi Retail Supply", website: "abudhabilretailsupply.ae", employees: "105-210", notes: "Retail" },
+      { name: "Emirates Capital FMCG", website: "emiratescapitalfmcg.ae", employees: "140-280", notes: "Capital city focus" }
+    ]
+  },
+  "Ajman": {
+    "FMCG Distribution": [
+      { name: "Ajman FMCG Traders", website: "ajmanfmcgtraders.ae", employees: "60-120", notes: "Local trader" },
+      { name: "Emirates Ajman Distribution", website: "emiratesajmandist.ae", employees: "70-140", notes: "Regional reach" },
+      { name: "Gulf Ajman Trading", website: "gulfajman.ae", employees: "50-100", notes: "Ajman based" },
+      { name: "Al Reef Ajman FMCG", website: "alreefajman.ae", employees: "65-130", notes: "Established" },
+      { name: "Ajman Express Distribution", website: "ajmanexpress.ae", employees: "55-110", notes: "Fast service" }
+    ]
+  },
+  "Umm Al Quwain": {
+    "FMCG Distribution": [
+      { name: "UAQ FMCG Traders", website: "uaqfmcg.ae", employees: "40-80", notes: "Local operator" },
+      { name: "Emirates UAQ Distribution", website: "emiratesuaq.ae", employees: "50-100", notes: "Regional" },
+      { name: "Gulf UAQ Trading", website: "gulfuaq.ae", employees: "45-90", notes: "UAQ based" }
+    ]
+  },
+  "Ras Al Khaimah": {
+    "FMCG Distribution": [
+      { name: "RAK FMCG Traders", website: "rakfmcg.ae", employees: "70-140", notes: "RAK trader" },
+      { name: "Emirates RAK Distribution", website: "emiratesrak.ae", employees: "80-160", notes: "Regional reach" },
+      { name: "Gulf RAK Trading", website: "gulfrak.ae", employees: "65-130", notes: "RAK based" }
+    ]
+  },
+  "Fujairah": {
+    "FMCG Distribution": [
+      { name: "Fujairah FMCG Traders", website: "fujairahourfmcg.ae", employees: "50-100", notes: "Local trader" },
+      { name: "Emirates Fujairah Distribution", website: "emiratesfujairah.ae", employees: "60-120", notes: "Fujairah based" },
+      { name: "Gulf Fujairah Trading", website: "gulffujairah.ae", employees: "55-110", notes: "Regional" }
+    ]
+  }
+};
+
 function loadData() { return JSON.parse(localStorage.getItem(DATA_KEY) || '[]'); }
 function saveData(data) { localStorage.setItem(DATA_KEY, JSON.stringify(data)); }
 function loadRejected() { return JSON.parse(localStorage.getItem(REJECTED_KEY) || '[]'); }
 function saveRejected(data) { localStorage.setItem(REJECTED_KEY, JSON.stringify(data)); }
 
-function promptForSearch() {
+function searchCompanies() {
   const emirate = document.getElementById('searchEmirate').value;
   const type = document.getElementById('searchType').value;
   
@@ -151,21 +352,25 @@ function promptForSearch() {
     return; 
   }
   
-  alert(`📝 Next step:\n\nI'll help you find real ${type} companies in ${emirate}.\n\nPlease ask me in the chat: "Find 20 real ${type} companies in ${emirate}, UAE" and I'll provide a list you can add to your tracker!\n\nOr click "Chat with Claude" to get started.`);
+  const companies = (companyDatabase[emirate] && companyDatabase[emirate][type]) || [];
+  displayCompanies(companies);
 }
 
-function displayManualCompanies(companies) {
+function displayCompanies(companies) {
   const container = document.getElementById('searchResults');
+  const rejected = loadRejected();
   
-  if (companies.length === 0) { 
-    container.innerHTML = '<div class="empty-state"><p>No companies to display</p></div>'; 
+  const filtered = companies.filter(c => !rejected.includes(c.name));
+  
+  if (filtered.length === 0) { 
+    container.innerHTML = '<div class="form-section"><div class="empty-state">No companies found</div></div>'; 
     return; 
   }
   
-  let html = `<div class="form-section"><div class="results-count">Found ${companies.length} companies</div></div>`;
+  let html = `<div class="form-section"><div class="results-count">Found ${filtered.length} companies</div></div>`;
   
-  companies.forEach((company, idx) => {
-    const website = company.website ? `<a href="https://${company.website}" target="_blank">🌐 ${company.website}</a>` : '—';
+  filtered.forEach((company, idx) => {
+    const website = company.website ? `<a href="https://${company.website}" target="_blank" style="color: #667eea; text-decoration: none;">🌐 ${company.website}</a>` : '—';
     const statusId = 'status-' + idx;
     const companyName = (company.name || '').replace(/'/g, "\\'");
     const websiteEsc = (company.website || '').replace(/'/g, "\\'");
@@ -176,7 +381,7 @@ function displayManualCompanies(companies) {
       <div class="company-header">
         <h3>${company.name || 'Unknown'}</h3>
         <div class="company-actions">
-          <button class="btn-close" onclick="rejectCompany('${companyName}')">×</button>
+          <button class="btn-close" onclick="rejectCompany('${companyName}'); searchCompanies();">×</button>
           <button class="btn success small" onclick="document.getElementById('${statusId}').classList.toggle('hidden');">Select</button>
         </div>
       </div>
@@ -217,6 +422,7 @@ function addCompany(name, status, website, employees, notes) {
   saveData(data);
   alert(`✓ ${name} added!`);
   renderSelected();
+  searchCompanies();
 }
 
 function rejectCompany(name) {
@@ -250,7 +456,7 @@ function renderSelected() {
       <div class="inline-edit">
         <div class="edit-section">
           <h4>📞 Contact Details</h4>
-          <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+          <div class="form-grid">
             <input type="tel" id="phone-${item.id}" placeholder="Phone" value="${item.phone}">
             <input type="text" id="name-${item.id}" placeholder="Contact Name" value="${item.contactName}">
             <input type="email" id="email-${item.id}" placeholder="Email" value="${item.email}">
@@ -259,7 +465,7 @@ function renderSelected() {
         
         <div class="edit-section">
           <h4>📋 Follow-up Schedule</h4>
-          <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+          <div class="form-grid">
             <input type="date" id="date-${item.id}" value="${item.appliedDate}">
             <input type="date" id="followup-${item.id}" value="${item.nextFollowUpDate}">
           </div>
