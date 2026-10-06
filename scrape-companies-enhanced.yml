@@ -1,0 +1,75 @@
+name: 🤖 Scrape UAE Companies - Enhanced Weekly
+
+on:
+  schedule:
+    - cron: '0 2 * * 5'  # Every Friday at 2 AM UTC (10 AM UAE time)
+  workflow_dispatch:     # Allow manual trigger
+  
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    permissions:
+      contents: write
+      actions: read
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: 📦 Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: 🔍 Run enhanced scraper
+        run: |
+          python3 scraper-enhanced.py
+        env:
+          PYTHONUNBUFFERED: 1
+      
+      - name: 📊 Check for changes
+        id: changes
+        run: |
+          if git diff --quiet HEAD -- complete_uae_companies_database.json; then
+            echo "status=unchanged" >> $GITHUB_OUTPUT
+            echo "No new companies found"
+          else
+            CHANGE_COUNT=$(git diff --numstat HEAD -- complete_uae_companies_database.json | awk '{print $1}')
+            echo "status=changed" >> $GITHUB_OUTPUT
+            echo "Found changes - $CHANGE_COUNT lines modified"
+          fi
+      
+      - name: 📤 Commit and push changes
+        if: steps.changes.outputs.status == 'changed'
+        run: |
+          git config user.name "🤖 Company Scraper Bot"
+          git config user.email "scraper@zenline-digital.dev"
+          
+          COMPANY_COUNT=$(python3 -c "import json; db=json.load(open('complete_uae_companies_database.json')); print(sum(len(c) for e in db.values() if isinstance(e,dict) and e!=db.get('metadata') for c in e.values() if isinstance(c,list)))")
+          
+          git add complete_uae_companies_database.json
+          git commit -m "🤖 Auto-update: Scraped UAE companies database - $COMPANY_COUNT companies found"
+          git push origin main
+      
+      - name: ✅ Workflow summary
+        run: |
+          echo "=== SCRAPING WORKFLOW COMPLETE ==="
+          echo "Status: ${{ steps.changes.outputs.status }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Triggered by: ${{ github.event_name }}"
+          echo "Timestamp: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "===================================="
+      
+      - name: 🚀 Vercel deployment (auto)
+        run: |
+          echo "Vercel will auto-deploy when changes are pushed to main branch"
+          echo "Check deployment at: https://vercel.com/zenline-digital/job-application-tracker"
+
