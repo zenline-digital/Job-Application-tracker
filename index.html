@@ -400,6 +400,7 @@
         
         <div class="tabs">
             <button class="tab-button active" onclick="switchTab('search-companies')">🔍 Search Companies</button>
+            <button class="tab-button" onclick="switchTab('add-custom')">➕ Add Custom</button>
             <button class="tab-button" onclick="switchTab('my-companies')">⭐ My Companies</button>
             <button class="tab-button" onclick="switchTab('calendar')">📅 Follow-up Calendar</button>
             <button class="tab-button" onclick="switchTab('overdue')">🔔 Due & Overdue</button>
@@ -428,6 +429,100 @@
             </div>
             
             <div id="results-container"></div>
+        </div>
+        
+        <!-- Add Custom Company Tab -->
+        <div id="add-custom" class="tab-content">
+            <h2 style="margin-bottom: 30px;">➕ Add Company from LinkedIn or Other Source</h2>
+            
+            <div style="max-width: 800px; background: #f5f5f5; padding: 30px; border-radius: 8px;">
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="custom-name">Company Name *</label>
+                    <input type="text" id="custom-name" placeholder="Enter company name">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label for="custom-emirate">Emirate *</label>
+                        <select id="custom-emirate">
+                            <option value="">Select Emirate</option>
+                            <option value="Dubai">Dubai</option>
+                            <option value="Abu Dhabi">Abu Dhabi</option>
+                            <option value="Sharjah">Sharjah</option>
+                            <option value="Ajman">Ajman</option>
+                            <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                            <option value="Fujairah">Fujairah</option>
+                            <option value="Umm Al Quwain">Umm Al Quwain</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="custom-type">Business Type *</label>
+                        <select id="custom-type">
+                            <option value="">Select Type</option>
+                            <option value="FMCG Distribution">FMCG Distribution</option>
+                            <option value="Food Distribution">Food Distribution</option>
+                            <option value="Warehousing & Logistics">Warehousing & Logistics</option>
+                            <option value="Freight Forwarding">Freight Forwarding</option>
+                            <option value="General Trading">General Trading</option>
+                            <option value="Import/Export">Import/Export</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-top: 20px;">
+                    <label for="custom-website">Website</label>
+                    <input type="text" id="custom-website" placeholder="e.g., example.com">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label for="custom-email">Email</label>
+                        <input type="email" id="custom-email" placeholder="contact@company.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="custom-phone">Phone</label>
+                        <input type="text" id="custom-phone" placeholder="+971 X XXX XXXX">
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-top: 20px;">
+                    <label for="custom-description">Description</label>
+                    <textarea id="custom-description" placeholder="What does this company do?" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; min-height: 80px;"></textarea>
+                </div>
+                
+                <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+                
+                <h3 style="margin-bottom: 20px;">📅 Follow-up Details (Optional)</h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label for="custom-status">Initial Status</label>
+                        <select id="custom-status">
+                            <option value="Pending" selected>Pending</option>
+                            <option value="Contacted">Contacted</option>
+                            <option value="Interested">Interested</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="custom-followup-date">Follow-up Date</label>
+                        <input type="date" id="custom-followup-date">
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-top: 20px;">
+                    <label for="custom-followup-notes">Follow-up Notes</label>
+                    <textarea id="custom-followup-notes" placeholder="Add any notes for follow-up..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; min-height: 80px;"></textarea>
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin-top: 30px;">
+                    <button class="btn btn-primary" onclick="addCustomCompany()" style="flex: 1; padding: 12px;">➕ Add Company</button>
+                    <button class="btn" onclick="resetCustomForm()" style="flex: 1; background: #999; padding: 12px;">🔄 Clear</button>
+                </div>
+            </div>
         </div>
         
         <!-- My Companies Tab -->
@@ -965,6 +1060,78 @@
                     </div>
                 </div>
             `;
+        }
+        
+        function addCustomCompany() {
+            const name = document.getElementById('custom-name').value.trim();
+            const emirate = document.getElementById('custom-emirate').value;
+            const type = document.getElementById('custom-type').value;
+            const website = document.getElementById('custom-website').value.trim();
+            const email = document.getElementById('custom-email').value.trim();
+            const phone = document.getElementById('custom-phone').value.trim();
+            const description = document.getElementById('custom-description').value.trim();
+            const status = document.getElementById('custom-status').value;
+            const followupDate = document.getElementById('custom-followup-date').value;
+            const notes = document.getElementById('custom-followup-notes').value.trim();
+            
+            // Validation
+            if (!name) {
+                showToast('⚠️ Company name is required');
+                return;
+            }
+            if (!emirate) {
+                showToast('⚠️ Please select an emirate');
+                return;
+            }
+            if (!type) {
+                showToast('⚠️ Please select business type');
+                return;
+            }
+            
+            // Check if already exists
+            if (selectedCompanies.find(c => c.name.toLowerCase() === name.toLowerCase() && c.emirate === emirate)) {
+                showToast('⚠️ Company already added');
+                return;
+            }
+            
+            // Create company object
+            const newCompany = {
+                name: name,
+                emirate: emirate,
+                type: type,
+                website: website || 'Not listed',
+                email: email || 'Not listed',
+                phone: phone || 'Not listed',
+                description: description || `${type} company in ${emirate}`,
+                address: emirate,
+                status: status,
+                followupDate: followupDate,
+                notes: notes,
+                checked: false,
+                source: 'Custom - LinkedIn'
+            };
+            
+            // Add to selected companies
+            selectedCompanies.push(newCompany);
+            saveSelectedCompanies();
+            
+            // Reset form
+            resetCustomForm();
+            
+            showToast(`✓ ${name} added! Go to "My Companies" to manage.`);
+        }
+        
+        function resetCustomForm() {
+            document.getElementById('custom-name').value = '';
+            document.getElementById('custom-emirate').value = '';
+            document.getElementById('custom-type').value = '';
+            document.getElementById('custom-website').value = '';
+            document.getElementById('custom-email').value = '';
+            document.getElementById('custom-phone').value = '';
+            document.getElementById('custom-description').value = '';
+            document.getElementById('custom-status').value = 'Pending';
+            document.getElementById('custom-followup-date').value = '';
+            document.getElementById('custom-followup-notes').value = '';
         }
         
         function exportCompanies() {
