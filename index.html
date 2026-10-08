@@ -436,61 +436,59 @@
             <h2 style="margin-bottom: 30px;">➕ Add Company from LinkedIn or Other Source</h2>
             
             <div style="max-width: 800px; background: #f5f5f5; padding: 30px; border-radius: 8px;">
+                <p style="color: #666; margin-bottom: 25px;"><strong>Required:</strong> Company Name, Country/Emirates, Website or LinkedIn</p>
+                
+                <!-- ESSENTIAL FIELDS -->
                 <div class="form-group" style="margin-bottom: 20px;">
-                    <label for="custom-name">Company Name *</label>
-                    <input type="text" id="custom-name" placeholder="Enter company name">
+                    <label for="custom-name" style="color: #d32f2f;"><strong>🔴 Company Name *</strong></label>
+                    <input type="text" id="custom-name" placeholder="Enter company name" style="font-size: 1.05em; padding: 12px;">
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="custom-emirate" style="color: #d32f2f;"><strong>🔴 Country / Emirates / State / District *</strong></label>
+                    <input type="text" id="custom-emirate" placeholder="e.g., Dubai, Abu Dhabi, Sharjah, or any country" style="font-size: 1.05em; padding: 12px;">
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 20px; background: white; padding: 15px; border: 2px solid #667eea; border-radius: 6px;">
+                    <label for="custom-website" style="color: #667eea;"><strong>🌐 Website or LinkedIn Profile *</strong></label>
+                    <input type="text" id="custom-website" placeholder="e.g., example.com or linkedin.com/company/example" style="font-size: 1.05em; padding: 12px; margin-top: 8px;">
+                    <p style="font-size: 0.9em; color: #666; margin-top: 8px;">📌 Website: example.com | LinkedIn: linkedin.com/company/xyz</p>
+                </div>
+                
+                <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+                
+                <!-- OPTIONAL FIELDS -->
+                <p style="color: #666; margin-bottom: 20px; font-style: italic;">Optional Details:</p>
+                
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="custom-type">📊 Business Type (Optional)</label>
+                    <select id="custom-type">
+                        <option value="">Leave blank if unsure</option>
+                        <option value="FMCG Distribution">FMCG Distribution</option>
+                        <option value="Food Distribution">Food Distribution</option>
+                        <option value="Warehousing & Logistics">Warehousing & Logistics</option>
+                        <option value="Freight Forwarding">Freight Forwarding</option>
+                        <option value="General Trading">General Trading</option>
+                        <option value="Import/Export">Import/Export</option>
+                        <option value="Other">Other</option>
+                    </select>
                 </div>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                     <div class="form-group">
-                        <label for="custom-emirate">Emirate *</label>
-                        <select id="custom-emirate">
-                            <option value="">Select Emirate</option>
-                            <option value="Dubai">Dubai</option>
-                            <option value="Abu Dhabi">Abu Dhabi</option>
-                            <option value="Sharjah">Sharjah</option>
-                            <option value="Ajman">Ajman</option>
-                            <option value="Ras Al Khaimah">Ras Al Khaimah</option>
-                            <option value="Fujairah">Fujairah</option>
-                            <option value="Umm Al Quwain">Umm Al Quwain</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="custom-type">Business Type *</label>
-                        <select id="custom-type">
-                            <option value="">Select Type</option>
-                            <option value="FMCG Distribution">FMCG Distribution</option>
-                            <option value="Food Distribution">Food Distribution</option>
-                            <option value="Warehousing & Logistics">Warehousing & Logistics</option>
-                            <option value="Freight Forwarding">Freight Forwarding</option>
-                            <option value="General Trading">General Trading</option>
-                            <option value="Import/Export">Import/Export</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-group" style="margin-top: 20px;">
-                    <label for="custom-website">Website</label>
-                    <input type="text" id="custom-website" placeholder="e.g., example.com">
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div class="form-group">
-                        <label for="custom-email">Email</label>
+                        <label for="custom-email">✉️ Email (Optional)</label>
                         <input type="email" id="custom-email" placeholder="contact@company.com">
                     </div>
                     
                     <div class="form-group">
-                        <label for="custom-phone">Phone</label>
+                        <label for="custom-phone">📞 Phone (Optional)</label>
                         <input type="text" id="custom-phone" placeholder="+971 X XXX XXXX">
                     </div>
                 </div>
                 
                 <div class="form-group" style="margin-top: 20px;">
-                    <label for="custom-description">Description</label>
-                    <textarea id="custom-description" placeholder="What does this company do?" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; min-height: 80px;"></textarea>
+                    <label for="custom-description">📝 Description (Optional)</label>
+                    <textarea id="custom-description" placeholder="What does this company do?" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; min-height: 60px;"></textarea>
                 </div>
                 
                 <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
@@ -1064,7 +1062,7 @@
         
         function addCustomCompany() {
             const name = document.getElementById('custom-name').value.trim();
-            const emirate = document.getElementById('custom-emirate').value;
+            const emirate = document.getElementById('custom-emirate').value.trim();
             const type = document.getElementById('custom-type').value;
             const website = document.getElementById('custom-website').value.trim();
             const email = document.getElementById('custom-email').value.trim();
@@ -1074,17 +1072,17 @@
             const followupDate = document.getElementById('custom-followup-date').value;
             const notes = document.getElementById('custom-followup-notes').value.trim();
             
-            // Validation
+            // Validation - REQUIRED FIELDS ONLY
             if (!name) {
                 showToast('⚠️ Company name is required');
                 return;
             }
             if (!emirate) {
-                showToast('⚠️ Please select an emirate');
+                showToast('⚠️ Country/Emirates/State/District is required');
                 return;
             }
-            if (!type) {
-                showToast('⚠️ Please select business type');
+            if (!website) {
+                showToast('⚠️ Website or LinkedIn profile is required');
                 return;
             }
             
@@ -1098,11 +1096,11 @@
             const newCompany = {
                 name: name,
                 emirate: emirate,
-                type: type,
-                website: website || 'Not listed',
+                type: type || 'Not specified',
+                website: website,
                 email: email || 'Not listed',
                 phone: phone || 'Not listed',
-                description: description || `${type} company in ${emirate}`,
+                description: description || `${type || 'Business'} company in ${emirate}`,
                 address: emirate,
                 status: status,
                 followupDate: followupDate,
@@ -1124,8 +1122,8 @@
         function resetCustomForm() {
             document.getElementById('custom-name').value = '';
             document.getElementById('custom-emirate').value = '';
-            document.getElementById('custom-type').value = '';
             document.getElementById('custom-website').value = '';
+            document.getElementById('custom-type').value = '';
             document.getElementById('custom-email').value = '';
             document.getElementById('custom-phone').value = '';
             document.getElementById('custom-description').value = '';
